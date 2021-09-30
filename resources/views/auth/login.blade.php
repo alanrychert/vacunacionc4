@@ -1,9 +1,12 @@
+
+<title>Cocktail maps</title>
+
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+            <div >
+                <img class="responsive" src="/assets/img/logo.jpg" style="max-width:100%; max-height:100%;">
+            </div>
         </x-slot>
 
         <!-- Session Status -->
