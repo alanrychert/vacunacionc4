@@ -8,7 +8,7 @@
     <form action="route('ingresarruta')" method=POST enctype="multipart/form-data">
         <div class="row mb-3 justify-content-center">
             <div class="col-2">
-                <label class="form-label fw-bold" for="nombre">Nombre</label>
+                <label class="form-label font-weight-bold" for="nombre">Nombre</label>
             </div>
             <div class="col-8">
                 <input type="text" class="form-control" value="{{old('nombre')}}" id="nombre" name="nombre" required>
@@ -17,7 +17,7 @@
         </div>
         <div class="row mb-3 justify-content-center">
             <div class="col-2">
-                <label class="form-label fw-bold" for="apellido">Apellido</label>
+                <label class="form-label font-weight-bold" for="apellido">Apellido</label>
             </div>
             <div class="col-8">
                 <input type="text" class="form-control" value="{{old('apellido')}}" id="apellido" name="apellido" required>
@@ -26,7 +26,7 @@
         </div>
         <div class="row mb-3 justify-content-center">
             <div class="col-2">
-                <label class="form-label fw-bold" for="fecha_nac">Fecha de nac</label>
+                <label class="form-label font-weight-bold" for="fecha_nac">Fecha de nac</label>
             </div>
             <div class="col-8">
                 <input type="date" class="form-control" value="NULL" id="fecha_nac" placeholder="dd/mm/aaaa" name="fecha_nac" required>
@@ -35,7 +35,7 @@
         </div>
         <div class="row mb-3 justify-content-center">
             <div class="col-2">
-                <label class="form-label fw-bold" for="dni">DNI</label>
+                <label class="form-label font-weight-bold" for="dni">DNI</label>
             </div>
             <div class="col-8">
                 <input type="number" class="form-control" value="{{old('dni')}}" id="dni" name="dni" required>
@@ -44,7 +44,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-2">
-                <label class="form-label fw-bold" for="dni">Comorbilidad</label>
+                <label class="form-label font-weight-bold" for="dni">Comorbilidad</label>
             </div>
             <div class="col-8" style="display:inline-flex">
                 <div class="form-check ">
@@ -63,7 +63,7 @@
         </div>
         <div class="row mb-3 justify-content-center">
             <div class="col-2">
-                <label class="form-label fw-bold" for="descripcion">Descripción</label>
+                <label class="form-label font-weight-bold" for="descripcion">Descripción</label>
             </div>
             <div class="col-8">
                 <input type="text" class="form-control" value="{{old('descripcion')}}" placeholder="" id="descripcion" name="descripcion" disabled="disabled">
@@ -71,7 +71,7 @@
         </div>
         <div class="row mb-3 justify-content-center">
             <div class="col-2">
-                <label class="form-label fw-bold" for="nombre">Sexo</label>
+                <label class="form-label font-weight-bold" for="nombre">Sexo</label>
             </div>
             <div class="col-8">
                 <select class="form-select">
@@ -83,7 +83,7 @@
         </div>
         <div class="row mb-3 justify-content-center">
             <div class="col-2">
-                <label class="form-label fw-bold" for="fecha_vac">Fecha de vacunacion</label>
+                <label class="form-label font-weight-bold" for="fecha_vac">Fecha de vacunacion</label>
             </div>
             <div class="col-8">
                 <input type="date" class="form-control" value="NULL" id="fecha_vac" placeholder="dd/mm/aaaa" name="fecha_vac" required>
@@ -92,7 +92,7 @@
         </div>
         <div class="row mb-3 justify-content-center">
             <div class="col-2">
-                <label class="form-label fw-bold" for="codigo">Código de vacuna</label>
+                <label class="form-label font-weight-bold" for="codigo">Código de vacuna</label>
             </div>
             <div class="col-8">
                 <input type="text" class="form-control" value="{{old('codigo')}}" id="codigo" name="codigo" required>
