@@ -2,7 +2,7 @@
 @section('contenido')
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <!--Formulario para el registro de un nuevo vacunado-->
+        <!--Formulario para el edicion de un nuevo vacunado, se recibira una variable con todos los datos que se deben precargar-->
         <div class="col-10">
             <h3 class="mb-3 mt-3 text-center">Formulario de nuevo vacunado</h3>
         </div>
@@ -14,7 +14,7 @@
                     <label class="form-label font-weight-bold" for="nombre">Nombre</label>
                 </div>
                 <div class="col-8">
-                    <input type="text" class="form-control" value="{{old('nombre')}}" id="nombre" name="nombre" required>
+                    <input type="text" class="form-control" value="{{$vacunado == NULL ? old('nombre') : $vacunado->nombre}}" id="nombre" name="nombre" required>
                     @error('Nombre')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
@@ -23,7 +23,7 @@
                     <label class="form-label font-weight-bold" for="apellido">Apellido</label>
                 </div>
                 <div class="col-8">
-                    <input type="text" class="form-control" value="{{old('apellido')}}" id="apellido" name="apellido" required>
+                    <input type="text" class="form-control" value="{{$vacunado == NULL ? old('apellido') : $vacunado->apellido}}" id="apellido" name="apellido" required>
                     @error('Apellido')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
@@ -41,7 +41,7 @@
                     <label class="form-label font-weight-bold" for="dni">DNI</label>
                 </div>
                 <div class="col-8">
-                    <input type="number" class="form-control" value="{{old('dni')}}" id="dni" name="dni" required>
+                    <input type="number" class="form-control" value="{{$vacunado == NULL ? old('dni') : $vacunado->dni}}" id="dni" name="dni" required>
                     @error('DNI')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="form-check">
                         <input 
-                        onclick="document.getElementById('descripcion').disabled = true; document.getElementById('descripcion').value = ''"
+                        onclick="document.getElementById('descripcion').disabled = true;document.getElementById('descripcion').value = ''"
                         class="form-check-input" type="radio" name="comorbilidad" id="No" value="No" checked>
                         <label class="form-check-label" for="No">No</label>
                     </div>
@@ -69,7 +69,7 @@
                     <label class="form-label font-weight-bold" for="descripcion">Descripción</label>
                 </div>
                 <div class="col-8">
-                    <input type="text" class="form-control" value="{{old('descripcion')}}" placeholder="" id="descripcion" name="descripcion" disabled="disabled">
+                    <input type="text" class="form-control" value="{{$vacunado == NULL ? old('descripcion') : $vacunado->descripcion}}" placeholder="" id="descripcion" name="descripcion" disabled="disabled">
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">
@@ -98,13 +98,13 @@
                     <label class="form-label font-weight-bold" for="codigo">Código de vacuna</label>
                 </div>
                 <div class="col-8">
-                    <input type="text" class="form-control" value="{{old('codigo')}}" id="codigo" name="codigo" required>
+                    <input type="text" class="form-control" value="{{$vacunado == NULL ? old('codigo') : $vacunado->codigo}}" id="codigo" name="codigo" required>
                     @error('Codigo')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">
                 @csrf 
-                @method('POST')
+                @method('PUT')
                 <div>
                     <button type="submit" class="btn btn-success">Guardar</button>
                 </div>

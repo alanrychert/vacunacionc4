@@ -2,9 +2,9 @@
 @section('contenido')
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <!--Formulario para el registro de un nuevo vacunado-->
+        <!--Formulario para el registro de segunda dosis-->
         <div class="col-10">
-            <h3 class="mb-3 mt-3">Formulario segunda dosis</h3>
+            <h3 class="mb-3 mt-3 text-center">Formulario segunda dosis</h3>
         </div>
     </div>
     <div>
@@ -39,10 +39,10 @@
             <div class="row mb-3 justify-content-center">
                 @csrf 
                 @method('POST')
-                <div class="m-3">
+                <div>
                     <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
-                <div class="m-3">
+                <div class="ml-3">
                     <button type="submit" class="btn btn-success">Cancelar</button>
                 </div>
             </div>

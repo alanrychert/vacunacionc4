@@ -34,3 +34,7 @@ Route::get('/segundadosis', function () {
 Route::get('/nuevolote', function () {
     return view('nuevo-lote-form');
 });
+
+Route::get('/vacunacion', function () {
+    return view('vacunacion-form');
+});
