@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('contenido')
-<div class="container-fluid bg-gray-100">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <!--Formulario para el registro de un nuevo vacunado-->
-        <div class="col-8">
-            <h2>Formulario de nuevo vacunado</h2>
+        <div class="col-10">
+            <h3 class="mb-3 mt-3">Formulario de nuevo vacunado</h3>
         </div>
     </div>
     <div>

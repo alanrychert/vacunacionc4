@@ -23,6 +23,10 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/form', function () {
+Route::get('/nuevovacunado', function () {
     return view('nuevo-vacunado-form');
+});
+
+Route::get('/segundadosis', function () {
+    return view('segunda-dosis-form');
 });
