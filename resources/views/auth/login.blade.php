@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-        <h1 class="font-weight-bold" style="font-size: large">Bienvenido al Registro de Vacunacion Argentino</h1>
+        <h1 style="font-weight:bold">Bienvenido al Registro de Vacunacion Argentino</h1>
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -26,6 +26,23 @@
                                     type="password"
                                     name="password"
                                     required autocomplete="current-password" />
+                </div>
+
+                <!--Mostrar contraseña-->
+                <div class="mt-4 form-check">
+                    <label for="mostrar" class="inline-flex items-center">
+                        <input 
+                        onclick="var x = document.getElementById('password');
+                        if (x.type === 'password') {
+                            x.type = 'text';
+                        } else {
+                            x.type = 'password';
+                        }"
+                        id="mostrar" type="checkbox" 
+                        class="form-check-input rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" 
+                        name="mostrar">
+                        <span class="ml-2 text-sm text-gray-600">{{ __('Mostrar contraseña') }}</span>
+                    </label>
                 </div>
 
                 <!-- Remember Me -->
