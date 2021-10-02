@@ -30,3 +30,7 @@ Route::get('/nuevovacunado', function () {
 Route::get('/segundadosis', function () {
     return view('segunda-dosis-form');
 });
+
+Route::get('/nuevolote', function () {
+    return view('nuevo-lote-form');
+});

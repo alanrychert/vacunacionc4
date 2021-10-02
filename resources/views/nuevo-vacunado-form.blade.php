@@ -78,7 +78,7 @@
                 </div>
                 <div class="col-8">
                     <select class="form-select">
-                        <option selected>Elija una opcion</option>
+                        <option selected>Seleccionar</option>
                         <option value="F">Femenino</option>
                         <option value="M">Masculino</option>
                     </select>
@@ -86,11 +86,11 @@
             </div>
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
-                    <label class="form-label font-weight-bold" for="fecha_vac">Fecha de vacunacion</label>
+                    <label class="form-label font-weight-bold" for="fecha_vac">Fecha de vacunación</label>
                 </div>
                 <div class="col-8">
                     <input type="date" class="form-control" value="NULL" id="fecha_vac" placeholder="dd/mm/aaaa" name="fecha_vac" required>
-                    @error('Fecha de vacunacion')<small>*{{$message}}</small>@enderror
+                    @error('Fecha de vacunación')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">
@@ -99,7 +99,7 @@
                 </div>
                 <div class="col-8">
                     <input type="text" class="form-control" value="{{old('codigo')}}" id="codigo" name="codigo" required>
-                    @error('Nombre')<small>*{{$message}}</small>@enderror
+                    @error('Codigo')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">
