@@ -18,6 +18,13 @@
                     <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
                 </div>
 
+                <!-- DNI -->
+                <div>
+                    <x-label for="DNI" :value="__('DNI')" />
+
+                    <x-input id="DNI" class="block mt-1 w-full" type="number" name="DNI" :value="old('DNI')" required autofocus />
+                </div>
+
                 <!-- Password -->
                 <div class="mt-4">
                     <x-label for="password" :value="__('Contraseña')" />
