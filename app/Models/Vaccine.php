@@ -10,10 +10,6 @@ class Vaccine extends Model
     use HasFactory;
     protected $table = 'vaccines';
     protected $primaryKey = 'id';
-    
-    public function batch(){
-        return $this->belongsTo(Batch::class,'id');
-    }
 
         /**
      * The attributes that are mass asignable

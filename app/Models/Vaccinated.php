@@ -10,10 +10,6 @@ class Vaccinated extends Model
     use HasFactory;
     protected $table = 'vaccinated';
     protected $primaryKey = 'id';
-    
-    public function vaccine(){
-        return $this->hasMany(Vaccine::class,'id');
-    }
 
         /**
      * The attributes that are mass asignable
