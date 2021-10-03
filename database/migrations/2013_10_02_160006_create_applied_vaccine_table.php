@@ -15,7 +15,7 @@ class CreateAppliedVaccineTable extends Migration
     {
         Schema::create('applied_vaccines', function (Blueprint $table) {
             $table->id();
-            $table->int('suffix_code')->unique();
+            $table->integer('suffix_code')->unique();
             $table->smallInteger('dose');
 
         });
