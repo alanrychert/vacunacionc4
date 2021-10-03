@@ -38,7 +38,7 @@
                 <div class="mt-4">
                     <x-label for="region" :value="__('Region Sanitaria')" />
 
-                    <select name="region" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    <select id ="region" name="region" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <option selected>Seleccionar</option>
                             <option value="1">Zona1</option>
                             <option value="2">Zona2</option>
