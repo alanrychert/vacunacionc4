@@ -27,6 +27,6 @@ class CreateSanitaryRegionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sanitary_region');
+        Schema::dropIfExists('sanitary_regions');
     }
 }
