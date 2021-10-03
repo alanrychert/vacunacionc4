@@ -19,7 +19,7 @@ class CreateVaccinesTable extends Migration
             $table->string('name')->unique();
             $table->smallInteger('dose');
             $table->string('time_between_doses');
-            $table->string('date_of_Expiry');
+            $table->string('date_of_expiry');
         });
     }
 

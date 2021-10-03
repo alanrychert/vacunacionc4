@@ -11,28 +11,28 @@
         <form action="route('ingresarruta')" method=POST enctype="multipart/form-data">
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
-                    <label class="form-label font-weight-bold" for="nombre">Nombre</label>
+                    <label class="form-label font-weight-bold" for="name">Nombre</label>
                 </div>
                 <div class="col-8">
-                    <input type="text" class="form-control" value="{{old('nombre')}}" id="nombre" name="nombre" required>
+                    <input type="text" class="form-control" value="{{old('name')}}" id="name" name="name" required>
                     @error('Nombre')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
-                    <label class="form-label font-weight-bold" for="apellido">Apellido</label>
+                    <label class="form-label font-weight-bold" for="last_name">Apellido</label>
                 </div>
                 <div class="col-8">
-                    <input type="text" class="form-control" value="{{old('apellido')}}" id="apellido" name="apellido" required>
+                    <input type="text" class="form-control" value="{{old('last_name')}}" id="last_name" name="last_name" required>
                     @error('Apellido')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
-                    <label class="form-label font-weight-bold" for="fecha_nac">Fecha de nac</label>
+                    <label class="form-label font-weight-bold" for="date_of_birth">Fecha de nac</label>
                 </div>
                 <div class="col-8">
-                    <input type="date" class="form-control" value="NULL" id="fecha_nac" placeholder="dd/mm/aaaa" name="fecha_nac" required>
+                    <input type="date" class="form-control" value="NULL" id="date_of_birth" placeholder="dd/mm/aaaa" name="date_of_birth" required>
                     @error('Fecha de nac')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
@@ -52,13 +52,13 @@
                 <div class="col-8" style="display:inline-flex">
                     <div class="form-check ">
                         <input 
-                        onclick="document.getElementById('descripcion').disabled = false;"
+                        onclick="document.getElementById('comorbilidad').disabled = false;"
                         class="form-check-input" type="radio" name="comorbilidad" id="Si" value="Si">
                         <label class="form-check-label pr-3" for="si">Si</label>
                     </div>
                     <div class="form-check">
                         <input 
-                        onclick="document.getElementById('descripcion').disabled = true; document.getElementById('descripcion').value = ''"
+                        onclick="document.getElementById('comorbilidad').disabled = true; document.getElementById('comorbilidad').value = ''"
                         class="form-check-input" type="radio" name="comorbilidad" id="No" value="No" checked>
                         <label class="form-check-label" for="No">No</label>
                     </div>
@@ -66,15 +66,15 @@
             </div>
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
-                    <label class="form-label font-weight-bold" for="descripcion">Descripción</label>
+                    <label class="form-label font-weight-bold" for="comorbilidad">Descripción</label>
                 </div>
                 <div class="col-8">
-                    <input type="text" class="form-control" value="{{old('descripcion')}}" placeholder="" id="descripcion" name="descripcion" disabled="disabled">
+                    <input type="text" class="form-control" value="{{old('comorbilidad')}}" placeholder="" id="comorbilidad" name="comorbilidad" disabled="disabled">
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
-                    <label class="form-label font-weight-bold" for="sexo">Sexo</label>
+                    <label class="form-label font-weight-bold" for="sex">Sexo</label>
                 </div>
                 <div class="col-8">
                     <select class="form-select">
@@ -86,10 +86,10 @@
             </div>
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
-                    <label class="form-label font-weight-bold" for="fecha_vac">Fecha de vacunación</label>
+                    <label class="form-label font-weight-bold" for="date_of_vaccination">Fecha de vacunación</label>
                 </div>
                 <div class="col-8">
-                    <input type="date" class="form-control" value="NULL" id="fecha_vac" placeholder="dd/mm/aaaa" name="fecha_vac" required>
+                    <input type="date" class="form-control" value="NULL" id="date_of_vaccination" placeholder="dd/mm/aaaa" name="date_of_vaccination" required>
                     @error('Fecha de vacunación')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
