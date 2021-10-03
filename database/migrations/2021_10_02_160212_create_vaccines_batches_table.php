@@ -19,7 +19,7 @@ class CreateVaccinesBatchesTable extends Migration
             $table->integer('number_of_vaccines');
             $table->date('reception_date');
 
-            $table->foreignId('vaccine_id')->constrained('vaccines')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('type_of_vaccine_id')->constrained('type_of_vaccines')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

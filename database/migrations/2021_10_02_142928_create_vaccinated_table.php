@@ -18,7 +18,7 @@ class CreateVaccinatedTable extends Migration
             $table->string('name');
             $table->string('last_name');
             $table->integer('dni')->unique();
-            $table->string('comorbilidad');
+            $table->string('comorbidity');
             $table->char('sex');
             $table->date('date_of_birth');
             $table->date('date_of_vaccination');

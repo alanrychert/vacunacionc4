@@ -13,11 +13,10 @@ class CreateSanitaryRegionTable extends Migration
      */
     public function up()
     {
-        Schema::create('sanitary_region', function (Blueprint $table) {
+        Schema::create('sanitary_regions', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->integer('code')->unique();
-            
+            $table->integer('code')->unique();           
         });
     }
 

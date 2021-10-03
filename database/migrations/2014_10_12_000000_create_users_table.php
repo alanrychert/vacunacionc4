@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('last_name');
             $table->integer('dni')->unique();
-            $table->string('user');
+            $table->string('user')->unique();
             
             $table->string('email')->unique(); //esto hay que sacarlo 
             $table->timestamp('email_verified_at')->nullable();//despues cuando se personalice el login

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVaccinesTable extends Migration
+class CreateTypeOfVaccinesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateVaccinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('vaccines', function (Blueprint $table) {
+        Schema::create('type_of_vaccines', function (Blueprint $table) {
             $table->id();
-            $table->int('code')->unique();
-            $table->string('name')->unique();
-            $table->smallInteger('dose');
-            $table->string('time_between_doses');
-            $table->string('date_of_Expiry');
+            $table->string('nombre')->unique();
+            $table->int('preffix_code')->unique();
+            $table->date('time_between_doses');
+            $table->date('date_of_Expiry'); 
         });
     }
 
@@ -30,6 +29,6 @@ class CreateVaccinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vaccines');
+        Schema::dropIfExists('type_of_vaccines');
     }
 }
