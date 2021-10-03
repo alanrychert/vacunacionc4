@@ -17,7 +17,7 @@ class CreateAppliedVaccineTable extends Migration
             $table->id();
             $table->int('suffix_code')->unique();
             $table->smallInteger('dose');
-                   
+
         });
     }
 

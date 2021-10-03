@@ -22,19 +22,3 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
-
-Route::get('/nuevovacunado', function () {
-    return view('nuevo-vacunado-form');
-});
-
-Route::get('/segundadosis', function () {
-    return view('segunda-dosis-form');
-});
-
-Route::get('/nuevolote', function () {
-    return view('nuevo-lote-form');
-});
-
-Route::get('/vacunacion', function () {
-    return view('vacunacion-form');
-});
