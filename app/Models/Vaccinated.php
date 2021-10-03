@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Vaccine extends Model
+class Vaccinated extends Model
 {
     use HasFactory;
-    protected $table = 'vaccines';
+    protected $table = 'vaccinated';
     protected $primaryKey = 'id';
     
-    public function batch(){
-        return $this->belongsTo(Batch::class,'id');
+    public function vaccine(){
+        return $this->hasMany(Vaccine::class,'id');
     }
 
         /**
@@ -20,7 +20,7 @@ class Vaccine extends Model
      * 
      * @var array
      */
-    protected $fillable = ['code', 'name', 'dose', 'time_between_doses', 'date_of_expiry'];
+    protected $fillable = ['name', 'last_name', 'dni', 'comorbilidad', 'sex', 'date_of_birth', 'date_of_vaccination'];
 
     protected $guarded = ['id'];
 
