@@ -49,8 +49,9 @@ class RegisteredUserController extends Controller
             'dni' => $request->dni,
             'user' => $request->user,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
             'sanitary_region_id' => $request->region,
+            'password' => Hash::make($request->password),
+            
         ]);
 
         event(new Registered($user));
