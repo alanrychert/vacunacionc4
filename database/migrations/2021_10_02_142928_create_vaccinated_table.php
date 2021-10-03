@@ -23,7 +23,7 @@ class CreateVaccinatedTable extends Migration
             $table->date('date_of_birth');
             $table->date('date_of_vaccination');
 
-            $table->foreignId('vaccine_id')->constrained('vaccines')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('applied_vaccine_id')->constrained('applied_vaccines')->onUpdate('cascade')->onDelete('cascade');
         });
         /*Nombre
         ● Apellido
