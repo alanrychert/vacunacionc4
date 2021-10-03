@@ -16,7 +16,7 @@ class Provinces extends Model
      * 
      * @var array
      */
-    protected $fillable = ['name', 'code', 'reception_date'];
+    protected $fillable = ['name', 'code'];
 
     protected $guarded = ['id'];
 

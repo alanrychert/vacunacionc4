@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Vaccine extends Model
+class AppliedVaccine extends Model
 {
     use HasFactory;
-    protected $table = 'vaccines';
+    protected $table = 'applied_vaccines';
     protected $primaryKey = 'id';
 
         /**
@@ -16,7 +16,7 @@ class Vaccine extends Model
      * 
      * @var array
      */
-    protected $fillable = ['code', 'name', 'dose', 'time_between_doses', 'date_of_expiry'];
+    protected $fillable = ['sufix','dose'];
 
     protected $guarded = ['id'];
 
