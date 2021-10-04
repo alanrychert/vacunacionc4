@@ -15,10 +15,10 @@ class CreateTypeOfVaccinesTable extends Migration
     {
         Schema::create('type_of_vaccines', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre')->unique();
+            $table->string('name')->unique();
             $table->integer('preffix_code')->unique();
             $table->date('time_between_doses');
-            $table->date('date_of_Expiry'); 
+            $table->date('date_of_expiry'); 
         });
     }
 

@@ -16,7 +16,7 @@ class AppliedVaccine extends Model
      * 
      * @var array
      */
-    protected $fillable = ['name', 'prefix', 'time_between_doses', 'date_of_expiry'];
+    protected $fillable = ['name', 'preffix_code', 'time_between_doses', 'date_of_expiry'];
 
     protected $guarded = ['id'];
 
