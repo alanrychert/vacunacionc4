@@ -17,8 +17,7 @@ class CreateTypeOfVaccinesTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->integer('preffix_code')->unique();
-            $table->date('time_between_doses');
-            $table->date('date_of_expiry'); 
+            $table->intInteger('days_between_doses');
         });
     }
 
