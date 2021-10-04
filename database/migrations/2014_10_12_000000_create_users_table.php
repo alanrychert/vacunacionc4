@@ -27,7 +27,9 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreignId('sanitary_region_id')->constrained('sanitary_regions')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('name');
+
+            $table->foreign('sanitary_region')->references('name')->on('sanitary_regions')->onUpdate('cascade')->onDelete('cascade');
             
         });
     }

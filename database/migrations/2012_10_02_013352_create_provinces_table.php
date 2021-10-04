@@ -17,8 +17,6 @@ class CreateProvincesTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->integer('code')->unique();
-
-            $table->foreignId('sanitary_region_id')->constrained('sanitary_regions')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
