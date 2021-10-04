@@ -15,9 +15,9 @@ class CreateAppliedVaccineTable extends Migration
     {
         Schema::create('applied_vaccines', function (Blueprint $table) {
             $table->id();
-            $table->integer('suffix_code')->unique();
-            $table->smallInteger('dose');
+            $table->integer('vaccine_number');
 
+            $table->foreign('id_forraje')->references('id')->on('forrajes');
         });
     }
 
