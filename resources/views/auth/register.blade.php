@@ -60,8 +60,8 @@
 
                     <select class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <option selected>Seleccionar</option>
-                            <option value="1">Operativo</option>
-                            <option value="2">Administrador</option>
+                            <option value="Operator">Operativo</option>
+                            <option value="Administrator">Administrador</option>
                         </select>
                 </div>
 
