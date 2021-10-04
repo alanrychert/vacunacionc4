@@ -20,10 +20,10 @@
             </div>
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
-                    <label class="form-label font-weight-bold" for="fecha_vac">Fecha de vacunacion</label>
+                    <label class="form-label font-weight-bold" for="date_of_birth">Fecha de vacunacion</label>
                 </div>
                 <div class="col-8">
-                    <input type="date" class="form-control" value="NULL" id="fecha_vac" placeholder="dd/mm/aaaa" name="fecha_vac" required>
+                    <input type="date" class="form-control" value="NULL" id="date_of_birth" placeholder="dd/mm/aaaa" name="date_of_birth" required>
                     @error('Fecha de vacunacion')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
