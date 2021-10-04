@@ -11,21 +11,13 @@
         <form action="route('ingresarruta')" method=POST enctype="multipart/form-data">
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
-                    <label class="form-label font-weight-bold" for="codigo">Código</label>
+                    <label class="form-label font-weight-bold" for="range">Rango</label>
                 </div>
                 <div class="col-8">
-                    <input type="text" class="form-control" value="{{old('codigo')}}" id="codigo" name="codigo" required>
-                    @error('Codigo')<small>*{{$message}}</small>@enderror
-                </div>
-            </div>
-            <div class="row mb-3 justify-content-center">
-                <div class="col-2">
-                    <!--validar que sea un entero positivo-->
-                    <label class="form-label font-weight-bold" for="cantidad">Cantidad de vacunas</label>
-                </div>
-                <div class="col-8">
-                    <input type="number" class="form-control" value="{{old('cantidad')}}" id="cantidad" name="cantidad" required>
-                    @error('Cantidad de vacunas')<small>*{{$message}}</small>@enderror
+                    <label class="form-label font-weight-bold" for="since">Desde</label>
+                    <input type="number" class="form-control" value="{{old('since')}}" id="since" name="since" required>
+                    <label class="form-label font-weight-bold" for="to">hasta</label>
+                    <input type="number" class="form-control" value="{{old('to')}}" id="to" name="to" required>
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">
@@ -36,18 +28,31 @@
                     <select class="form-select">
                         <!--esto vendria de la bdd?-->
                         <option selected>Seleccionar</option>
-                        <option value="Sinopharm">Sinopharm</option>
-                        <option value="Astrazeneca">Astrazeneca</option>
-                        <option value="Pfizer">Pfizer</option>
+                        @foreach ($types as $type)
+                        <option value="$type->preffix_code">{{ $type->name }}</option>
+                        @endforeach
                     </select>
                 </div>
-            </div>          
+            </div>
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
-                    <label class="form-label font-weight-bold" for="fecha_rec">Fecha de recepción</label>
+                    <label class="form-label font-weight-bold" for="dosis">Dosis</label>
                 </div>
                 <div class="col-8">
-                    <input type="date" class="form-control" value="NULL" id="fecha_rec" placeholder="dd/mm/aaaa" name="fecha_rec" required>
+                    <select class="form-select" name="dose">
+                        <option selected>Seleccionar</option>
+                        <option value="1">Primera dosis</option>
+                        <option value="2">Segunda dosis</option>
+                        <option value="3">Refuerzo</option>
+                    </select>
+                </div>
+            </div>                    
+            <div class="row mb-3 justify-content-center">
+                <div class="col-2">
+                    <label class="form-label font-weight-bold" for="reception_date">Fecha de recepción</label>
+                </div>
+                <div class="col-8">
+                    <input type="date" class="form-control" value="NULL" id="reception_date" placeholder="dd/mm/aaaa" name="reception_date" required>
                     @error('Fecha de recepción')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
@@ -65,5 +70,4 @@
         </form>
     </div>
 </div>
-
 @endsection
