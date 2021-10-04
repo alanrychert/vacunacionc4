@@ -95,7 +95,7 @@
             </div>
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
-                    <label class="form-label font-weight-bold" for="tipo">Tipo de vacuna</label>
+                    <label class="form-label font-weight-bold" for="type">Tipo de vacuna</label>
                 </div>
                 <div class="col-8">
                     <select class="form-select" name="type_of_vaccine">
