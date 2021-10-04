@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Batch;
+use App\Models\TypeOfVaccine;
 
 class BatchController extends Controller
 {
@@ -25,7 +26,10 @@ class BatchController extends Controller
      */
     public function create()
     {
-        return view('new-batch-form');
+        $types_of_vaccines = TypeOfVaccine::query()->get();
+    
+        return view('new-batch-form')
+            ->with('types', $types_of_vaccines);
     }
 
     /**

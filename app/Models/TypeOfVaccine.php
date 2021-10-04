@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TypeOfVaccine extends Model
 {
     use HasFactory;
-    protected $table = 'type_of_vaccine';
+    protected $table = 'type_of_vaccines';
     protected $primaryKey = 'id';
 
     public function vaccines(){
@@ -20,7 +20,7 @@ class TypeOfVaccine extends Model
      * 
      * @var array
      */
-    protected $fillable = ['name', 'preffix_code', 'time_between_doses', 'date_of_expiry'];
+    protected $fillable = ['name', 'preffix_code', 'days_between_doses'];
 
     protected $guarded = ['id'];
 
