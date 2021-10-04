@@ -24,7 +24,7 @@ class Vaccine extends Model
      * 
      * @var array
      */
-    protected $fillable = ['suffix_code','dose'];
+    protected $fillable = ['vaccine_number'];
 
     protected $guarded = ['id'];
 
