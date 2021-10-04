@@ -5,11 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AppliedVaccine extends Model
+class Vaccine extends Model
 {
     use HasFactory;
-    protected $table = 'applied_vaccines';
+    protected $table = 'vaccines';
     protected $primaryKey = 'id';
+
+    public function vaccines(){
+        return $this->belongsTo(TypeOfVaccine::class,'type_of_vaccine');
+    }
+
+    public function batch(){
+        return $this->belognsTo(Batch::class,'batch_number');
+    }
 
         /**
      * The attributes that are mass asignable

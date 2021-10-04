@@ -11,6 +11,12 @@ class Vaccinated extends Model
     protected $table = 'vaccinated';
     protected $primaryKey = 'id';
 
+    public function vaccines(){
+        return $this->hasMany(
+            Vaccine::class,['applied_vaccine', 'type_of_vaccine']
+        );
+    }
+
         /**
      * The attributes that are mass asignable
      * 

@@ -15,13 +15,12 @@ class CreateVaccinesBatchesTable extends Migration
     {
         Schema::create('vaccines_batches', function (Blueprint $table) {
             $table->id();
+            $table->integer('batch_number'); //se carga en el formulario
             $table->integer('since');
             $table->integer('to');
             $table->integer('number_of_vaccines');
             $table->smallInteger('dose');
             $table->date('reception_date');
-
-            $table->foreign('type_of_vaccine')->references('preffix_code')->on('type_of_vaccines')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

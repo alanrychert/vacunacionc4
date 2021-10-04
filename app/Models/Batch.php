@@ -11,12 +11,16 @@ class Batch extends Model
     protected $table = 'vaccines_batches';
     protected $primaryKey = 'id';
 
+    public function vaccines(){
+        return $this->hasMany(Vaccines::class,'batch_number');
+    }
+
     /**
      * The attributes that are mass asignable
      * 
      * @var array
      */
-    protected $fillable = ['code', 'number_of_vaccines', 'reception_date'];
+    protected $fillable = ['batch_number', 'since', 'to', 'number_of_vaccines', 'dose', 'reception_date'];
 
     protected $guarded = ['id'];
 
