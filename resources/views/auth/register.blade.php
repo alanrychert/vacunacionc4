@@ -6,20 +6,20 @@
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
             
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                 @csrf
 
                 <!-- Name -->
                 <div>
-                    <x-label for="nombre" :value="__('Nombre')" />
+                    <x-label for="name" :value="__('Nombre')" />
 
-                    <x-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')" required autofocus />
+                    <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
                 </div>
 
                 <div class="mt-4">
-                    <x-label for="apellido" :value="__('Apellido')" />
+                    <x-label for="last_name" :value="__('Apellido')" />
 
-                    <x-input id="apellido" class="block mt-1 w-full" type="text" name="apellido" :value="old('apellido')" required autofocus />
+                    <x-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus />
                 </div>
 
                 <div class="mt-4">
@@ -38,7 +38,7 @@
                 <div class="mt-4">
                     <x-label for="region" :value="__('Region Sanitaria')" />
 
-                    <select class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    <select id ="region" name="region" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <option selected>Seleccionar</option>
                             <option value="1">Zona1</option>
                             <option value="2">Zona2</option>
@@ -66,19 +66,19 @@
                 </div>
 
                 <div class="mt-4">
-                    <x-label for="usuario" :value="__('Usuario')" />
+                    <x-label for="user" :value="__('Usuario')" />
 
-                    <x-input id="usuario" class="block mt-1 w-full" type="text" name="usuario" :value="old('usuario')" required autofocus />
+                    <x-input id="user" class="block mt-1 w-full" type="text" name="user" :value="old('user')" required autofocus />
                 </div>
 
                 <!-- Password -->
                 <div class="mt-4">
-                    <x-label for="contraseña" :value="__('Contraseña')" />
+                    <x-label for="password" :value="__('Contraseña')" />
 
-                    <x-input id="contraseña" class="block mt-1 w-full"
+                    <x-input id="password" class="block mt-1 w-full"
                                     type="password"
-                                    name="contraseña"
-                                    required autocomplete="new-contraseña" />
+                                    name="password"
+                                    required autocomplete="new-password" />
                 </div>
 
                 <!-- Confirm Password -->
@@ -90,11 +90,11 @@
                                     name="password_confirmation" required />
                 </div>
 
-                <!--Mostrar contraseña-->
+                <!--Mostrar password-->
                 <div class="mt-4 form-check">
                     <label for="mostrar" class="inline-flex items-center">
                         <input 
-                        onclick="var x = document.getElementById('contraseña');
+                        onclick="var x = document.getElementById('password');
                         var y = document.getElementById('password_confirmation');
                         if (x.type === 'password') {
                             x.type = 'text';

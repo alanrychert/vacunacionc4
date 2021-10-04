@@ -26,6 +26,8 @@ class User extends Authenticatable
         'email',
         'email_verified_at',
         'password',
+        'sanitary_region_id',
+        'DNI'
     ];
 
     /**
