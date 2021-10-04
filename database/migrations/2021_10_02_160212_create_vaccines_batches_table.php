@@ -15,8 +15,10 @@ class CreateVaccinesBatchesTable extends Migration
     {
         Schema::create('vaccines_batches', function (Blueprint $table) {
             $table->id();
-            $table->integer('code')->unique();
+            $table->integer('since');
+            $table->integer('to');
             $table->integer('number_of_vaccines');
+            $table->smallInteger('dose');
             $table->date('reception_date');
 
             $table->foreignId('type_of_vaccine_id')->constrained('type_of_vaccines')->onUpdate('cascade')->onDelete('cascade');
