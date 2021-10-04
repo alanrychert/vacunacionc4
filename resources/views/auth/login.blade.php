@@ -13,16 +13,16 @@
 
                 <!-- Email Address -->
                 <div>
-                    <x-label for="email" :value="__('Usuario')" />
+                    <x-label for="user" :value="__('Usuario')" />
 
-                    <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                    <x-input id="user" class="block mt-1 w-full" type="text" name="user" :value="old('user')" required autofocus />
                 </div>
 
                 <!-- DNI -->
                 <div>
-                    <x-label for="DNI" :value="__('DNI')" />
+                    <x-label for="dni" :value="__('DNI')" />
 
-                    <x-input id="DNI" class="block mt-1 w-full" type="number" name="DNI" :value="old('DNI')" required autofocus />
+                    <x-input id="dni" class="block mt-1 w-full" type="number" name="dni" :value="old('dni')" required autofocus />
                 </div>
 
                 <!-- Password -->
