@@ -22,10 +22,8 @@ class CreateVaccinatedTable extends Migration
             $table->char('sex');
             $table->date('date_of_birth');
             $table->date('date_of_vaccination');
-            $table->integer('applied_vaccine');
 
-            $table->foreign('applied_vaccine')->references(['type_of_vaccine', 'vaccine_number'])->on('vaccines')->onUpdate('cascade')->onDelete('cascade');
-            
+
         });
         /*Nombre
         ● Apellido

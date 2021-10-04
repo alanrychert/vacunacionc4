@@ -20,6 +20,9 @@ class CreateVaccinesBatchesTable extends Migration
             $table->integer('to');
             $table->smallInteger('dose');
             $table->date('reception_date');
+            $table->string('name');
+
+            $table->foreign('name')->references('name')->on('sanitary_regions')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
