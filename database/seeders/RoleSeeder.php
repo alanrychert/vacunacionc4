@@ -20,19 +20,19 @@ class RoleSeeder extends Seeder
         $roleOp = Role::create(['name' => 'Operator']);
 
         //Permisos ministro
-        Permission::create(['name' => 'admin.create']);
-        Permission::create(['name' => 'admin.modify']);
-        Permission::create(['name' => 'admin.delete']);
-        Permission::create(['name' => 'filters']);
+        Permission::create(['name' => 'admin.create'])->assignRole($roleMin);
+        Permission::create(['name' => 'admin.modify'])->assignRole($roleMin);
+        Permission::create(['name' => 'admin.delete'])->assignRole($roleMin);
+        Permission::create(['name' => 'filters'])->assignRole($roleMin);
 
         //Permisos administrador
-        Permission::create(['name' => 'lot.load']);
-        Permission::create(['name' => 'operator.create']);
-        Permission::create(['name' => 'operator.modify']);
-        Permission::create(['name' => 'operator.delete']);
-        Permission::create(['name' => 'regionalInfo']);
+        Permission::create(['name' => 'lot.load'])->assignRole($roleAdmin);
+        Permission::create(['name' => 'operator.create'])->assignRole($roleAdmin);
+        Permission::create(['name' => 'operator.modify'])->assignRole($roleAdmin);
+        Permission::create(['name' => 'operator.delete'])->assignRole($roleAdmin);
+        Permission::create(['name' => 'regionalInfo'])->assignRole($roleAdmin);
 
         //Permisos operario
-        Permission::create(['name' => 'vaccinated.load']);
+        Permission::create(['name' => 'vaccinated.load'])->assignRole($roleOp);
     }
 }
