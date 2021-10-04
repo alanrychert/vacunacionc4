@@ -43,19 +43,29 @@ class VaccinatedController extends Controller
             'last_name' => 'required|string|max:255',
             'date_of_birth' => 'required',
             'dni' => 'required|int',
-            'user' => 'required|string',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|confirmed|min:8',
+            'sex' => 'required|char',
+            'date_of_vaccination' => 'required',
+            'type_of_vaccine' => 'required',
+            'vaccine_number' => 'required'
         ]);
 
-        User::create([
+        $vaccinated = Vaccinated::create([
             'name' => $request->name,
             'last_name' => $request->last_name,
+            'date_of_birth' => $request->date_of_birth,
             'dni' => $request->dni,
-            'user' => $request->user,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'comorbidity' => $request->comorbidity,
+            'sex' => $request->sex,
+            'date_of_vaccination' => $request->date_of_vaccination,
         ]);
+
+        $vaccinated->vaccines()->create([
+            'type_of_vaccine' => $request->type_of_vaccine,
+            'vaccine_number' => $request->vaccine_number,
+        ]);
+
+        $vaccinated->save();
+        
         return redirect()->route('index');
     }
 

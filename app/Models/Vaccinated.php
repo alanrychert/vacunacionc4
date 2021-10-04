@@ -22,7 +22,7 @@ class Vaccinated extends Model
      * 
      * @var array
      */
-    protected $fillable = ['name', 'last_name', 'dni', 'comorbilidad', 'sex', 'date_of_birth', 'date_of_vaccination'];
+    protected $fillable = ['name', 'last_name', 'dni', 'comorbidity', 'sex', 'date_of_birth', 'date_of_vaccination'];
 
     protected $guarded = ['id'];
 
