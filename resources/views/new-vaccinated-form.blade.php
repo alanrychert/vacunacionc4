@@ -8,7 +8,7 @@
         </div>
     </div>
     <div>
-        <form action="route('ingresarruta')" method=POST enctype="multipart/form-data">
+        <form action="route('vaccinated.store')" method=POST enctype="multipart/form-data">
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
                     <label class="form-label font-weight-bold" for="name">Nombre</label>
@@ -47,19 +47,19 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-2">
-                    <label class="form-label font-weight-bold" for="dni">Comorbilidad</label>
+                    <label class="form-label font-weight-bold" for="comorbidity">Comorbilidad</label>
                 </div>
                 <div class="col-8" style="display:inline-flex">
                     <div class="form-check ">
                         <input 
-                        onclick="document.getElementById('comorbilidad').disabled = false;"
-                        class="form-check-input" type="radio" name="comorbilidad" id="Si" value="Si">
+                        onclick="document.getElementById('comorbidity').disabled = false;"
+                        class="form-check-input" type="radio" name="comorbidity" id="Si" value="Si">
                         <label class="form-check-label pr-3" for="si">Si</label>
                     </div>
                     <div class="form-check">
                         <input 
-                        onclick="document.getElementById('comorbilidad').disabled = true; document.getElementById('comorbilidad').value = ''"
-                        class="form-check-input" type="radio" name="comorbilidad" id="No" value="No" checked>
+                        onclick="document.getElementById('comorbidity').disabled = true; document.getElementById('comorbilidad').value = ''"
+                        class="form-check-input" type="radio" name="comorbidity" id="No" value="No" checked>
                         <label class="form-check-label" for="No">No</label>
                     </div>
                 </div>

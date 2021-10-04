@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Vaccinated;
 use Spatie\Permission\Models\Role;
 
-class UserController extends Controller
+class VaccinatedController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        
+        return view('new-vaccinated-form');
     }
 
     /**
@@ -38,7 +38,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'date_of_birth' => 'required',
+            'dni' => 'required|int',
+            'user' => 'required|string',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|confirmed|min:8',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'last_name' => $request->last_name,
+            'dni' => $request->dni,
+            'user' => $request->user,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        return redirect()->route('index');
     }
 
     /**
@@ -60,7 +78,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        
+        return view('edit-vaccinated-form',[
+            'vaccined' => Vaccinated::findOrFail($user)
+        ]);
+
     }
 
     /**
@@ -72,7 +93,19 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'dni' => 'required|int',
+            'user' => 'required|string',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|confirmed|min:8',
+        ]);
 
+        $vaccinated = Vaccinated::findOrFail($user);
+
+        $vaccinated->update($request->all());
+        return redirect()->route('index');
     }
 
     /**
@@ -83,7 +116,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $user->delete();
         
+        return redirect()->route('index')->with('info', 'Se eliminó al usuario con éxito');
     }
 
 }
