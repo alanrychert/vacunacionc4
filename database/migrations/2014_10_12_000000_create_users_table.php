@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            $table->string('name');
+            $table->string('sanitary_region');
 
             $table->foreign('sanitary_region')->references('name')->on('sanitary_regions')->onUpdate('cascade')->onDelete('cascade');
             

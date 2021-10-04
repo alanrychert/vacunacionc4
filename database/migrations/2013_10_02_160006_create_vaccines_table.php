@@ -21,6 +21,7 @@ class CreateVaccinesTable extends Migration
 
             $table->foreign('batch_number')->references('batch_number')->on('vaccines_batches')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('type_of_vaccine')->references('preffix_code')->on('type_of_vaccines')->onUpdate('cascade')->onDelete('cascade');
+            $table->unique(['type_of_vaccine', 'vaccine_number']);
         });
     }
 
