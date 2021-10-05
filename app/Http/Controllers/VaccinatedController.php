@@ -45,23 +45,26 @@ class VaccinatedController extends Controller
             'last_name' => 'required|string|max:255',
             'date_of_birth' => 'required',
             'dni' => 'required|int',
-            'sex' => 'required|char',
+            'sex' => 'required',
             'date_of_vaccination' => 'required',
             'type_of_vaccine' => 'required',
             'vaccine_number' => 'required'
         ]);
 
+        //dd($request);
+
+        $date_of_birth = date("d-m-Y",strtotime($request->date_of_birth."+ 4 week")); 
+
+        $date_of_vaccination = date("d-m-Y",strtotime($request->date_of_vaccination."+ 4 week")); 
+
         $vaccinated = Vaccinated::create([
             'name' => $request->name,
             'last_name' => $request->last_name,
-            'date_of_birth' => $request->date_of_birth,
+            'date_of_birth' => $date_of_birth,
             'dni' => $request->dni,
             'comorbidity' => $request->comorbidity,
             'sex' => $request->sex,
-            'date_of_vaccination' => $request->date_of_vaccination,
-        ]);
-
-        $vaccinated->vaccines()->create([
+            'date_of_vaccination' => $date_of_vaccination,
             'type_of_vaccine' => $request->type_of_vaccine,
             'vaccine_number' => $request->vaccine_number,
         ]);
