@@ -65,11 +65,7 @@ class BatchController extends Controller
             'sanitary_region' => $sanitary_region_name
         ]);
 
-
-
-        for($i=$request->to; $i<$request->since; $i++){
-            echo($i);
-            echo('HOLA');
+        for($i=$request->since; $i<=$request->to; $i++){
             Vaccine::create([
                 'vaccine_number' => $i,
                 'type_of_vaccine' => $request->type_of_vaccine,
