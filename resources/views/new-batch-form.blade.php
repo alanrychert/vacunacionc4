@@ -8,7 +8,16 @@
         </div>
     </div>
     <div>
-        <form action="route('ingresarruta')" method=POST enctype="multipart/form-data">
+        <form action="{{route('batch.store')}}" method="POST" enctype="multipart/form-data">
+            <div class="row mb-3 justify-content-center">
+                <div class="col-2">
+                    <label class="form-label font-weight-bold" for="batch_number">Numero de lote</label>
+                </div>
+                <div class="col-8">
+                    <input type="number" class="form-control" value="{{old('batch_number')}}" id="batch_number" name="batch_number" required>
+                    @error('Numero de lote')<small>*{{$message}}</small>@enderror
+                </div>
+            </div>
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
                     <label class="form-label font-weight-bold" for="range">Rango</label>
@@ -52,7 +61,7 @@
                     <label class="form-label font-weight-bold" for="reception_date">Fecha de recepción</label>
                 </div>
                 <div class="col-8">
-                    <input type="date" class="form-control" value="NULL" id="reception_date" placeholder="dd/mm/aaaa" name="reception_date" required>
+                    <input type="date" class="form-control" id="reception_date" placeholder="dd/mm/aaaa" name="reception_date" required>
                     @error('Fecha de recepción')<small>*{{$message}}</small>@enderror
                 </div>
             </div>

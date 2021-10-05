@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VaccinatedController;
+use App\Http\Controllers\BatchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +25,12 @@ Route::get('/vaccinateds/{vaccinated}', [VaccinatedController::class,'edit'])->m
 Route::post('/vaccinateds/register', [VaccinatedController::class,'store'])->middleware('auth')->name('vaccinated.store');
 Route::put('/vaccinateds/{vaccinated}/actualizar', [VaccinatedController::class,'update'])->middleware('auth')->name('vaccinated.update');
 Route::delete('/vaccinateds/{vaccinated}', [VaccinatedController::class, 'destroy'])->middleware('auth')->name('vaccinated.destroy');
+
+//Batch routes
+Route::get('/batchs/create', [BatchController::class,'create'])->middleware('auth')->name('batch.create');
+Route::get('/batchs/{batch}', [BatchController::class,'edit'])->middleware('auth')->name('batch.edit');
+Route::post('/batchs/register', [BatchController::class,'store'])->middleware('auth')->name('batch.store');
+Route::put('/batchs/{batch}/actualizar', [BatchController::class,'update'])->middleware('auth')->name('batch.update');
+Route::delete('/batchs/{batch}', [BatchController::class, 'destroy'])->middleware('auth')->name('batch.destroy');
 
 require __DIR__.'/auth.php';

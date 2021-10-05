@@ -11,7 +11,7 @@ class Vaccine extends Model
     protected $table = 'vaccines';
     protected $primaryKey = 'id';
 
-    public function vaccines(){
+    public function type_of_vaccine(){
         return $this->belongsTo(TypeOfVaccine::class,'type_of_vaccine');
     }
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Batch;
 use App\Models\TypeOfVaccine;
+use App\Models\Vaccine;
 
 class BatchController extends Controller
 {
@@ -41,8 +42,9 @@ class BatchController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'batch_number' => 'required|int',
             'since' => 'required|int',
-            'to' => 'required|int',
+            'to' => 'required|int|gt:since',
             'type_of_vaccine' => 'required',
             'dose' => 'required',
             'reception_date' => 'required',
@@ -58,7 +60,20 @@ class BatchController extends Controller
             'reception_date' => $request->reception_date,
             'date_of_expiry' => $date_of_expiry,
         ]);
-        return redirect()->route('index');
+
+        for($i=$request->to; $i<$request->since;$i++){
+            $vaccine = Vaccine::create([
+                'vaccine_number' => $i,
+            ]);
+            $vaccine->type_of_vaccine()->create([
+                'type_of_vaccine' => $request->type_of_vaccine,
+            ]);
+            $vaccine->batch()->create([
+                'batch_number' => $request->batch_number,
+            ]);
+        }
+
+        return redirect()->route('welcome');
     }
 
     /**
