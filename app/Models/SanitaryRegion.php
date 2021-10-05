@@ -11,6 +11,10 @@ class SanitaryRegion extends Model
     protected $table = 'sanitary_regions';
     protected $primaryKey = 'id';
 
+    public function province(){
+        return $this->belongsTo(Province::class,'name');
+    }
+
         /**
      * The attributes that are mass asignable
      * 

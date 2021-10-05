@@ -8,10 +8,10 @@
         </div>
     </div>
     <div>
-        <form action="{{route('batch.store')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('batch.store') }}" method="POST" enctype="multipart/form-data">
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
-                    <label class="form-label font-weight-bold" for="batch_number">Numero de lote</label>
+                    <label class="form-label font-weight-bold">Numero de lote</label>
                 </div>
                 <div class="col-8">
                     <input type="number" class="form-control" value="{{old('batch_number')}}" id="batch_number" name="batch_number" required>
@@ -34,11 +34,11 @@
                     <label class="form-label font-weight-bold" for="tipo">Tipo de vacuna</label>
                 </div>
                 <div class="col-8">
-                    <select class="form-select">
+                    <select class="form-select" name="type_of_vaccine">
                         <!--esto vendria de la bdd?-->
                         <option selected>Seleccionar</option>
                         @foreach ($types as $type)
-                        <option value="$type->type_code">{{ $type->name }}</option>
+                        <option value="{{$type->type_code}}">{{ $type->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -65,10 +65,9 @@
                     @error('Fecha de recepción')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
-            
+            @csrf 
+            @method('POST')
             <div class="row mb-3 justify-content-center">
-                @csrf 
-                @method('POST')
                 <div>
                     <button type="submit" class="btn btn-success">Guardar</button>
                 </div>

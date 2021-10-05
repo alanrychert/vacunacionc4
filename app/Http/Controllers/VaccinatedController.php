@@ -68,7 +68,7 @@ class VaccinatedController extends Controller
 
         $vaccinated->save();
         
-        return redirect()->route('welcome');
+        return redirect()->route('index');
     }
 
     /**

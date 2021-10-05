@@ -8,7 +8,7 @@
         </div>
     </div>
     <div>
-        <form action="{{route('vaccinated.store')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('vaccinated.store') }}" method="POST" enctype="multipart/form-data">
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
                     <label class="form-label font-weight-bold" for="name">Nombre</label>
@@ -78,7 +78,7 @@
                     <label class="form-label font-weight-bold" for="sex">Sexo</label>
                 </div>
                 <div class="col-8">
-                    <select class="form-select">
+                    <select class="form-select" name="sex">
                         <option selected>Seleccionar</option>
                         <option value="F">Femenino</option>
                         <option value="M">Masculino</option>
@@ -103,7 +103,7 @@
                     <select class="form-select" name="type_of_vaccine">
                         <option selected>Seleccionar</option>
                         @foreach ($types as $type)
-                        <option value="$type->type_code">{{ $type->name }}</option>
+                        <option value="{{$type->type_code}}">{{ $type->name }}</option>
                         @endforeach
                     </select>
                     @error('Tipo de vacuna')<small>*{{$message}}</small>@enderror
@@ -118,9 +118,9 @@
                     @error('Numero de serie de vacuna')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
+            @csrf 
+            @method('POST')
             <div class="row mb-3 justify-content-center">
-                @csrf 
-                @method('POST')
                 <div>
                     <button type="submit" class="btn btn-success">Guardar</button>
                 </div>

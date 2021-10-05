@@ -52,28 +52,32 @@ class BatchController extends Controller
         
         $date_of_expiry = date("d-m-Y",strtotime($request->reception_date."+ 4 week")); 
 
+        $loggedUser = Auth()->user();
+        $sanitary_region_name = $loggedUser->sanitary_region;
+
         Batch::create([
+            'batch_number' => $request->batch_number,
             'since' => $request->since,
             'to' => $request->to,
-            'type_of_vaccine' => $request->type_of_vaccine,
             'dose' => $request->dose,
             'reception_date' => $request->reception_date,
             'date_of_expiry' => $date_of_expiry,
+            'sanitary_region' => $sanitary_region_name
         ]);
 
-        for($i=$request->to; $i<$request->since;$i++){
-            $vaccine = Vaccine::create([
+
+
+        for($i=$request->to; $i<$request->since; $i++){
+            echo($i);
+            echo('HOLA');
+            Vaccine::create([
                 'vaccine_number' => $i,
-            ]);
-            $vaccine->type_of_vaccine()->create([
                 'type_of_vaccine' => $request->type_of_vaccine,
-            ]);
-            $vaccine->batch()->create([
                 'batch_number' => $request->batch_number,
             ]);
         }
 
-        return redirect()->route('welcome');
+        return redirect()->route('index');
     }
 
     /**
