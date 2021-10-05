@@ -54,7 +54,8 @@ class BatchController extends Controller
 
         $loggedUser = Auth()->user();
         $province = $loggedUser->sanitary_region_province;
-        echo($province);
+        
+
         Batch::create([
             'province' => $province,
             'batch_number' => $request->batch_number,
