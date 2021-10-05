@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use app\Models\SanitaryRegion;
+use \App\Models\SanitaryRegion;
 
 class RegisteredUserController extends Controller
 {
@@ -44,20 +44,23 @@ class RegisteredUserController extends Controller
             'user' => 'required|string',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed','string','min:8', Rules\Password::defaults()],
-            'region' => ['required','integer'],
+            'region' => ['required'],
         ]);
-        
         $user = User::create([
             'name' => $request->name,
             'last_name' => $request->last_name,
             'dni' => $request->dni,
             'user' => $request->user,
             'email' => $request->email,
-            'sanitary_region_id' => $request->region,
+            'sanitary_region' => $request->region,
             'password' => Hash::make($request->password),
-            
+      
         ]);
-        $user->assignRole($request->rol);
+        $loggedUser= Auth()->user();
+        if ($loggedUser->hasrole('Minister'))
+            $user->assignRole("Administrator");
+        else
+            $user->assignRole("Operator");
 
         event(new Registered($user));
 
