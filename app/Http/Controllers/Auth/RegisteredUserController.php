@@ -45,19 +45,23 @@ class RegisteredUserController extends Controller
             'user' => 'required|string',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed','string','min:8', Rules\Password::defaults()],
+            'province' => 'required',
             'region' => ['required'],
         ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'last_name' => $request->last_name,
-            'dni' => $request->dni,
-            'user' => $request->user,
-            'email' => $request->email,
-            'sanitary_region' => $request->region,
-            'password' => Hash::make($request->password),
+        echo($request->province);
+        echo($request->region);
+        $user = new User();
+        
+        $user->name = $request->name;
+        $user->last_name = $request->last_name;
+        $user->dni = $request->dni;
+        $user->user = $request->user;
+        $user->email = $request->email;
+        $user->sanitary_region_province =  $request->province;
+        $user->sanitary_region_name = $request->region;
+        $user->password = Hash::make($request->password);
+        $user->save();
       
-        ]);
         $loggedUser= Auth()->user();
         if ($loggedUser->hasrole('Minister'))
             $user->assignRole("Administrator");

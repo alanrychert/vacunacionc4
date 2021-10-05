@@ -53,16 +53,17 @@ class BatchController extends Controller
         $date_of_expiry = date("d-m-Y",strtotime($request->reception_date."+ 4 week")); 
 
         $loggedUser = Auth()->user();
-        $sanitary_region_name = $loggedUser->sanitary_region;
-
+        $province = $loggedUser->sanitary_region_province;
+        echo($province);
         Batch::create([
+            'province' => $province,
             'batch_number' => $request->batch_number,
             'since' => $request->since,
             'to' => $request->to,
             'dose' => $request->dose,
             'reception_date' => $request->reception_date,
             'date_of_expiry' => $date_of_expiry,
-            'sanitary_region' => $sanitary_region_name
+            'sanitary_region' => $loggedUser->sanitary_region_name,
         ]);
 
         for($i=$request->since; $i<=$request->to; $i++){
