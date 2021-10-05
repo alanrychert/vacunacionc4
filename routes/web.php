@@ -27,10 +27,10 @@ Route::put('/vaccinateds/{vaccinated}/actualizar', [VaccinatedController::class,
 Route::delete('/vaccinateds/{vaccinated}', [VaccinatedController::class, 'destroy'])->middleware('auth')->name('vaccinated.destroy');
 
 //Batch routes
-Route::get('/batchs/create', [BatchController::class,'create'])->middleware('auth')->name('batch.create');
-Route::get('/batchs/{batch}', [BatchController::class,'edit'])->middleware('auth')->name('batch.edit');
-Route::post('/batchs/register', [BatchController::class,'store'])->middleware('auth')->name('batch.store');
-Route::put('/batchs/{batch}/actualizar', [BatchController::class,'update'])->middleware('auth')->name('batch.update');
-Route::delete('/batchs/{batch}', [BatchController::class, 'destroy'])->middleware('auth')->name('batch.destroy');
+Route::get('/batch/create', [BatchController::class,'create'])->middleware('auth')->name('batch.create');
+Route::get('/batch/{batch}', [BatchController::class,'edit'])->middleware('auth')->name('batch.edit');
+Route::post('/batch/register', [BatchController::class,'store'])->middleware('auth')->name('batch.store');
+Route::put('/batch/{batch}/actualizar', [BatchController::class,'update'])->middleware('auth')->name('batch.update');
+Route::delete('/batch/{batch}', [BatchController::class, 'destroy'])->middleware('auth')->name('batch.destroy');
 
 require __DIR__.'/auth.php';
