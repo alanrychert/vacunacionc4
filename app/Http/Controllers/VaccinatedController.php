@@ -40,6 +40,7 @@ class VaccinatedController extends Controller
      */
     public function store(Request $request)
     {
+        var_dump('hola');
         $request->validate([
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -60,6 +61,8 @@ class VaccinatedController extends Controller
             'sex' => $request->sex,
             'date_of_vaccination' => $request->date_of_vaccination,
         ]);
+
+        
 
         $vaccinated->vaccines()->create([
             'type_of_vaccine' => $request->type_of_vaccine,

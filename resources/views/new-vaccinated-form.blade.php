@@ -32,7 +32,7 @@
                     <label class="form-label font-weight-bold" for="date_of_birth">Fecha de nac</label>
                 </div>
                 <div class="col-8">
-                    <input type="date" class="form-control" value="NULL" id="date_of_birth" placeholder="dd/mm/aaaa" name="date_of_birth" required>
+                    <input type="date" class="form-control" id="date_of_birth" dateFormat="dd-MM-yyyy" placeholder="dd/mm/aaaa" name="date_of_birth" required>
                     @error('Fecha de nac')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
@@ -71,6 +71,7 @@
                 <div class="col-8">
                     <input type="text" class="form-control" value="{{old('comorbidity')}}" placeholder="" id="comorbidity" name="comorbidity" disabled="disabled">
                 </div>
+                @error('Descripcion')<small>*{{$message}}</small>@enderror
             </div>
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
@@ -82,6 +83,7 @@
                         <option value="F">Femenino</option>
                         <option value="M">Masculino</option>
                     </select>
+                    @error('Sexo')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">
@@ -89,7 +91,7 @@
                     <label class="form-label font-weight-bold" for="date_of_vaccination">Fecha de vacunación</label>
                 </div>
                 <div class="col-8">
-                    <input type="date" class="form-control" value="NULL" id="date_of_vaccination" placeholder="dd/mm/aaaa" name="date_of_vaccination" required>
+                    <input type="date" class="form-control" id="date_of_vaccination" dateFormat="dd-MM-yyyy" placeholder="dd/mm/aaaa" name="date_of_vaccination" required>
                     @error('Fecha de vacunación')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
@@ -99,12 +101,12 @@
                 </div>
                 <div class="col-8">
                     <select class="form-select" name="type_of_vaccine">
-                        <!--esto vendria de la bdd?-->
                         <option selected>Seleccionar</option>
                         @foreach ($types as $type)
                         <option value="$type->type_code">{{ $type->name }}</option>
                         @endforeach
                     </select>
+                    @error('Tipo de vacuna')<small>*{{$message}}</small>@enderror
                 </div>
             </div>         
             <div class="row mb-3 justify-content-center">
