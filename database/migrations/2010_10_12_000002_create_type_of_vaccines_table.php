@@ -16,7 +16,7 @@ class CreateTypeOfVaccinesTable extends Migration
         Schema::create('type_of_vaccines', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->integer('preffix_code')->unique();
+            $table->integer('type_code')->unique();
             $table->smallInteger('days_between_doses');
         });
     }

@@ -16,22 +16,22 @@ class TypeOfVaccineSeeder extends Seeder
     {
         TypeOfVaccine::create([
             'name' => 'Sinopharm', 
-            'preffix_code' => '1', 
+            'type_code' => '1', 
             'days_between_doses' => '28', 
         ]);
         TypeOfVaccine::create([
             'name' => 'AstraZeneca', 
-            'preffix_code' => '2', 
+            'type_code' => '2', 
             'days_between_doses' => '84', 
         ]);
         TypeOfVaccine::create([
             'name' => 'Sputnik V', 
-            'preffix_code' => '3', 
+            'type_code' => '3', 
             'days_between_doses' => '84', 
         ]);
         TypeOfVaccine::create([
             'name' => 'Moderna', 
-            'preffix_code' => '4', 
+            'type_code' => '4', 
             'days_between_doses' => '84', 
         ]);
     }

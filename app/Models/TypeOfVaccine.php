@@ -20,7 +20,7 @@ class TypeOfVaccine extends Model
      * 
      * @var array
      */
-    protected $fillable = ['name', 'preffix_code', 'days_between_doses'];
+    protected $fillable = ['name', 'type_code', 'days_between_doses'];
 
     protected $guarded = ['id'];
 

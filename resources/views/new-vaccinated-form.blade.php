@@ -102,7 +102,7 @@
                         <!--esto vendria de la bdd?-->
                         <option selected>Seleccionar</option>
                         @foreach ($types as $type)
-                        <option value="$type->preffix_code">{{ $type->name }}</option>
+                        <option value="$type->type_code">{{ $type->name }}</option>
                         @endforeach
                     </select>
                 </div>
