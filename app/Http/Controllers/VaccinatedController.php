@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use App\Models\Vaccinated;
-use Spatie\Permission\Models\Role;
+use App\Models\TypeOfVaccine;
 
 class VaccinatedController extends Controller
 {
@@ -27,7 +26,10 @@ class VaccinatedController extends Controller
      */
     public function create()
     {
-        return view('new-vaccinated-form');
+        $types_of_vaccines = TypeOfVaccine::query()->get();
+
+        return view('new-vaccinated-form')
+            ->with('types', $types_of_vaccines);;
     }
 
     /**
@@ -66,7 +68,7 @@ class VaccinatedController extends Controller
 
         $vaccinated->save();
         
-        return redirect()->route('index');
+        return redirect()->route('welcome');
     }
 
     /**

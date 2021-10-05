@@ -8,7 +8,7 @@
         </div>
     </div>
     <div>
-        <form action="route('vaccinated.store')" method=POST enctype="multipart/form-data">
+        <form action="{{route('vaccinated.store')}}" method="POST" enctype="multipart/form-data">
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
                     <label class="form-label font-weight-bold" for="name">Nombre</label>
@@ -47,19 +47,19 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-2">
-                    <label class="form-label font-weight-bold" for="option">Comorbilidad</label>
+                    <label class="form-label font-weight-bold" >Comorbilidad</label>
                 </div>
                 <div class="col-8" style="display:inline-flex">
                     <div class="form-check ">
                         <input 
                         onclick="document.getElementById('comorbidity').disabled = false;"
-                        class="form-check-input" type="radio" name="si" id="Si" value="Si">
+                        class="form-check-input" type="radio" name="option" id="Si" value="Si">
                         <label class="form-check-label pr-3" for="si">Si</label>
                     </div>
                     <div class="form-check">
                         <input 
-                        onclick="document.getElementById('comorbidity').disabled = true; document.getElementById('comorbilidad').value = ''"
-                        class="form-check-input" type="radio" name="no" id="No" value="No" checked>
+                        onclick="document.getElementById('comorbidity').disabled = true; document.getElementById('comorbidity').value = ''"
+                        class="form-check-input" type="radio" name="option" id="No" value="No" checked>
                         <label class="form-check-label" for="No">No</label>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                     <label class="form-label font-weight-bold" for="comorbidity">Descripción</label>
                 </div>
                 <div class="col-8">
-                    <input type="text" class="form-control" value="{{old('comorbilidad')}}" placeholder="" id="comorbilidad" name="comorbilidad" disabled="disabled">
+                    <input type="text" class="form-control" value="{{old('comorbidity')}}" placeholder="" id="comorbidity" name="comorbidity" disabled="disabled">
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">
