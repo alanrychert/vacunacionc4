@@ -20,7 +20,7 @@ class Batch extends Model
      * 
      * @var array
      */
-    protected $fillable = ['batch_number', 'since', 'to', 'number_of_vaccines', 'dose', 'reception_date'];
+    protected $fillable = ['batch_number', 'since', 'to', 'dose', 'reception_date', 'date_of_expiry'];
 
     protected $guarded = ['id'];
 

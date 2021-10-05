@@ -47,7 +47,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-2">
-                    <label class="form-label font-weight-bold" for="dni">Comorbilidad</label>
+                    <label class="form-label font-weight-bold" for="option">Comorbilidad</label>
                 </div>
                 <div class="col-8" style="display:inline-flex">
                     <div class="form-check ">
@@ -66,10 +66,10 @@
             </div>
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
-                    <label class="form-label font-weight-bold" for="comorbilidad">Descripción</label>
+                    <label class="form-label font-weight-bold" for="comorbidity">Descripción</label>
                 </div>
                 <div class="col-8">
-                    <input type="text" class="form-control" value="{{$vacunado == NULL ? old('comorbilidad') : $vacunado->comorbilidad}}" placeholder="" id="comorbilidad" name="comorbilidad" disabled="disabled">
+                    <input type="text" class="form-control" value="{{$vacunado == NULL ? old('comorbidity') : $vacunado->comorbidity}}" placeholder="" id="comorbidity" name="comorbidity" disabled="disabled">
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">
@@ -95,11 +95,25 @@
             </div>
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
-                    <label class="form-label font-weight-bold" for="codigo">Código de vacuna</label>
+                    <label class="form-label font-weight-bold" for="type">Tipo de vacuna</label>
                 </div>
                 <div class="col-8">
-                    <input type="text" class="form-control" value="{{$vacunado == NULL ? old('codigo') : $vacunado->codigo}}" id="codigo" name="codigo" required>
-                    @error('Codigo')<small>*{{$message}}</small>@enderror
+                    <select class="form-select" name="type_of_vaccine">
+                        <!--esto vendria de la bdd?-->
+                        <option selected>Seleccionar</option>
+                        @foreach ($types as $type)
+                        <option value="$type->type_code">{{ $type->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>         
+            <div class="row mb-3 justify-content-center">
+                <div class="col-2">
+                    <label class="form-label font-weight-bold" for="vaccine_number">Numero de serie de vacuna</label>
+                </div>
+                <div class="col-8">
+                    <input type="text" class="form-control" value="{{old('vaccine_number')}}" id="vaccine_number" name="vaccine_number" required>
+                    @error('Numero de serie de vacuna')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">
