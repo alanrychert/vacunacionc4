@@ -18,7 +18,6 @@ class SanitaryRegionSeeder extends Seeder
         $province = Province::all()->first();
         SanitaryRegion::create([
             'name' => 'Region Sanitaria I',
-            'code' => 'I',
             'province' => $province->name
         ]);
     }

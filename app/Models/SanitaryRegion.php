@@ -9,7 +9,7 @@ class SanitaryRegion extends Model
 {
     use HasFactory;
     protected $table = 'sanitary_regions';
-    protected $primaryKey = array('name', 'province');
+    protected $primaryKey = 'id';
 
     public function province(){
         return $this->belongsTo(Province::class,'province');
@@ -20,7 +20,7 @@ class SanitaryRegion extends Model
      * 
      * @var array
      */
-    protected $fillable = ['name', 'code'];
+    protected $fillable = ['name'];
 
     protected $guarded = ['id'];
 

@@ -28,10 +28,10 @@ class CreateUsersTable extends Migration
             $table->timestamps();
 
             $table->string('sanitary_region_province');
-            $table->string('sanitary_region_code');
+            $table->string('sanitary_region_name');
 
-            $table->foreign('sanitary_region_province')->references('province')->on('sanitary_regions')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('sanitary_region_province')->references('code')->on('sanitary_regions')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign(['sanitary_region_province','sanitary_region_name'])->references(['province','name'])->on('sanitary_regions')->onUpdate('cascade')->onDelete('cascade');
+            
             
         });
     }

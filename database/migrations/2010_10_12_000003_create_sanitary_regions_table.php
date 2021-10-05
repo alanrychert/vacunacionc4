@@ -17,7 +17,8 @@ class CreateSanitaryRegionsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('province');
-            
+            $table->unique(['name','province']);
+
             $table->foreign('province')->references('name')->on('provinces')->onUpdate('cascade')->onDelete('cascade');
         });
     }

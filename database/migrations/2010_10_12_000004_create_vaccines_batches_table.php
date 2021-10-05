@@ -22,8 +22,9 @@ class CreateVaccinesBatchesTable extends Migration
             $table->date('reception_date');
             $table->string('sanitary_region');
             $table->date('date_of_expiry'); 
+            $table->string('province');
 
-            $table->foreign('sanitary_region')->references('name')->on('sanitary_regions')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign(['sanitary_region','province'])->references(['name','province'])->on('sanitary_regions')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
