@@ -18,13 +18,6 @@
                     <x-input id="user" class="block mt-1 w-full" type="text" name="user" :value="old('user')" required autofocus />
                 </div>
 
-                <!-- DNI -->
-                <div>
-                    <x-label for="dni" :value="__('DNI')" />
-
-                    <x-input id="dni" class="block mt-1 w-full" type="number" name="dni" :value="old('dni')" required autofocus />
-                </div>
-
                 <!-- Password -->
                 <div class="mt-4">
                     <x-label for="password" :value="__('Contraseña')" />

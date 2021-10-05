@@ -24,9 +24,9 @@ class CheckRole
         $roles = $user->roles->pluck('name');
         
         foreach ($roles as $rol){
-            if($rol == 'Admin')
+            if($rol == 'Administrator')
                 return $next($request);
         }
-        return redirect()->route('inicio.index')->with('info','¡Lo sentimos! No tiene los permisos suficientes para acceder');
+        return redirect()->route('index')->with('info','¡Lo sentimos! No tiene los permisos suficientes para acceder');
     }
 }
