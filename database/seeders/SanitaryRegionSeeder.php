@@ -6,7 +6,7 @@ use App\Models\SanitaryRegion;
 use App\Models\Province;
 use Illuminate\Database\Seeder;
 
-class SanitaryRecionSeeder extends Seeder
+class SanitaryRegionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,11 +15,11 @@ class SanitaryRecionSeeder extends Seeder
      */
     public function run()
     {
-        $provincia = Province::all()->first();
+        $province = Province::all()->first();
         SanitaryRegion::create([
             'name' => 'Region Sanitaria I',
             'code' => 'I',
-            'province' => $provincia->name
+            'province' => $province->name
         ]);
     }
 }
