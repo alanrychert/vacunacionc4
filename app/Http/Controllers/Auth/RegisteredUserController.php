@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use Spatie\Permission\Models\Role;
+use app\Models\SanitaryRegion;
 
 class RegisteredUserController extends Controller
 {
@@ -21,7 +21,10 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        $sanitary_regions = SanitaryRegion::query()->get();
+
+        return view('auth.register')
+            ->with('sanitary_regions', $sanitary_regions);
     }
 
     /**

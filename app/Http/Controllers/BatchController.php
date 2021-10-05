@@ -47,6 +47,8 @@ class BatchController extends Controller
             'dose' => 'required',
             'reception_date' => 'required',
         ]);
+        
+        $date_of_expiry = date("d-m-Y",strtotime($request->reception_date."+ 4 week")); 
 
         Batch::create([
             'since' => $request->since,
@@ -54,6 +56,7 @@ class BatchController extends Controller
             'type_of_vaccine' => $request->type_of_vaccine,
             'dose' => $request->dose,
             'reception_date' => $request->reception_date,
+            'date_of_expiry' => $date_of_expiry,
         ]);
         return redirect()->route('index');
     }
