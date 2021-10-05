@@ -11,6 +11,11 @@ class Province extends Model
     protected $table = 'provinces';
     protected $primaryKey = 'id';
 
+    public function sanitary_regions()
+    {
+        return $this->hasMany(SanitaryRegion::class,'province');
+    }
+
         /**
      * The attributes that are mass asignable
      * 

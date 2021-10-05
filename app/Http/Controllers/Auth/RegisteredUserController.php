@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Province;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -21,10 +22,10 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        $sanitary_regions = SanitaryRegion::query()->get();
+        $provinces = Province::all();
 
         return view('auth.register')
-            ->with('sanitary_regions', $sanitary_regions);
+            ->with('provinces', $provinces);
     }
 
     /**
@@ -46,6 +47,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed','string','min:8', Rules\Password::defaults()],
             'region' => ['required'],
         ]);
+
         $user = User::create([
             'name' => $request->name,
             'last_name' => $request->last_name,

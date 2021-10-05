@@ -15,8 +15,7 @@ class CreateSanitaryRegionsTable extends Migration
     {
         Schema::create('sanitary_regions', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('code')->unique();      
+            $table->string('name');
             $table->string('province');
             
             $table->foreign('province')->references('name')->on('provinces')->onUpdate('cascade')->onDelete('cascade');

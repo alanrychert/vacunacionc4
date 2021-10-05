@@ -13,6 +13,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
+    public function post()
+    {
+        return $this->belongsTo(SanitaryRegion::class,['sanitary_region', 'type_of_vaccine']);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -26,7 +31,6 @@ class User extends Authenticatable
         'email',
         'email_verified_at',
         'password',
-        'sanitary_region',
     ];
 
     /**

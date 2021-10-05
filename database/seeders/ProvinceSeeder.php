@@ -15,8 +15,7 @@ class ProvinceSeeder extends Seeder
     public function run()
     {
         Province::create([
-            'name' => 'Buenas Aires',
-            'code' => 'AR-B'
+            'name' => 'Buenos Aires',
         ]);
     }
 }

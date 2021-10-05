@@ -36,12 +36,25 @@
                 </div>
 
                 <div class="mt-4">
+                    <x-label for="province" :value="__('Provincia')" />
+
+                    <select id ="province" name="province" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            <option selected>Seleccionar</option>
+                            @foreach ($provinces as $province)
+                            <option value="{{$province->name}}">{{ $province->name }}</option>
+                            @endforeach
+                        </select>
+                </div>
+
+                <div class="mt-4">
                     <x-label for="region" :value="__('Region Sanitaria')" />
 
                     <select id ="region" name="region" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <option selected>Seleccionar</option>
-                            @foreach ($sanitary_regions as $sanitary_region)
-                            <option value="{{$sanitary_region->name}}">{{ $sanitary_region->name }}</option>
+                            @foreach ($provinces as $province)
+                                @foreach($province->sanitary_regions as $sanitary_region)
+                                    <option value="{{$sanitary_region->name}}">{{ $sanitary_region->name }}</option>
+                                @endforeach
                             @endforeach
                         </select>
                 </div>

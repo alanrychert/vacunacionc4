@@ -9,10 +9,10 @@ class SanitaryRegion extends Model
 {
     use HasFactory;
     protected $table = 'sanitary_regions';
-    protected $primaryKey = 'id';
+    protected $primaryKey = array('name', 'province');
 
     public function province(){
-        return $this->belongsTo(Province::class,'name');
+        return $this->belongsTo(Province::class,'province');
     }
 
         /**
