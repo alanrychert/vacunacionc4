@@ -15,6 +15,7 @@
         @auth
         <li><a href="{{ route('vaccinated.create') }}">Nuevo Vacunado</a></li>
         <li><a href="{{ route('batch.create') }}">Nuevo lote</a></li>        
+        <li><a href="{{ route('register') }}">Nuevo usuario</a></li>
         <li><a href="{{ route('dashboard') }}">
           Dashboard
         </a></li>
@@ -27,7 +28,7 @@
         </form>
 
         @else
-        <li><a href="{{ route('login') }}" class="text-sm text-gray-700 underline">
+        <li><a href="{{ route('login') }}">
           Ingresar
         </a></li>
 
