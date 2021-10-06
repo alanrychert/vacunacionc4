@@ -4,17 +4,17 @@
     <div class="row justify-content-center">
         <!--Formulario para el edicion de un nuevo vacunado, se recibira una variable con todos los datos que se deben precargar-->
         <div class="col-10">
-            <h3 class="mb-3 mt-3 text-center">Formulario edicion de nuevo vacunado</h3>
+            <h3 class="mb-3 mt-3 text-center">Formulario edicion de vacunado</h3>
         </div>
     </div>
     <div>
-        <form action="route('ingresarruta')" method=POST enctype="multipart/form-data">
+        <form action="{{route('vaccinated.update',$vaccinated->dni)}}" method=POST enctype="multipart/form-data">
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
                     <label class="form-label font-weight-bold" for="name">Nombre</label>
                 </div>
                 <div class="col-8">
-                    <input type="text" class="form-control" value="{{$vacunado == NULL ? old('name') : $vacunado->name}}" id="name" name="name" required>
+                    <input type="text" class="form-control" value="{{$vaccinated == NULL ? old('name') : $vaccinated->name}}" id="name" name="name" required>
                     @error('Nombre')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
@@ -23,7 +23,7 @@
                     <label class="form-label font-weight-bold" for="last_name">Apellido</label>
                 </div>
                 <div class="col-8">
-                    <input type="text" class="form-control" value="{{$vacunado == NULL ? old('last_name') : $vacunado->last_name}}" id="last_name" name="last_name" required>
+                    <input type="text" class="form-control" value="{{$vaccinated == NULL ? old('last_name') : $vaccinated->last_name}}" id="last_name" name="last_name" required>
                     @error('Apellido')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
@@ -32,7 +32,7 @@
                     <label class="form-label font-weight-bold" for="date_of_birth">Fecha de nac</label>
                 </div>
                 <div class="col-8">
-                    <input type="date" class="form-control" value="NULL" id="date_of_birth" placeholder="dd/mm/aaaa" name="date_of_birth" required>
+                    <input type="date" class="form-control" value="" id="date_of_birth" placeholder="dd/mm/aaaa" name="date_of_birth" required>
                     @error('Fecha de nac')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
@@ -41,7 +41,7 @@
                     <label class="form-label font-weight-bold" for="dni">DNI</label>
                 </div>
                 <div class="col-8">
-                    <input type="number" class="form-control" value="{{$vacunado == NULL ? old('dni') : $vacunado->dni}}" id="dni" name="dni" required>
+                    <input type="number" class="form-control" value="{{$vaccinated == NULL ? old('dni') : $vaccinated->dni}}" id="dni" name="dni" required>
                     @error('DNI')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
@@ -69,7 +69,7 @@
                     <label class="form-label font-weight-bold" for="comorbidity">Descripción</label>
                 </div>
                 <div class="col-8">
-                    <input type="text" class="form-control" value="{{$vacunado == NULL ? old('comorbidity') : $vacunado->comorbidity}}" placeholder="" id="comorbidity" name="comorbidity" disabled="disabled">
+                    <input type="text" class="form-control" value="{{$vaccinated == NULL ? old('comorbidity') : $vaccinated->comorbidity}}" placeholder="" id="comorbidity" name="comorbidity" disabled="disabled">
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">
@@ -77,10 +77,14 @@
                     <label class="form-label font-weight-bold" for="sex">Sexo</label>
                 </div>
                 <div class="col-8">
-                    <select class="form-select">
-                        <option selected>Seleccionar</option>
-                        <option value="F">Femenino</option>
-                        <option value="M">Masculino</option>
+                    <select name="sex" class="form-select">
+                        @if($vaccinated->sex == 'F')
+                            <option value="F" selected>Femenino</option>
+                            <option value="M">Masculino</option>
+                        @else
+                            <option value="F">Femenino</option>
+                            <option value="M" selected>Masculino</option>
+                        @endif
                     </select>
                 </div>
             </div>
@@ -89,7 +93,7 @@
                     <label class="form-label font-weight-bold" for="date_of_vaccination">Fecha de vacunación</label>
                 </div>
                 <div class="col-8">
-                    <input type="date" class="form-control" value="NULL" id="date_of_vaccination" placeholder="dd/mm/aaaa" name="date_of_vaccination" required>
+                    <input type="date" class="form-control" value="" id="date_of_vaccination" placeholder="dd/mm/aaaa" name="date_of_vaccination" required>
                     @error('Fecha de vacunación')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
@@ -102,7 +106,7 @@
                         <!--esto vendria de la bdd?-->
                         <option selected>Seleccionar</option>
                         @foreach ($types as $type)
-                        <option value="$type->type_code">{{ $type->name }}</option>
+                        <option value="{{$type->type_code}}">{{ $type->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -123,7 +127,7 @@
                     <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
                 <div class="ml-3">
-                    <button type="submit" class="btn btn-success">Cancelar</button>
+                    <a class="btn btn-success" href="{{ route('index')}}">Cancelar</a>
                 </div>
             </div>
         </form>

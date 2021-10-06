@@ -13,6 +13,7 @@
       <ul>
         <li><a href="{{ route('index') }}">Inicio</a></li>
         @auth
+        <li><a href="{{ route('vaccinated.index') }}">Vacunados</a></li>
         <li><a href="{{ route('vaccinated.create') }}">Nuevo Vacunado</a></li>
         <li><a href="{{ route('batch.create') }}">Nuevo lote</a></li>        
         <li><a href="{{ route('register') }}">Nuevo usuario</a></li>
