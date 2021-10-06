@@ -72,7 +72,7 @@
                     <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
                 <div class="ml-3">
-                    <button type="submit" class="btn btn-success">Cancelar</button>
+                    <a class="btn btn-success" href="{{ route('index')}}">Cancelar</a>
                 </div>
             </div>
         </form>
