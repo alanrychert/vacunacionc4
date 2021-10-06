@@ -15,6 +15,10 @@ class Vaccine extends Model
         return $this->belongsTo(TypeOfVaccine::class,'type_of_vaccine');
     }
 
+    public function vaccinated(){
+        return $this->belognsTo(Vaccinated::class,'dni');
+    }
+
     public function batch(){
         return $this->belognsTo(Batch::class,'batch_number');
     }

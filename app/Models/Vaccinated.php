@@ -14,7 +14,7 @@ class Vaccinated extends Model
 
     public function vaccines(){
         return $this->hasMany(
-            Vaccine::class,['applied_vaccine', 'type_of_vaccine']
+            Vaccine::class,'applied_vaccine', 'type_of_vaccine'
         );
     }
 

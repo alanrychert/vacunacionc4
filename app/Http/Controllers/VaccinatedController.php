@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Vaccinated;
 use App\Models\TypeOfVaccine;
+use App\Models\Vaccine;
 
 class VaccinatedController extends Controller
 {
@@ -68,8 +69,13 @@ class VaccinatedController extends Controller
             'type_of_vaccine' => $request->type_of_vaccine,
             'vaccine_number' => $request->vaccine_number,
         ]);
-
+        $vaccine = Vaccine::get()
+        ->where('type_of_vaccine','=',$request->type_of_vaccine)
+        ->where('vaccine_number','=',$request->vaccine_number)
+        ->first();
+        $vaccine->vaccinated = $request->dni;
         $vaccinated->save();
+        $vaccine->update();
         
         return redirect()->route('index');
     }
