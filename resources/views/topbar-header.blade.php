@@ -19,7 +19,7 @@
         @endcan
         @endcan
         @can('vaccinated.load')
-        <li><a href="{{ route('vaccinated.create') }}">Nuevo Vacunado</a></li>
+        <li><a href="{{ route('vaccinated.create') }}">Nuevo vacunado</a></li>
         @endcan
         @can('operator.create')
         <li><a href="{{ route('batch.create') }}">Nuevo lote</a></li>  
