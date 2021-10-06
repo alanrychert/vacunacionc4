@@ -13,18 +13,22 @@
       <ul>
         <li><a href="{{ route('index') }}">Inicio</a></li>
         @auth
-        @if(Auth::user()->role == 'Minister' || 'Administrator')
+        @can('admin.create')
+        @can('operator.create')
         <li><a href="{{ route('vaccinated.index') }}">Vacunados</a></li>
-        @endif
-        @if(Auth::user()->role == 'Operator')
+        @endcan
+        @endcan
+        @can('vaccinated.load')
         <li><a href="{{ route('vaccinated.create') }}">Nuevo Vacunado</a></li>
-        @endif
-        @if(Auth::user()->role == 'Administrator')
+        @endcan
+        @can('operator.create')
         <li><a href="{{ route('batch.create') }}">Nuevo lote</a></li>  
-        @endif      
-        @if(Auth::user()->role == 'Minister' || 'Administrator')
+        @endcan
+        @can('admin.create')
+        @can('operator.create')
         <li><a href="{{ route('register') }}">Nuevo usuario</a></li>
-        @endif
+        @endcan
+        @endcan
         <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
 
         <form method="POST" action="{{ route('logout') }}">
