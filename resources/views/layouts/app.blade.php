@@ -22,7 +22,7 @@
     </head>
     <body class="font-sans antialiased">
         @include('topbar-header')
-        <section id="contenido" class="correccion-navbar">   
+        <section id="contenido">   
             @yield('contenido')
         </section>
 

@@ -12,8 +12,10 @@ class HomeController extends Controller
     public function dashboard()
     {
         $user = auth()->user();
+        $rol = $user->roles->pluck('name');
         
         return view('dashboard')
-            ->with('user',$user);
+            ->with('user',$user)
+            ->with('rol',$rol[0]);
     }
 }

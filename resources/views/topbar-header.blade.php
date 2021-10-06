@@ -1,10 +1,10 @@
 <!-- ======= Top Bar ======= -->
-<div id="topbar" class="fixed-top d-flex align-items-center fixed-top">
+<div id="topbar" class="d-flex align-items-center">
   <i class="bi bi-list mobile-nav-toggle"></i>
 </div>
 
 <!-- ======= Header ======= -->
-<header id="header" class="fixed-top">
+<header id="header">
     <div class="row ml-3">
       <h1>Registro de Vacunacion Argentino</h1>
     </div>
@@ -16,9 +16,7 @@
         <li><a href="{{ route('vaccinated.create') }}">Nuevo Vacunado</a></li>
         <li><a href="{{ route('batch.create') }}">Nuevo lote</a></li>        
         <li><a href="{{ route('register') }}">Nuevo usuario</a></li>
-        <li><a href="{{ route('dashboard') }}">
-          Dashboard
-        </a></li>
+        <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
 
         <form method="POST" action="{{ route('logout') }}">
           @csrf
