@@ -69,10 +69,10 @@
             @method('POST')
             <div class="row mb-3 justify-content-center">
                 <div>
-                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <button type="submit" class="btn btn-dark">Guardar</button>
                 </div>
                 <div class="ml-3">
-                    <a class="btn btn-success" href="{{ route('index')}}">Cancelar</a>
+                    <a class="btn btn-dark" href="{{ route('index')}}">Cancelar</a>
                 </div>
             </div>
         </form>
