@@ -22,9 +22,6 @@
     </head>
     <body class="antialiased">
         <div class="relative items-top">
-            <div class="row m-3">
-                <h1>Registro de Vacunacion Argentino</h1>
-            </div>
             <div class="row">
                 @include('topbar-header')
             </div>
