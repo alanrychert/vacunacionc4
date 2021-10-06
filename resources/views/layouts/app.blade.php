@@ -21,8 +21,10 @@
 
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        @include('topbar-header')
+        <section id="contenido" class="correccion-navbar">   
             @yield('contenido')
-        </div>
+        </section>
+
     </body>
 </html>

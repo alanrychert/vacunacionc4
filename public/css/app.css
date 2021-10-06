@@ -549,6 +549,16 @@ object {
   vertical-align: middle; /* 2 */
 }
 
+.correccion-navbar {
+  margin: 170px 0 0 0;
+}
+
+@media (min-width: 1024px) {
+  .correccion-navbar {
+    margin: 200px 0 0 0;
+  }
+}
+
 /**
  * Constrain images and videos to the parent width and preserve
  * their intrinsic aspect ratio.

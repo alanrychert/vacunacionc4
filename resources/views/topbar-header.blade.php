@@ -5,6 +5,9 @@
 
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top">
+    <div class="row ml-3">
+      <h1>Registro de Vacunacion Argentino</h1>
+    </div>
     
     <nav id="navbar" class="navbar justify-content-start">
       <ul>
@@ -12,7 +15,7 @@
         @auth
         <li><a href="{{ route('vaccinated.create') }}">Nuevo Vacunado</a></li>
         <li><a href="{{ route('batch.create') }}">Nuevo lote</a></li>        
-        <li><a href="{{ url('/dashboard') }}">
+        <li><a href="{{ route('dashboard') }}">
           Dashboard
         </a></li>
 
