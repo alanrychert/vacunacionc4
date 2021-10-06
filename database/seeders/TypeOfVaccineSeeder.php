@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Batch;
 use Illuminate\Database\Seeder;
 use App\Models\TypeOfVaccine;
 

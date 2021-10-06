@@ -9,10 +9,10 @@ class TypeOfVaccine extends Model
 {
     use HasFactory;
     protected $table = 'type_of_vaccines';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'type_of_vaccine_id';
 
-    public function vaccines(){
-        return $this->hasMany(Vaccine::class,'type_of_vaccine');
+    public function batches(){
+        return $this->hasMany(Batch::class,'type_of_vaccine_id');
     }
 
         /**
@@ -22,7 +22,6 @@ class TypeOfVaccine extends Model
      */
     protected $fillable = ['name', 'type_code', 'days_between_doses'];
 
-    protected $guarded = ['id'];
 
     public $timestamps = false;
 }

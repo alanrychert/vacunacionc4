@@ -10,14 +10,18 @@ class Batch extends Model
 {
     use HasFactory;
     protected $table = 'vaccines_batches';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'batch_id';
 
     public function vaccines(){
-        return $this->hasMany(Vaccines::class,'batch_number');
+        return $this->hasMany(Vaccines::class,'batch_id');
+    }
+
+    public function type_of_vaccine(){
+        return $this->belongsTo(TypeOfVaccine::class,'type_of_vaccine_id');
     }
 
     public function sanitary_region(){
-        return $this->belongsTo(SanitaryRegion::class,'name');
+        return $this->belongsTo(SanitaryRegion::class,'sanitary_region_id');
     }
 
     /**
@@ -25,9 +29,7 @@ class Batch extends Model
      * 
      * @var array
      */
-    protected $fillable = ['province','batch_number', 'since', 'to', 'dose', 'reception_date', 'date_of_expiry', 'sanitary_region'];
-
-    protected $guarded = ['id'];
+    protected $fillable = ['batch_number', 'since', 'to', 'dose', 'reception_date', 'date_of_expiry', 'sanitary_region'];
 
     protected $dates = ['reception_date','date_of_expiry'];
 

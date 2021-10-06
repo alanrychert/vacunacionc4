@@ -14,12 +14,12 @@ class CreateSanitaryRegionsTable extends Migration
     public function up()
     {
         Schema::create('sanitary_regions', function (Blueprint $table) {
-            $table->id();
+            $table->increments('sanitary_region_id');
             $table->string('name');
-            $table->string('province');
-            $table->unique(['name','province']);
+            $table->integer('province_id');
+            $table->unique(['name','province_id']);
 
-            $table->foreign('province')->references('name')->on('provinces')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('province_id')->references('province_id')->on('provinces')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

@@ -9,10 +9,14 @@ class SanitaryRegion extends Model
 {
     use HasFactory;
     protected $table = 'sanitary_regions';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'sanitary_region_id';
 
     public function province(){
-        return $this->belongsTo(Province::class,'province');
+        return $this->belongsTo(Province::class,'province_id');
+    }
+
+    public function users(){
+        return $this->hasMany(User::class,'sanitary_region_id');
     }
 
         /**
@@ -21,8 +25,6 @@ class SanitaryRegion extends Model
      * @var array
      */
     protected $fillable = ['name'];
-
-    protected $guarded = ['id'];
 
     public $timestamps = false;
 }

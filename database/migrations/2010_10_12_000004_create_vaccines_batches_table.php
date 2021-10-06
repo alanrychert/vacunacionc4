@@ -14,17 +14,19 @@ class CreateVaccinesBatchesTable extends Migration
     public function up()
     {
         Schema::create('vaccines_batches', function (Blueprint $table) {
-            $table->id();
+            $table->increments('batch_id');
             $table->integer('batch_number')->unique(); //se carga en el formulario
             $table->integer('since');
             $table->integer('to');
             $table->smallInteger('dose');
             $table->date('reception_date');
-            $table->string('sanitary_region');
             $table->date('date_of_expiry'); 
-            $table->string('province');
 
-            $table->foreign(['sanitary_region','province'])->references(['name','province'])->on('sanitary_regions')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('type_of_vaccine_id');
+            $table->integer('sanitary_region_id');
+
+            $table->foreign('sanitary_region_id')->references('sanitary_region_id')->on('sanitary_regions')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('type_of_vaccine_id')->references('type_of_vaccine_id')->on('type_of_vaccines')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

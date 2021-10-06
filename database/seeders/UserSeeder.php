@@ -16,16 +16,14 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $province = Province::all()->first();
-        $sanitaryRegion = SanitaryRegion::all()->first();
+        $sanitaryRegionId = SanitaryRegion::all()->first()->sanitary_region_id;
         User::create([
             'name' => 'admin',
             'last_name' => 'istrador',
             'dni' => '40735330',
             'user' => 'administrador',
             'email' => 'carolinasiracusa3@gmail.com',
-            'sanitary_region_province' => $province->name,
-            'sanitary_region_name' => $sanitaryRegion->name,
+            'sanitary_region_id' => $sanitaryRegionId,
             'password' => bcrypt('1234'),
         ])->assignRole('Administrator');
 
@@ -35,8 +33,7 @@ class UserSeeder extends Seeder
             'dni' => '40735331',
             'user' => 'ministro',
             'email' => 'ringhetti.franco@gmail.com',
-            'sanitary_region_province' => $province->name,
-            'sanitary_region_name' => $sanitaryRegion->name,
+            'sanitary_region_id' => $sanitaryRegionId,
             'password' => bcrypt('1234'),
         ])->assignRole('Minister');
     }

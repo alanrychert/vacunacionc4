@@ -10,11 +10,11 @@ class Vaccinated extends Model
 {
     use HasFactory;
     protected $table = 'vaccinated';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'vaccinated_id';
 
     public function vaccines(){
         return $this->hasMany(
-            Vaccine::class,'applied_vaccine', 'type_of_vaccine'
+            Vaccine::class,'vaccinated_id'
         );
     }
 
@@ -24,8 +24,6 @@ class Vaccinated extends Model
      * @var array
      */
     protected $fillable = ['name', 'last_name', 'dni', 'comorbidity', 'sex', 'date_of_birth', 'date_of_vaccination'];
-
-    protected $guarded = ['id'];
 
     protected $dates = ['date_of_birth', 'date_of_vaccination'];
 

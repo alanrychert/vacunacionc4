@@ -9,11 +9,11 @@ class Province extends Model
 {
     use HasFactory;
     protected $table = 'provinces';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'province_id';
 
     public function sanitary_regions()
     {
-        return $this->hasMany(SanitaryRegion::class,'province');
+        return $this->hasMany(SanitaryRegion::class,'province_id');
     }
 
         /**
@@ -23,7 +23,6 @@ class Province extends Model
      */
     protected $fillable = ['name'];
 
-    protected $guarded = ['id'];
 
     public $timestamps = false;
 }

@@ -14,7 +14,7 @@ class CreateVaccinatedTable extends Migration
     public function up()
     {
         Schema::create('vaccinated', function (Blueprint $table) {
-            $table->id();
+            $table->increments('vaccinated_id');
             $table->string('name');
             $table->string('last_name');
             $table->integer('dni')->unique();

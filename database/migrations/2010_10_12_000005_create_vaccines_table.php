@@ -15,15 +15,15 @@ class CreateVaccinesTable extends Migration
     public function up()
     {
         Schema::create('vaccines', function (Blueprint $table) {
-            $table->id();
+            $table->increments('vaccine_id');
             $table->integer('vaccine_number');
-            $table->integer('batch_number');
-            $table->integer('type_of_vaccine');
-            $table->integer('vaccinated')->nullable();
+            $table->integer('batch_id');
+            $table->unique('batch_id','vaccine_number');
+            $table->integer('type_of_vaccine_id');
+            $table->integer('vaccinated_id')->nullable();
 
-            $table->foreign('batch_number')->references('batch_number')->on('vaccines_batches')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('type_of_vaccine')->references('type_code')->on('type_of_vaccines')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('vaccinated')->references('dni')->on('vaccinated')->onUpdate('cascade')->onDelete('cascade')->nullable();
+            $table->foreign('batch_id')->references('batch_id')->on('vaccines_batches')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('vaccinated_id')->references('vaccinated_id')->on('vaccinated')->onUpdate('cascade')->onDelete('cascade')->nullable();
         });
     }
 

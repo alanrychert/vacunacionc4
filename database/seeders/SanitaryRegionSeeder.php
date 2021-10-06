@@ -15,53 +15,54 @@ class SanitaryRegionSeeder extends Seeder
      */
     public function run()
     {
+        $baires_id = Province::where('name','=','Buenos Aires')->first()->province_id;
         SanitaryRegion::create([
             'name' => 'Region Sanitaria I',
-            'province' => 'Buenos Aires'
+            'province_id' => $baires_id
         ]);
         SanitaryRegion::create([
             'name' => 'Region Sanitaria II',
-            'province' => 'Buenos Aires'
+            'province_id' => $baires_id
         ]);
         SanitaryRegion::create([
             'name' => 'Region Sanitaria III',
-            'province' => 'Buenos Aires'
+            'province_id' => $baires_id
         ]);
         SanitaryRegion::create([
             'name' => 'Region Sanitaria IV',
-            'province' => 'Buenos Aires'
+            'province_id' => $baires_id
         ]);
         SanitaryRegion::create([
             'name' => 'Region Sanitaria V',
-            'province' => 'Buenos Aires'
+            'province_id' => $baires_id
         ]);
         SanitaryRegion::create([
             'name' => 'Region Sanitaria VI',
-            'province' => 'Buenos Aires'
+            'province_id' => $baires_id
         ]);
         SanitaryRegion::create([
             'name' => 'Region Sanitaria VII',
-            'province' => 'Buenos Aires'
+            'province_id' => $baires_id
         ]);
         SanitaryRegion::create([
             'name' => 'Region Sanitaria VIII',
-            'province' => 'Buenos Aires'
+            'province_id' => $baires_id
         ]);
         SanitaryRegion::create([
             'name' => 'Region Sanitaria IX',
-            'province' => 'Buenos Aires'
+            'province_id' => $baires_id
         ]);
         SanitaryRegion::create([
             'name' => 'Region Sanitaria X',
-            'province' => 'Buenos Aires'
+            'province_id' => $baires_id
         ]);
         SanitaryRegion::create([
             'name' => 'Region Sanitaria XI',
-            'province' => 'Buenos Aires'
+            'province_id' => $baires_id
         ]);
         SanitaryRegion::create([
             'name' => 'Region Sanitaria XII',
-            'province' => 'Buenos Aires'
+            'province_id' => $baires_id
         ]);
     }
 }

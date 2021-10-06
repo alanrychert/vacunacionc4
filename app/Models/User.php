@@ -13,9 +13,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
-    public function post()
+    public function sanitary_region()
     {
-        return $this->belongsTo(SanitaryRegion::class,['sanitary_region', 'type_of_vaccine']);
+        return $this->belongsTo(SanitaryRegion::class,'sanitary_region_id');
     }
 
     /**

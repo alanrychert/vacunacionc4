@@ -9,18 +9,14 @@ class Vaccine extends Model
 {
     use HasFactory;
     protected $table = 'vaccines';
-    protected $primaryKey = 'id';
-
-    public function type_of_vaccine(){
-        return $this->belongsTo(TypeOfVaccine::class,'type_of_vaccine');
-    }
+    protected $primaryKey = 'vaccine_id';
 
     public function vaccinated(){
-        return $this->belognsTo(Vaccinated::class,'dni');
+        return $this->belognsTo(Vaccinated::class,'vaccinated_id');
     }
 
     public function batch(){
-        return $this->belognsTo(Batch::class,'batch_number');
+        return $this->belognsTo(Batch::class,'batch_id');
     }
 
         /**
@@ -28,9 +24,8 @@ class Vaccine extends Model
      * 
      * @var array
      */
-    protected $fillable = ['vaccine_number', 'type_of_vaccine', 'batch_number'];
+    protected $fillable = ['vaccine_number','vaccinated_id'];
 
-    protected $guarded = ['id'];
 
     public $timestamps = false;
 }
