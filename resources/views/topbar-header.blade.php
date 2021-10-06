@@ -12,11 +12,12 @@
     <nav id="navbar" class="navbar justify-content-start">
       <ul>
         <li><a href="{{ route('index') }}">Inicio</a></li>
-        @auth
+       
         @can('admin.create')
-        @can('operator.create')
         <li><a href="{{ route('vaccinated.index') }}">Vacunados</a></li>
         @endcan
+        @can('operator.create')
+        <li><a href="{{ route('vaccinated.index') }}">Vacunados</a></li>
         @endcan
         @can('vaccinated.load')
         <li><a href="{{ route('vaccinated.create') }}">Nuevo vacunado</a></li>
@@ -25,12 +26,14 @@
         <li><a href="{{ route('batch.create') }}">Nuevo lote</a></li>  
         @endcan
         @can('admin.create')
+        <li><a href="{{ route('register') }}">Nuevo usuario</a></li>
+        @endcan
         @can('operator.create')
         <li><a href="{{ route('register') }}">Nuevo usuario</a></li>
         @endcan
-        @endcan
+        @auth
         <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-
+        
         <form method="POST" action="{{ route('logout') }}">
           @csrf
           <li><a href="cerrarSesion" onclick="event.preventDefault();this.closest('form').submit();">
