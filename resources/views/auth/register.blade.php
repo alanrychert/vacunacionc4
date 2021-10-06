@@ -34,14 +34,14 @@
 
                     <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
                 </div>
-
+                
                 <div class="mt-4">
                     <x-label for="province" :value="__('Provincia')" />
 
                     <select id ="province" name="province" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <option selected>Seleccionar</option>
                             @foreach ($provinces as $province)
-                            <option value="{{$province->name}}">{{ $province->name }}</option>
+                            <option  value="{{$province->name}}">{{ $province->name }}</option>
                             @endforeach
                         </select>
                 </div>
@@ -49,12 +49,7 @@
                 <div class="mt-4">
                     <x-label for="region" :value="__('Region Sanitaria')" />
 
-                    <select id ="region" name="region" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                            <option selected>Seleccionar</option>
-                            @foreach ($provinces as $province)
-                                    <option value="{{\App\Models\SanitaryRegion::where(['province' => $province->name])->first()->name;}}">{{\App\Models\SanitaryRegion::where(['province' => $province->name])->first()->name;}}</option>
-                            @endforeach
-                        </select>
+                    <x-input id="region" class="block mt-1 w-full" type="text" name="region" :value="old('region')" required />
                 </div>
 
                 <div class="mt-4">
