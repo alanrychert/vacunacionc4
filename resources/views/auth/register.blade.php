@@ -41,17 +41,16 @@
                     <select onchange="myFunction(this.value)" id ="province" name="province" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                         <option selected>Seleccionar</option>
                         @foreach ($provinces as $province)
-                            <option  value="{{$province->province_id}}">{{ $province->name }}</option>
+                            <option value="{{$province->province_id}}">{{ $province->name }}</option>
                         @endforeach
                     </select>
                 </div>
 
                 <div class="mt-4">
-                    <x-label for="sanitary_region" :value="__('Region sanitaria')" />
+                    <x-label :value="__('Region sanitaria')" />
 
                     <select id ="sanitary_region" name="sanitary_region" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                         <option selected>Seleccionar</option>
-                        
                     </select>
                 </div>
 
@@ -116,6 +115,10 @@
     
     function myFunction(value){
             const token = $('input[name="_token"]').val();
+            $('#sanitary_region').empty();
+            const myFirstOption = $("<option>");
+            myFirstOption.text('Seleccionar');
+            $('#sanitary_region').append(myFirstOption);
             $.ajax({
                 url:"{{ route('register.getRegions') }}",
                 method: "POST",
@@ -123,7 +126,7 @@
                 success: 
                     function(data){
                         data.forEach(option => {
-                            const myOption = $("option");
+                            const myOption = $("<option>");
                             myOption.val(option.sanitary_region_id);
                             myOption.text(option.name);
                             $('#sanitary_region').append(myOption);
