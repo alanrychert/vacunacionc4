@@ -46,7 +46,7 @@ class RegisteredUserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed','string','min:8', Rules\Password::defaults()],
             'province' => 'required',
-            'region' => ['required'],
+            'sanitary_region' => ['required'],
         ]);
         echo($request->province);
         echo($request->region);
@@ -57,8 +57,7 @@ class RegisteredUserController extends Controller
         $user->dni = $request->dni;
         $user->user = $request->user;
         $user->email = $request->email;
-        $user->sanitary_region_province =  $request->province;
-        $user->sanitary_region_name = $request->region;
+        $user->sanitary_region_id =  $request->sanitary_region;
         $user->password = Hash::make($request->password);
         $user->save();
       
