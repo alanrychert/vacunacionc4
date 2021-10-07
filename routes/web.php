@@ -23,6 +23,7 @@ Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware(['aut
 //Vaccinated routes
 Route::get('/vaccinateds', [VaccinatedController::class,'index'])->middleware('auth')->name('vaccinated.index');
 Route::get('/vaccinateds/create', [VaccinatedController::class,'create'])->middleware('auth')->name('vaccinated.create');
+Route::post('/vaccinateds/create', [VaccinatedController::class,'nextForm'])->middleware('auth')->name('vaccinated.form');
 Route::get('/vaccinateds/{vaccinated}', [VaccinatedController::class,'edit'])->middleware('auth')->name('vaccinated.edit');
 Route::post('/vaccinateds/register', [VaccinatedController::class,'store'])->middleware('auth')->name('vaccinated.store');
 Route::put('/vaccinateds/{vaccinated}/actualizar', [VaccinatedController::class,'update'])->middleware('auth')->name('vaccinated.update');

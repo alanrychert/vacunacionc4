@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Vaccinated;
 use App\Models\TypeOfVaccine;
 use App\Models\Vaccine;
+use Illuminate\Support\Facades\DB;
 
 class VaccinatedController extends Controller
 {
@@ -36,7 +37,7 @@ class VaccinatedController extends Controller
         $types_of_vaccines = TypeOfVaccine::query()->get();
 
         $vaccinated_dni = $request->dni;
-        $regions = DB::table('vaccinated')->where('dni','=',$vaccinated_dni->get());
+        $regions = DB::table('vaccinated')->where('dni','=',$vaccinated_dni)->get();
 
         if($regions->count() == 0){
             return view('load-dni-form')
