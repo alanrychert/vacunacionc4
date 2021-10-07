@@ -38,10 +38,10 @@
                 <div class="mt-4">
                     <x-label for="province" :value="__('Provincia')" />
 
-                    <select id ="province" name="province" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    <select onchange="myFunction()" id ="province" name="province" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <option selected>Seleccionar</option>
                             @foreach ($provinces as $province)
-                            <option  value="{{$province->name}}">{{ $province->name }}</option>
+                            <option  value="{{$province->province_id}}">{{ $province->name }}</option>
                             @endforeach
                         </select>
                 </div>
@@ -109,3 +109,18 @@
         </div>
     </div>
 </x-guest-layout>
+<script type="text/javascript">
+    $(document).ready(function (){
+        function myFunction(event){
+            $.ajax({
+                url:"{{ route('register.getRegions') }}",
+                method: "POST",
+                data: {province_id: event.target.value},
+                success: 
+                    function(data){
+                        console.log(data);
+                    }
+            })
+        }
+    })
+</script>

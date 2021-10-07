@@ -90,9 +90,9 @@ class UserController extends Controller
         
     }
 
-    public function getRegions(Province $province)
+    public function getRegions(Province $province_id)
     {
-        $regions = DB::table('sanitary_regions')->where('province','=',$province->name)->get();
+        $regions = DB::table('sanitary_regions')->where('province_id','=',$province_id)->get();
         return $regions;
     }
 

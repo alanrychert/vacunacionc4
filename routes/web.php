@@ -34,4 +34,6 @@ Route::post('/batches/register', [BatchController::class,'store'])->middleware('
 Route::put('/batches/{batch}/actualizar', [BatchController::class,'update'])->middleware('auth')->name('batch.update');
 Route::delete('/batches/{batch}', [BatchController::class, 'destroy'])->middleware('auth')->name('batch.destroy');
 
+//User route
+Route::post('/register/regions', [UserController::class,'getRegions'])->middleware('auth')->name('register.getRegions');
 require __DIR__.'/auth.php';
