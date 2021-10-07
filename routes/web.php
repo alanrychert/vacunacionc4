@@ -32,10 +32,19 @@ Route::delete('/vaccinateds/{vaccinated}', [VaccinatedController::class, 'destro
 Route::get('/batches/create', [BatchController::class,'create'])->middleware('auth')->name('batch.create');
 Route::get('/batches/{batch}', [BatchController::class,'edit'])->middleware('auth')->name('batch.edit');
 Route::post('/batches/register', [BatchController::class,'store'])->middleware('auth')->name('batch.store');
+Route::post('/batches/available_batches', [BatchController::class,'getAvailableBatches'])->middleware('auth')->name('batch.getAvailableBatches');
 Route::put('/batches/{batch}/actualizar', [BatchController::class,'update'])->middleware('auth')->name('batch.update');
 Route::delete('/batches/{batch}', [BatchController::class, 'destroy'])->middleware('auth')->name('batch.destroy');
 
+
 //User route
 Route::post('/register/regions', [UserController::class,'getRegions'])->middleware('auth')->name('register.getRegions');
+
+
+
+//ruta random
+Route::get('/vacuna', function () {
+    return view('vaccine-form');
+});
 
 require __DIR__.'/auth.php';
