@@ -24,8 +24,8 @@
                 </div>
                 <div class="col-8">
                     <label class="form-label font-weight-bold" for="since">Desde</label>
-                    <input type="number" class="form-control" value="{{old('since')}}" id="since" name="since" required>
-                    <label class="form-label font-weight-bold" for="to">hasta</label>
+                    <input type="number" class="form-control mb-3" value="{{old('since')}}" id="since" name="since" required>
+                    <label class="form-label font-weight-bold" for="to">Hasta</label>
                     <input type="number" class="form-control" value="{{old('to')}}" id="to" name="to" required>
                 </div>
             </div>

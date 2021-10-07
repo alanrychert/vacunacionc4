@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Batch;
 use App\Models\TypeOfVaccine;
 use App\Models\Vaccine;
+use App\Models\SanitaryRegion;
 
 class BatchController extends Controller
 {
@@ -53,18 +54,20 @@ class BatchController extends Controller
         $date_of_expiry = date("d-m-Y",strtotime($request->reception_date."+ 4 week")); 
 
         $loggedUser = Auth()->user();
-        $province = $loggedUser->sanitary_region_province;
+        $sanitary_region_id = $loggedUser->sanitary_region_id;
+        $province_id = SanitaryRegion::where('sanitary_region_id','=',$sanitary_region_id)->get()->first()->province_id;
+
         
 
         Batch::create([
-            'province' => $province,
+            'province' => $province_id,
             'batch_number' => $request->batch_number,
             'since' => $request->since,
             'to' => $request->to,
             'dose' => $request->dose,
             'reception_date' => $request->reception_date,
             'date_of_expiry' => $date_of_expiry,
-            'sanitary_region' => $loggedUser->sanitary_region_name,
+            'sanitary_region' => $sanitary_region_id,
         ]);
 
         for($i=$request->since; $i<=$request->to; $i++){
