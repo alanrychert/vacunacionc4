@@ -37,10 +37,10 @@ class VaccinatedController extends Controller
         $types_of_vaccines = TypeOfVaccine::query()->get();
 
         $vaccinated_dni = $request->dni;
-        $regions = DB::table('vaccinated')->where('dni','=',$vaccinated_dni)->get();
+        $vaccinated = DB::table('vaccinated')->where('dni','=',$vaccinated_dni)->get();
 
-        if($regions->count() == 0){
-            return view('load-dni-form')
+        if($vaccinated->count() == 0){
+            return view('new-vaccinated-form')
             ->with('types', $types_of_vaccines);
         }
         
