@@ -41,7 +41,7 @@ class VaccinatedController extends Controller
         if($regions->count() == 0){
             return view('load-dni-form')
             ->with('types', $types_of_vaccines);
-        }s
+        }
         
     }
 
