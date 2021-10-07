@@ -7,7 +7,7 @@
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
             
             <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
-                @csrf
+                <input type="hidden" name="_token" value="{{csrf_token()}}"/>
 
                 <!-- Name -->
                 <div>
@@ -38,18 +38,21 @@
                 <div class="mt-4">
                     <x-label for="province" :value="__('Provincia')" />
 
-                    <select onchange="myFunction()" id ="province" name="province" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                            <option selected>Seleccionar</option>
-                            @foreach ($provinces as $province)
+                    <select onchange="myFunction(this.value)" id ="province" name="province" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <option selected>Seleccionar</option>
+                        @foreach ($provinces as $province)
                             <option  value="{{$province->province_id}}">{{ $province->name }}</option>
-                            @endforeach
-                        </select>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="mt-4">
-                    <x-label for="region" :value="__('Region Sanitaria')" />
+                    <x-label for="sanitary_region" :value="__('Region sanitaria')" />
 
-                    <x-input id="region" class="block mt-1 w-full" type="text" name="region" :value="old('region')" required />
+                    <select id ="sanitary_region" name="sanitary_region" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <option selected>Seleccionar</option>
+                        
+                    </select>
                 </div>
 
                 <div class="mt-4">
@@ -110,17 +113,22 @@
     </div>
 </x-guest-layout>
 <script type="text/javascript">
-    $(document).ready(function (){
-        function myFunction(event){
+    
+    function myFunction(value){
+            const token = $('input[name="_token"]').val();
             $.ajax({
                 url:"{{ route('register.getRegions') }}",
                 method: "POST",
-                data: {province_id: event.target.value},
+                data: {province_id: value, _token: token},
                 success: 
                     function(data){
-                        console.log(data);
+                        data.forEach(option => {
+                            const myOption = $("option");
+                            myOption.val(option.sanitary_region_id);
+                            myOption.text(option.name);
+                            $('#sanitary_region').append(myOption);
+                        })
                     }
             })
         }
-    })
 </script>

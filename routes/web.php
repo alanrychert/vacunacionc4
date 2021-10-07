@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VaccinatedController;
 use App\Http\Controllers\BatchController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +37,5 @@ Route::delete('/batches/{batch}', [BatchController::class, 'destroy'])->middlewa
 
 //User route
 Route::post('/register/regions', [UserController::class,'getRegions'])->middleware('auth')->name('register.getRegions');
+
 require __DIR__.'/auth.php';
