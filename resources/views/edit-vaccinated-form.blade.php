@@ -49,17 +49,30 @@
                 <div class="col-2">
                     <label class="form-label font-weight-bold" for="option">Comorbilidad</label>
                 </div>
+                @if($vaccinated->comorbidity != '')
+                    <script>
+                    document.getElementById('Si').checked = true;
+                    document.getElementById('No').checked = false;
+                    document.getElementById('comorbidity').disabled = false;
+                    </script>
+                @else
+                    <script>
+                    document.getElementById('Si').checked = false;
+                    document.getElementById('No').checked = true;
+                    document.getElementById('comorbidity').disabled = true;
+                    </script>
+                @endif
                 <div class="col-8" style="display:inline-flex">
                     <div class="form-check ">
                         <input 
-                        onclick="document.getElementById('comorbilidad').disabled = false;"
-                        class="form-check-input" type="radio" name="comorbilidad" id="Si" value="Si">
+                        onclick="document.getElementById('comorbidity').disabled = false;"
+                        class="form-check-input" type="radio" name="comorbilidad" id="Si" value="Si" checked='value'>
                         <label class="form-check-label pr-3" for="si">Si</label>
                     </div>
                     <div class="form-check">
                         <input 
-                        onclick="document.getElementById('comorbilidad').disabled = true;document.getElementById('comorbilidad').value = ''"
-                        class="form-check-input" type="radio" name="comorbilidad" id="No" value="No" checked>
+                        onclick="document.getElementById('comorbidity').disabled = true;document.getElementById('comorbidity').value = ''"
+                        class="form-check-input" type="radio" name="comorbilidad" id="No" value="No">
                         <label class="form-check-label" for="No">No</label>
                     </div>
                 </div>
@@ -69,7 +82,7 @@
                     <label class="form-label font-weight-bold" for="comorbidity">Descripción</label>
                 </div>
                 <div class="col-8">
-                    <input type="text" class="form-control" value="{{$vaccinated == NULL ? old('comorbidity') : $vaccinated->comorbidity}}" placeholder="" id="comorbidity" name="comorbidity" disabled="disabled">
+                    <input type="text" class="form-control" value="{{$vaccinated == NULL ? old('comorbidity') : $vaccinated->comorbidity}}" id="comorbidity" name="comorbidity">
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">
