@@ -10,7 +10,7 @@
     </div>
     <div>
     <form action="{{ route('vaccinated.store') }}" method="POST" enctype="multipart/form-data">
-        @include('new-vaccinated-form')
+        @include('new-vaccinated-form',['dni',$dni])
         <div class="row mb-3 justify-content-center">
                         <div class="col-2">
                             <label class="form-label font-weight-bold" for="date_of_vaccination">Fecha de vacunación</label>

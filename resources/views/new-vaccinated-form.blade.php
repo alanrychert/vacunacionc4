@@ -30,7 +30,7 @@
             <label class="form-label font-weight-bold" for="dni">DNI</label>
         </div>
         <div class="col-8">
-            <input type="number" class="form-control" value="{{old('dni')}}" id="dni" name="dni" required>
+            <input readonly type="number" class="form-control" value="{{$dni}}" id="dni" name="dni" required>
             @error('DNI')<small>*{{$message}}</small>@enderror
         </div>
     </div>
