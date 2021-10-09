@@ -1,4 +1,7 @@
      
+     @extends('vaccine-form')
+
+     @section('contenido2')
      <div class="row mb-3 justify-content-center">
         <div class="col-2">
             <label class="form-label font-weight-bold" for="name">Nombre</label>
@@ -78,3 +81,5 @@
             @error('Sexo')<small>*{{$message}}</small>@enderror
         </div>
     </div>
+
+    @endsection
