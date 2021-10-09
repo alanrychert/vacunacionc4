@@ -143,7 +143,7 @@ class BatchController extends Controller
     {
         $batch_number = (int)$request->batch_number;
         $batch_id = DB::table('vaccines_batches')->where('batch_number','=',$batch_number)->get()->first()->batch_id;
-        $vaccines = DB::table('vaccines')->where('batch_id','=',$batch_id)->get();
+        $vaccines = DB::table('vaccines')->where('batch_id','=',$batch_id)->whereNull('vaccinated_id')->get();
         return $vaccines;
     }
 

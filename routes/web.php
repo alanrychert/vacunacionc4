@@ -23,12 +23,12 @@ Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware(['aut
 //Vaccinated routes
 Route::get('/vaccinateds', [VaccinatedController::class,'index'])->middleware('auth')->name('vaccinated.index');
 Route::get('/vaccinateds/create', [VaccinatedController::class,'create'])->middleware('auth')->name('vaccinated.create');
-Route::post('/vaccinateds/create', [VaccinatedController::class,'nextForm'])->middleware('auth')->name('vaccinated.form');
+
 Route::get('/vaccinateds/{vaccinated}', [VaccinatedController::class,'edit'])->middleware('auth')->name('vaccinated.edit');
 Route::post('/vaccinateds/register', [VaccinatedController::class,'store'])->middleware('auth')->name('vaccinated.store');
 Route::put('/vaccinateds/{vaccinated}/actualizar', [VaccinatedController::class,'update'])->middleware('auth')->name('vaccinated.update');
 Route::delete('/vaccinateds/{vaccinated}', [VaccinatedController::class, 'destroy'])->middleware('auth')->name('vaccinated.destroy');
-
+Route::post('/vaccinateds/create', [VaccinatedController::class,'nextForm'])->middleware('auth')->name('vaccinated.form');
 //Batch routes
 Route::get('/batches/create', [BatchController::class,'create'])->middleware('auth')->name('batch.create');
 Route::get('/batches/{batch}', [BatchController::class,'edit'])->middleware('auth')->name('batch.edit');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Batch;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Vaccinated;
@@ -42,6 +43,7 @@ class VaccinatedController extends Controller
 
         if($vaccinated->count() == 0){
             return view('vaccine-form')
+
             ->with('types', $types_of_vaccines)
             ->with('dni',$vaccinated_dni)
             ->with('header','Formulario de nuevo vacunado')
@@ -63,6 +65,7 @@ class VaccinatedController extends Controller
             'vaccine_number' => 'required'
         ]);
 
+
     }
     public function validateVaccinatedData(Request $request){
         $request->validate([
@@ -82,19 +85,35 @@ class VaccinatedController extends Controller
      */
     public function store(Request $request)
     {
+
+    	//No pude hacer la regla custom pero esta creado el archivo AvailableVaccine.php
+
+        //batch_number is unique so there will always be only one batch with that number
+        $batch = Batch::get()->where('batch_number','=',$request->batch_number)->first();
+        if ($batch == null)
+            return redirect()->route('vaccinated.create');
+        else{
+            $vaccine = Vaccine::get()
+            ->where('batch_id','=',$batch->batch_id)
+            ->where('vaccine_number','=',$request->vaccine_number)
+            ->first();
+            }
+
+        //No pude hacer la regla custom pero esta creado el archivo AvailableVaccine.php
+        if ($vaccine == null)
+            return redirect()->route('vaccinated.create');
+
+
         $this->validateVaccinatedData($request);
         echo("pasamos por aca");
         if($request->formType == FIRST_DOSE_FORM){
             $this->validateVaccinatedData($request);
             $this->createVaccinated($request);
             echo("por aca tambien pasamos");
-        }
+        }   
         
-        $vaccine = Vaccine::get()
-        ->where('batch_id','=',$request->batch_number)
-        ->where('vaccine_number','=',$request->vaccine_number)
-        ->first();
-        $vaccine->vaccinated = $request->dni;
+
+        $vaccine->vaccinated_id = $request->dni;
         $vaccine->update();
 
         
