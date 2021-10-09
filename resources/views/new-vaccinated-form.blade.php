@@ -1,3 +1,15 @@
+     
+     <div class="row mb-3 justify-content-center">
+        <div class="col-2">
+            <label class="form-label font-weight-bold" for="dni">DNI</label>
+        </div>
+        <div class="col-8">
+            <label class="form-label font-weight-bold" for="dni">{{$dni}}</label>
+            <input type="hidden" class="form-control" value="$dni" id="dni" name="dni" disabled="disabled" required>
+            
+        </div>
+    </div>
+
      <div class="row mb-3 justify-content-center">
         <div class="col-2">
             <label class="form-label font-weight-bold" for="name">Nombre</label>
@@ -23,15 +35,6 @@
         <div class="col-8">
             <input type="date" class="form-control" id="date_of_birth" dateFormat="dd-MM-yyyy" placeholder="dd/mm/aaaa" name="date_of_birth" required>
             @error('Fecha de nac')<small>*{{$message}}</small>@enderror
-        </div>
-    </div>
-    <div class="row mb-3 justify-content-center">
-        <div class="col-2">
-            <label class="form-label font-weight-bold" for="dni">DNI</label>
-        </div>
-        <div class="col-8">
-            <input type="number" class="form-control" value="{{old('dni')}}" id="dni" name="dni" required>
-            @error('DNI')<small>*{{$message}}</small>@enderror
         </div>
     </div>
     <div class="row justify-content-center">

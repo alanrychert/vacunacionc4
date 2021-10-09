@@ -8,7 +8,8 @@ use App\Models\Vaccinated;
 use App\Models\TypeOfVaccine;
 use App\Models\Vaccine;
 use Illuminate\Support\Facades\DB;
-
+define('FIRST_DOSE_FORM','FIRST_DOSE_FORM');
+define('OTHER_DOSE_FORM','OTHER_DOSE_FORM');
 class VaccinatedController extends Controller
 {
     /**
@@ -41,11 +42,38 @@ class VaccinatedController extends Controller
 
         if($vaccinated->count() == 0){
             return view('vaccine-form')
-            ->with('types', $types_of_vaccines);
+            ->with('types', $types_of_vaccines)
+            ->with('dni',$vaccinated_dni)
+            ->with('header','Formulario de nuevo vacunado')
+            ->with('form-type',FIRST_DOSE_FORM);
         }
-        
+        else {
+            return view('vaccine-form')
+            ->with('types', $types_of_vaccines)
+            ->with('dni',$vaccinated_dni)
+            ->with('header','Formulario de Nueva Dosis')
+            ->with('form-type',OTHER_DOSE_FORM);
+        }
     }
 
+    public function validateVaccineData(Request $request){
+        $request->validate([
+            'date_of_vaccination' => 'required',
+            'type_of_vaccine' => 'required',
+            'vaccine_number' => 'required'
+        ]);
+
+    }
+    public function validateVaccinatedData(Request $request){
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'date_of_birth' => 'required',
+            'dni' => 'required|int',
+            'sex' => 'required',
+
+        ]);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -54,45 +82,45 @@ class VaccinatedController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'date_of_birth' => 'required',
-            'dni' => 'required|int',
-            'sex' => 'required',
-            'date_of_vaccination' => 'required',
-            'type_of_vaccine' => 'required',
-            'vaccine_number' => 'required'
-        ]);
-
-        //dd($request);
-
-        $date_of_birth = date("d-m-Y",strtotime($request->date_of_birth)); 
-
-        $date_of_vaccination = date("d-m-Y",strtotime($request->date_of_vaccination."+ 4 week")); 
-
-        $vaccinated = Vaccinated::create([
-            'name' => $request->name,
-            'last_name' => $request->last_name,
-            'date_of_birth' => $date_of_birth,
-            'dni' => $request->dni,
-            'comorbidity' => $request->comorbidity,
-            'sex' => $request->sex,
-            'date_of_vaccination' => $date_of_vaccination,
-            'type_of_vaccine' => $request->type_of_vaccine,
-            'vaccine_number' => $request->vaccine_number,
-        ]);
+        $this->validateVaccinatedData($request);
+        echo("pasamos por aca");
+        if($request->formType == FIRST_DOSE_FORM){
+            $this->validateVaccinatedData($request);
+            $this->createVaccinated($request);
+            echo("por aca tambien pasamos");
+        }
+        
         $vaccine = Vaccine::get()
-        ->where('type_of_vaccine','=',$request->type_of_vaccine)
+        ->where('batch_id','=',$request->batch_number)
         ->where('vaccine_number','=',$request->vaccine_number)
         ->first();
         $vaccine->vaccinated = $request->dni;
-        $vaccinated->save();
         $vaccine->update();
+
         
         return redirect()->route('index');
     }
 
+    public function createVaccinated(Request $request)
+    {
+        $date_of_birth = date("d-m-Y",strtotime($request->date_of_birth)); 
+        $date_of_vaccination = date("d-m-Y",strtotime($request->date_of_vaccination."+ 4 week")); 
+
+        $vaccinated = new Vaccinated();
+        $vaccinated-> $request->name;
+        $vaccinated-> last_name = $request->last_name;
+        $vaccinated-> date_of_birth = $date_of_birth;
+        $vaccinated-> dni = $request->dni;
+        $vaccinated-> comorbidity = $request->comorbidity;
+        $vaccinated-> sex = $request->sex;
+        $vaccinated-> date_of_vaccination = $date_of_vaccination;
+        $vaccinated-> type_of_vaccine = $request->type_of_vaccine;
+
+        $vaccinated->save();
+    }
+
+
+    
     /**
      * Display the specified resource.
      *

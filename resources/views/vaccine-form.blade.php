@@ -5,12 +5,14 @@
     <div class="row justify-content-center">
         <!--Formulario para el registro de un nuevo vacunado-->
         <div class="col-10">
-            <h3 class="mb-3 mt-3 text-center">Formulario de nuevo vacunado</h3>
+            <h3 class="mb-3 mt-3 text-center">{{$header}}</h3>
         </div>
     </div>
     <div>
     <form action="{{ route('vaccinated.store') }}" method="POST" enctype="multipart/form-data">
         @include('new-vaccinated-form')
+        <input type="hidden" class="form-control" value="$formType" id="formType" name="formType" disabled="disabled" required>
+        <input type="hidden" class="form-control" value="$dni" id="dni" name="dni" disabled="disabled" required>
         <div class="row mb-3 justify-content-center">
                         <div class="col-2">
                             <label class="form-label font-weight-bold" for="date_of_vaccination">Fecha de vacunación</label>
