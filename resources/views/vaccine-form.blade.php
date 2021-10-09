@@ -10,8 +10,7 @@
     </div>
     <div>
     <form action="{{ route('vaccinated.store') }}" method="POST" enctype="multipart/form-data">
-
-        @include('new-vaccinated-form')
+        @yield('contenido2')
         <input type="hidden" class="form-control" value="{{$formtype}}" id="formtype" name="formtype">
 
         <div class="row mb-3 justify-content-center">

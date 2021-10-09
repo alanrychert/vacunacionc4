@@ -42,7 +42,7 @@ class VaccinatedController extends Controller
         $vaccinated = DB::table('vaccinated')->where('dni','=',$vaccinated_dni)->get();
 
         if($vaccinated->count() == 0){
-            return view('vaccine-form')
+            return view('new-vaccinated-form')
 
             ->with('types', $types_of_vaccines)
             ->with('dni',$vaccinated_dni)
@@ -105,16 +105,17 @@ class VaccinatedController extends Controller
 
 
         $this->validateVaccinatedData($request);
-        echo("pasamos por aca");
+
         if($request->formtype == FIRST_DOSE_FORM){
             $this->validateVaccinatedData($request);
             $this->createVaccinated($request);
             
         }   
         
+        $vaccinated = DB::table('vaccinated')->where('dni','=',$request->dni)->get();
 
-        //$vaccine->vaccinated_id = $request->dni;
-        //$vaccine->update();
+        $vaccine->vaccinated_id = $vaccinated->id;
+        $vaccine->update();
 
         
         return redirect()->route('index');
@@ -125,19 +126,17 @@ class VaccinatedController extends Controller
         $date_of_birth = date("d-m-Y",strtotime($request->date_of_birth)); 
         $date_of_vaccination = date("d-m-Y",strtotime($request->date_of_vaccination."+ 4 week")); 
 
-        $vaccinated = new Vaccinated();
-
-        $vaccinated->name = $request->name;
-        $vaccinated->last_name = $request->last_name;
-        $vaccinated->date_of_birth = $date_of_birth;
-        $vaccinated->dni = $request->dni;
-        $vaccinated->comorbidity = $request->comorbidity;
-        $vaccinated->sex = $request->sex;
-        $vaccinated->date_of_vaccination = $date_of_vaccination;
-        $vaccinated->type_of_vaccine = $request->type_of_vaccine;
-
-        $vaccinated->save();
-
+        $vaccinated = Vaccinated::create([
+            'name' => $request->name,
+            'last_name' => $request->last_name,
+            'date_of_birth' => $date_of_birth,
+            'dni' => $request->dni,
+            'comorbidity' => $request->comorbidity,
+            'sex' => $request->sex,
+            'date_of_vaccination' => $date_of_vaccination,
+            'type_of_vaccine' => $request->type_of_vaccine,
+            'vaccine_number' => $request->vaccine_number,
+        ]);
     }
 
 
