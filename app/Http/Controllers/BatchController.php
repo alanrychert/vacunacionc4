@@ -51,13 +51,16 @@ class BatchController extends Controller
             'reception_date' => 'required',
         ]);
         
-        $date_of_expiry = date("d-m-Y",strtotime($request->reception_date."+ 4 week")); 
+        if($request->type_of_vaccine == 1){
+            $date_of_expiry = date("d-m-Y",strtotime($request->reception_date."+ 4 week")); 
+        }
+        else{
+            $date_of_expiry = date("d-m-Y",strtotime($request->reception_date."+ 12 week")); 
+        }
 
         $loggedUser = Auth()->user();
         $sanitary_region_id = $loggedUser->sanitary_region_id;
         $province_id = SanitaryRegion::where('sanitary_region_id','=',$sanitary_region_id)->get()->first()->province_id;
-
-        
 
         $batch = new Batch();
 
@@ -79,7 +82,8 @@ class BatchController extends Controller
             $vaccine->save();
         }
 
-        return redirect()->route('index');
+        return redirect()->route('index')
+            ->with('info','El lote fue creado con exito');
     }
 
     /**

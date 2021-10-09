@@ -18,7 +18,7 @@ class CreateVaccinesTable extends Migration
             $table->increments('vaccine_id');
             $table->integer('vaccine_number');
             $table->integer('batch_id');
-            $table->unique('batch_id','vaccine_number');
+            $table->unique(['batch_id','vaccine_number']);
             $table->integer('vaccinated_id')->nullable();
 
             $table->foreign('batch_id')->references('batch_id')->on('vaccines_batches')->onUpdate('cascade')->onDelete('cascade');

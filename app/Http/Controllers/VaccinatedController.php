@@ -40,7 +40,7 @@ class VaccinatedController extends Controller
         $vaccinated = DB::table('vaccinated')->where('dni','=',$vaccinated_dni)->get();
 
         if($vaccinated->count() == 0){
-            return view('new-vaccinated-form')
+            return view('vaccine-form')
             ->with('types', $types_of_vaccines);
         }
         
