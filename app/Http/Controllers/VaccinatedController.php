@@ -47,14 +47,14 @@ class VaccinatedController extends Controller
             ->with('types', $types_of_vaccines)
             ->with('dni',$vaccinated_dni)
             ->with('header','Formulario de nuevo vacunado')
-            ->with('form-type',FIRST_DOSE_FORM);
+            ->with('formtype',FIRST_DOSE_FORM);
         }
         else {
             return view('vaccine-form')
             ->with('types', $types_of_vaccines)
             ->with('dni',$vaccinated_dni)
             ->with('header','Formulario de Nueva Dosis')
-            ->with('form-type',OTHER_DOSE_FORM);
+            ->with('formtype',OTHER_DOSE_FORM);
         }
     }
 
@@ -106,15 +106,15 @@ class VaccinatedController extends Controller
 
         $this->validateVaccinatedData($request);
         echo("pasamos por aca");
-        if($request->formType == FIRST_DOSE_FORM){
+        if($request->formtype == FIRST_DOSE_FORM){
             $this->validateVaccinatedData($request);
             $this->createVaccinated($request);
-            echo("por aca tambien pasamos");
+            
         }   
         
 
-        $vaccine->vaccinated_id = $request->dni;
-        $vaccine->update();
+        //$vaccine->vaccinated_id = $request->dni;
+        //$vaccine->update();
 
         
         return redirect()->route('index');
@@ -126,16 +126,18 @@ class VaccinatedController extends Controller
         $date_of_vaccination = date("d-m-Y",strtotime($request->date_of_vaccination."+ 4 week")); 
 
         $vaccinated = new Vaccinated();
-        $vaccinated-> $request->name;
-        $vaccinated-> last_name = $request->last_name;
-        $vaccinated-> date_of_birth = $date_of_birth;
-        $vaccinated-> dni = $request->dni;
-        $vaccinated-> comorbidity = $request->comorbidity;
-        $vaccinated-> sex = $request->sex;
-        $vaccinated-> date_of_vaccination = $date_of_vaccination;
-        $vaccinated-> type_of_vaccine = $request->type_of_vaccine;
+
+        $vaccinated->name = $request->name;
+        $vaccinated->last_name = $request->last_name;
+        $vaccinated->date_of_birth = $date_of_birth;
+        $vaccinated->dni = $request->dni;
+        $vaccinated->comorbidity = $request->comorbidity;
+        $vaccinated->sex = $request->sex;
+        $vaccinated->date_of_vaccination = $date_of_vaccination;
+        $vaccinated->type_of_vaccine = $request->type_of_vaccine;
 
         $vaccinated->save();
+
     }
 
 

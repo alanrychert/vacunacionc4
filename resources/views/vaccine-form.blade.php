@@ -12,8 +12,7 @@
     <form action="{{ route('vaccinated.store') }}" method="POST" enctype="multipart/form-data">
 
         @include('new-vaccinated-form')
-        <input type="hidden" class="form-control" value="$formType" id="formType" name="formType" disabled="disabled" required>
-        <input type="hidden" class="form-control" value="$dni" id="dni" name="dni" disabled="disabled" required>
+        <input type="hidden" class="form-control" value="{{$formtype}}" id="formtype" name="formtype">
 
         <div class="row mb-3 justify-content-center">
                         <div class="col-2">
@@ -23,7 +22,8 @@
                             <input type="date" class="form-control" id="date_of_vaccination" dateFormat="dd-MM-yyyy" placeholder="dd/mm/aaaa" name="date_of_vaccination" required>
                             @error('Fecha de vacunación')<small>*{{$message}}</small>@enderror
                         </div>
-                    </div> 
+        </div> 
+
         <div class="row mb-3 justify-content-center">
             <div class="col-2">
                 <label class="form-label font-weight-bold" for="type">Tipo de vacuna</label>
@@ -38,18 +38,26 @@
                 @error('Tipo de vacuna')<small>*{{$message}}</small>@enderror
             </div>
         </div>      
-        <div>
-            <b><p>Numero de lote</p></b>
+        <div class="row mb-3 justify-content-center">
+            <div class="col-2">
+                <b><p>Numero de lote</p></b>
+            </div>
 
-            <input onchange="getVaccines(this.value)" type="number" class="typeahead" 
-                data-provide="typeahead" name="batch_number" id="batch_number"/>
+            <div class="col-8">
+                <input onchange="getVaccines(this.value)" type="number" class="typeahead" 
+                    data-provide="typeahead" name="batch_number" id="batch_number"/>
+            </div>
         </div>
 
-        <div>
-            <b><p>Numero de vacuna</p></b>
+        <div class="row mb-3 justify-content-center">
+            <div class="col-2">
+                <b><p>Numero de vacuna</p></b>
+            </div>
 
-            <input type="number" class="typeahead" 
+            <div class="col-8">
+                <input type="number" class="typeahead" 
                 data-provide="typeahead" name="vaccine_number" id="vaccine_number"/>
+            </div>
         </div>
         
 
