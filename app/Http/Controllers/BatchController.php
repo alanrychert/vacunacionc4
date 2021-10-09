@@ -8,6 +8,7 @@ use App\Models\Batch;
 use App\Models\TypeOfVaccine;
 use App\Models\Vaccine;
 use App\Models\SanitaryRegion;
+use Illuminate\Support\Facades\DB;
 
 class BatchController extends Controller
 {
@@ -130,5 +131,21 @@ class BatchController extends Controller
     {
 
     }
+
+    public function getAvailableBatches(Request $request)
+    {
+        $type_of_vaccine_id = $request->type_of_vaccine_id;
+        $batches = DB::table('vaccines_batches')->where('type_of_vaccine_id','=',$type_of_vaccine_id)->get();
+        return $batches;
+    }
+
+    public function getAvailableVaccines(Request $request)
+    {
+        $batch_number = (int)$request->batch_number;
+        $batch_id = DB::table('vaccines_batches')->where('batch_number','=',$batch_number)->get()->first()->batch_id;
+        $vaccines = DB::table('vaccines')->where('batch_id','=',$batch_id)->get();
+        return $vaccines;
+    }
+
 
 }

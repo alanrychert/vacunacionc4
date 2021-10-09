@@ -37,9 +37,16 @@
         <div>
             <b><p>Numero de lote</p></b>
 
+            <input onchange="getVaccines(this.value)" type="number" class="typeahead" 
+                data-provide="typeahead" name="batch_number" id="batch_number"/>
+        </div>
+
+        <div>
+            <b><p>Numero de vacuna</p></b>
+
             <input type="number" class="typeahead" 
-                data-provide="typeahead"/>
-            </div>
+                data-provide="typeahead" name="vaccine_number" id="vaccine_number"/>
+        </div>
         
 
         <div class="row mb-3 justify-content-center">
@@ -57,56 +64,44 @@
 
  
 <script>
+    let batches_array = [];
+    let vaccines_array = [];
+    function getBatches(value){
+        const token = $('input[name="_token"]').val();
+        $.ajax({
+            url:"{{ route('batch.getAvailableBatches') }}",
+            method: "POST",
+            data: {type_of_vaccine_id: value, _token: token},
+            success: 
+                function(data){
+                    data.forEach(batch => {
+                        batches_array.push(batch.batch_number.toString());
+                    })
+                }
+        })
+    }
+    function getVaccines(value){
+        console.log(value);
+        const token = $('input[name="_token"]').val();
+        $.ajax({
+            url:"{{ route('batch.getAvailableVaccines') }}",
+            method: "POST",
+            data: {batch_number: value, _token: token},
+            success: 
+                function(data){
+                    data.forEach(vaccine => {
+                        console.log(vaccine);
+                        vaccines_array.push(vaccine.vaccine_number.toString());
+                    })
+                }
+        })
+    }
 
-function getBatches(value){
-            const token = $('input[name="_token"]').val();
-            $.ajax({
-                url:"{{ route('batch.getAvailableBatches') }}",
-                method: "POST",
-                data: {type_of_vaccine_id: value, _token: token},
-                success: 
-                    function(data){
-                        console.log(data);
-                        data.forEach(batch => {
-                            console.log(batch);
-                        })
-                    }
-            })
-        }
-    // Initializes  input( name of states)
+    // Initializes  input
     // with a typeahead
-    var $input = $(".typeahead");
+    var $input = $('#batch_number');
     $input.typeahead({
-        source: [
-            "Andhra Pradesh",
-            "Arunachal Pradesh",
-            "Assam",
-            "Bihar",
-            "Chhattisgarh",
-            "Goa",
-            "Gujarat",
-            "Haryana",
-            "Himachal Pradesh",
-            "Jharkhand",
-            "Karnataka",
-            "Kerala",
-            "Madhya Pradesh",
-            "Maharashtra",
-            "Manipur",
-            "Meghalaya",
-            "Mizoram",
-            "Nagaland",
-            "Odisha",
-            "Punjab",
-            "Rajasthan",
-            "Sikkim",
-            "Tamil Nadu",
-            "Telangana",
-            "Tripura",
-            "Uttar Pradesh",
-            "Uttarakhand",
-            "West Bengal",
-        ],
+        source: batches_array,
         autoSelect: true,
     });
 
@@ -115,10 +110,28 @@ function getBatches(value){
         matches = [];
 
         if (current) {
-
             // Some item from your input matches
             // with entered data
             if (current.name == $input.val()) {
+                matches.push(current.name);
+            }
+        }
+    });
+
+    var $vaccines = $('#vaccine_number');
+    $vaccines.typeahead({
+        source: vaccines_array,
+        autoSelect: true,
+    });
+
+    $vaccines.change(function () {
+        var current = $vaccines.typeahead("getActive");
+        matches = [];
+
+        if (current) {
+            // Some item from your input matches
+            // with entered data
+            if (current.name == $vaccines.val()) {
                 matches.push(current.name);
             }
         }
