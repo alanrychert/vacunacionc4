@@ -59,23 +59,24 @@ class BatchController extends Controller
 
         
 
-        Batch::create([
-            'province' => $province_id,
-            'batch_number' => $request->batch_number,
-            'since' => $request->since,
-            'to' => $request->to,
-            'dose' => $request->dose,
-            'reception_date' => $request->reception_date,
-            'date_of_expiry' => $date_of_expiry,
-            'sanitary_region' => $sanitary_region_id,
-        ]);
+        $batch = new Batch();
+
+        $batch->batch_number = $request->batch_number;
+        $batch->since = $request->since;
+        $batch->to = $request->to;
+        $batch->dose = $request->dose;
+        $batch->reception_date = $request->reception_date;
+        $batch->date_of_expiry = $date_of_expiry;
+        $batch->sanitary_region_id = $sanitary_region_id;
+        $batch->type_of_vaccine_id = $request->type_of_vaccine;
+
+        $batch->save();
 
         for($i=$request->since; $i<=$request->to; $i++){
-            Vaccine::create([
-                'vaccine_number' => $i,
-                'type_of_vaccine' => $request->type_of_vaccine,
-                'batch_number' => $request->batch_number,
-            ]);
+            $vaccine = new Vaccine();
+            $vaccine->vaccine_number = $i;
+            $vaccine->batch_id = $batch->batch_id;
+            $vaccine->save();
         }
 
         return redirect()->route('index');

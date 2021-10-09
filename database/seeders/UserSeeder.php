@@ -36,5 +36,15 @@ class UserSeeder extends Seeder
             'sanitary_region_id' => $sanitaryRegionId,
             'password' => bcrypt('1234'),
         ])->assignRole('Minister');
+
+        User::create([
+            'name' => 'ope',
+            'last_name' => 'rario',
+            'dni' => '12345678',
+            'user' => 'operario',
+            'email' => 'ope@rario.com',
+            'sanitary_region_id' => $sanitaryRegionId,
+            'password' => bcrypt('1234'),
+        ])->assignRole('Operator');
     }
 }
