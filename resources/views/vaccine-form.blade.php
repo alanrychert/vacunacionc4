@@ -21,8 +21,8 @@
         </div>
 
         @yield('contenido2')
-        
-        <input type="hidden" class="form-control" value="{{$formtype}}" id="formtype" name="formtype">
+
+        <input type="hidden" class="form-control" value="{{$dose}}" id="dose" name="dose">
 
        
         <div class="row mb-3 justify-content-center">
@@ -40,7 +40,7 @@
                 <label class="form-label font-weight-bold" for="type">Tipo de vacuna</label>
             </div>
             <div class="col-8">
-                <select onchange="getBatches(this.value)" class="form-select" name="type_of_vaccine">
+                <select onchange="getBatches(this.value,{{$dose}})" class="form-select" name="type_of_vaccine">
                     <option selected>Seleccionar</option>
                     @foreach ($types as $type)
                     <option value="{{$type->type_code}}">{{ $type->name }}</option>
@@ -89,12 +89,12 @@
 <script>
     let batches_array = [];
     let vaccines_array = [];
-    function getBatches(value){
+    function getBatches(value,dose){
         const token = $('input[name="_token"]').val();
         $.ajax({
             url:"{{ route('batch.getAvailableBatches') }}",
             method: "POST",
-            data: {type_of_vaccine_id: value, _token: token},
+            data: {type_of_vaccine_id: value, _token: token,dose:dose},
             success: 
                 function(data){
                     data.forEach(batch => {
