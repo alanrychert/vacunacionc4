@@ -32,7 +32,7 @@
                     <label class="form-label font-weight-bold" for="date_of_birth">Fecha de nac</label>
                 </div>
                 <div class="col-8">
-                    <input type="date" class="form-control" value="" id="date_of_birth" placeholder="dd/mm/aaaa" name="date_of_birth" required>
+                    <input type="date" class="form-control" value="{{$vaccinated == NULL ? old('date_of_birth') : $vaccinated->date_of_birth}}" id="date_of_birth" placeholder="dd/mm/aaaa" name="date_of_birth" required>
                     @error('Fecha de nac')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
@@ -52,24 +52,41 @@
                 <div class="col-8" style="display:inline-flex">
                     <div class="form-check ">
                         <input 
-                        onclick="document.getElementById('comorbilidad').disabled = false;"
-                        class="form-check-input" type="radio" name="comorbilidad" id="Si" value="Si">
+                        onclick="document.getElementById('comorbidity').disabled = false;"
+                        class="form-check-input" type="radio" name="comorbilidad" id="Si" value="Si" checked='value'>
                         <label class="form-check-label pr-3" for="si">Si</label>
                     </div>
                     <div class="form-check">
                         <input 
-                        onclick="document.getElementById('comorbilidad').disabled = true;document.getElementById('comorbilidad').value = ''"
-                        class="form-check-input" type="radio" name="comorbilidad" id="No" value="No" checked>
+                        onclick="document.getElementById('comorbidity').disabled = true;document.getElementById('comorbidity').value = ''"
+                        class="form-check-input" type="radio" name="comorbilidad" id="No" value="No">
                         <label class="form-check-label" for="No">No</label>
                     </div>
                 </div>
+                @if(is_null($vaccinated->comorbidity))
+                    <script>
+                    document.addEventListener("DOMContentLoaded", function(event) {
+                        document.getElementById('Si').checked = false;
+                        document.getElementById('No').checked = true;
+                        document.getElementById('comorbidity').disabled = true;
+                    });
+                    </script>
+                @else
+                    <script>
+                    document.addEventListener("DOMContentLoaded", function(event) {
+                        document.getElementById('Si').checked = true;
+                        document.getElementById('No').checked = false;
+                        document.getElementById('comorbidity').disabled = false;
+                    });
+                    </script>
+                @endif
             </div>
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
                     <label class="form-label font-weight-bold" for="comorbidity">Descripción</label>
                 </div>
                 <div class="col-8">
-                    <input type="text" class="form-control" value="{{$vaccinated == NULL ? old('comorbidity') : $vaccinated->comorbidity}}" placeholder="" id="comorbidity" name="comorbidity" disabled="disabled">
+                    <input type="text" class="form-control" value="{{$vaccinated == NULL ? old('comorbidity') : $vaccinated->comorbidity}}" id="comorbidity" name="comorbidity">
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">
@@ -93,7 +110,7 @@
                     <label class="form-label font-weight-bold" for="date_of_vaccination">Fecha de vacunación</label>
                 </div>
                 <div class="col-8">
-                    <input type="date" class="form-control" value="" id="date_of_vaccination" placeholder="dd/mm/aaaa" name="date_of_vaccination" required>
+                    <input type="date" class="form-control" value="{{$vaccinated == NULL ? old('date_of_vaccination') : $vaccinated->date_of_vaccination}}" id="date_of_vaccination" placeholder="dd/mm/aaaa" name="date_of_vaccination" required>
                     @error('Fecha de vacunación')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
