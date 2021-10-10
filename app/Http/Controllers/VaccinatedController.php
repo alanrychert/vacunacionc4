@@ -60,6 +60,7 @@ class VaccinatedController extends Controller
 
     public function validateVaccineData(Request $request){
         $request->validate([
+            'availableVaccine' => new AvailableVaccine($request),
             'date_of_vaccination' => 'required',
             'type_of_vaccine' => 'required',
             'vaccine_number' => 'required'
@@ -90,8 +91,9 @@ class VaccinatedController extends Controller
 
         //batch_number is unique so there will always be only one batch with that number
         $batch = Batch::get()->where('batch_number','=',$request->batch_number)->first();
-        if ($batch == null)
+        if ($batch == null){
             return redirect()->route('vaccinated.create');
+        }
         else{
             $vaccine = Vaccine::get()
             ->where('batch_id','=',$batch->batch_id)
@@ -100,24 +102,29 @@ class VaccinatedController extends Controller
             }
 
         //No pude hacer la regla custom pero esta creado el archivo AvailableVaccine.php
-        if ($vaccine == null)
-            return redirect()->route('vaccinated.create');
+        if ($vaccine == null){
+            return redirect()->route('vaccinated.create');        
+        }
 
 
-        $this->validateVaccinatedData($request);
+        $this->validateVaccineData($request);
 
         if($request->formtype == FIRST_DOSE_FORM){
+            
             $this->validateVaccinatedData($request);
             $this->createVaccinated($request);
             
         }   
         
-        $vaccinated = DB::table('vaccinated')->where('dni','=',$request->dni)->get();
+        $vaccinated = Vaccinated::get()
+        ->where('dni','=',$request->dni)
+        ->first();
 
-        $vaccine->vaccinated_id = $vaccinated->id;
+        //dd($vaccinated);
+
+        $vaccine->vaccinated_id = $vaccinated->vaccinated_id;
         $vaccine->update();
 
-        
         return redirect()->route('index');
     }
 
@@ -126,7 +133,7 @@ class VaccinatedController extends Controller
         $date_of_birth = date("d-m-Y",strtotime($request->date_of_birth)); 
         $date_of_vaccination = date("d-m-Y",strtotime($request->date_of_vaccination."+ 4 week")); 
 
-        $vaccinated = Vaccinated::create([
+        Vaccinated::create([
             'name' => $request->name,
             'last_name' => $request->last_name,
             'date_of_birth' => $date_of_birth,
