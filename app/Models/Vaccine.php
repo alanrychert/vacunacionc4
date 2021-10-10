@@ -12,11 +12,11 @@ class Vaccine extends Model
     protected $primaryKey = 'vaccine_id';
 
     public function vaccinated(){
-        return $this->belognsTo(Vaccinated::class,'vaccinated_id');
+        return $this->belongsTo(Vaccinated::class,'vaccinated_id');
     }
 
     public function batch(){
-        return $this->belognsTo(Batch::class,'batch_id');
+        return $this->belongsTo(Batch::class,'batch_id');
     }
 
         /**
