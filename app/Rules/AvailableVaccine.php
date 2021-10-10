@@ -13,10 +13,9 @@ class AvailableVaccine implements Rule
      *
      * @return void
      */
-    public function __construct($batch_number,$vaccine_number)
+    public function __construct($request)
     {
-        $this->batch_number = $batch_number;
-        $this->vaccine_number = $vaccine_number;
+        $this->request= $request;
     }
 
     /**
@@ -28,17 +27,15 @@ class AvailableVaccine implements Rule
      */
     public function passes($attribute, $value)
     {
-        
-        
         //batch_number is unique so there will always be only one batch with that number
-        $batch = Batch::get()->where('batch_number','=',$this->batch_number)->first();
+        $batch = Batch::get()->where('batch_number','=',$this->request->batch_number)->first();
         
         $vaccine = Vaccine::get()
-        ->where('batch_id','=',$batch->batch_id)
-        ->where('vaccine_number','=',$this->vaccine_number)
+        ->where('batch_id','=',$this->$batch->batch_id)
+        ->where('vaccine_number','=',$this->request->vaccine_number)
         ->first();
         dd($this);
-        return $vaccine!=null;
+        return is_null($vaccine);
 
     }
 
