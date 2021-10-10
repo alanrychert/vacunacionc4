@@ -41,22 +41,28 @@ class VaccinatedController extends Controller
 
         $vaccinated_dni = $request->dni;
         $vaccinated = DB::table('vaccinated')->where('dni','=',$vaccinated_dni)->get();
+        $vaccines_count = 0;
+        $view = view('new-vaccinated-form');
+
+
+        $header='';
 
         if($vaccinated->count() == 0){
-            return view('new-vaccinated-form')
-
-            ->with('types', $types_of_vaccines)
-            ->with('dni',$vaccinated_dni)
-            ->with('header','Formulario de nuevo vacunado')
-            ->with('formtype',FIRST_DOSE_FORM);
+            $header = 'Formulario de Nuevo Vacunado';
         }
         else {
-            return view('vaccine-form')
+            $vaccinated_id = $vaccinated->first()->vaccinated_id;
+            $vaccines_count = Vaccinated::all()->where('vaccinated_id','=',$vaccinated_id)->first()->vaccines->count();
+            $header = 'Formulario de Dosis Numero: '.$vaccines_count+1;
+            $view = view('vaccine-form');
+        }
+
+
+        return $view
             ->with('types', $types_of_vaccines)
             ->with('dni',$vaccinated_dni)
-            ->with('header','Formulario de Nueva Dosis')
-            ->with('formtype',OTHER_DOSE_FORM);
-        }
+            ->with('header',$header)
+            ->with('formtype',$vaccines_count);
     }
 
     
@@ -111,7 +117,7 @@ class VaccinatedController extends Controller
 
         $this->validateVaccineData($request);
 
-        if($request->formtype == FIRST_DOSE_FORM){
+        if($request->formtype == 0){
             
             $this->validateVaccinatedData($request);
             $this->createVaccinated($request);

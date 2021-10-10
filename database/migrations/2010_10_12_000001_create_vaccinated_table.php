@@ -21,7 +21,6 @@ class CreateVaccinatedTable extends Migration
             $table->string('comorbidity')->nullable();
             $table->char('sex');
             $table->date('date_of_birth');
-            $table->date('date_of_vaccination');
         });
         /*Nombre
         ● Apellido

@@ -10,9 +10,6 @@
     </div>
     <div>
     <form action="{{ route('vaccinated.store') }}" method="POST" enctype="multipart/form-data">
-        @yield('contenido2')
-        <input type="hidden" class="form-control" value="{{$formtype}}" id="formtype" name="formtype">
-
         <div class="row mb-3 justify-content-center">
             <div class="col-2">
                 <label class="form-label font-weight-bold" for="dni">DNI</label>
@@ -23,6 +20,11 @@
             </div>
         </div>
 
+        @yield('contenido2')
+        
+        <input type="hidden" class="form-control" value="{{$formtype}}" id="formtype" name="formtype">
+
+       
         <div class="row mb-3 justify-content-center">
                         <div class="col-2">
                             <label class="form-label font-weight-bold" for="date_of_vaccination">Fecha de vacunación</label>
