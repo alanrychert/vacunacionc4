@@ -20,7 +20,7 @@ class VaccinatedController extends Controller
      */
     public function index()
     {
-       $vaccinateds = Vaccinated::all()->sortBy('name');
+       $vaccinateds = Vaccinated::all()->sortBy('dni');
        return view('vaccinateds')->with('vaccinateds',$vaccinateds);
     }
 
