@@ -168,11 +168,11 @@ class VaccinatedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user,int $dni)
+    public function edit(Vaccinated $vaccinated)
     {
         $types_of_vaccines = TypeOfVaccine::all();
         return view('edit-vaccinated-form',[
-            'vaccinated' => Vaccinated::all()->where('dni','=',$dni)->first(),
+            'vaccinated' => $vaccinated,
             'types' => $types_of_vaccines
         ]);
 

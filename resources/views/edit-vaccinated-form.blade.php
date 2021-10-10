@@ -107,15 +107,6 @@
             </div>
             <div class="row mb-3 justify-content-center">
                 <div class="col-2">
-                    <label class="form-label font-weight-bold" for="date_of_vaccination">Fecha de vacunación</label>
-                </div>
-                <div class="col-8">
-                    <input type="date" class="form-control" value="{{$vaccinated == NULL ? old('date_of_vaccination') : $vaccinated->date_of_vaccination}}" id="date_of_vaccination" placeholder="dd/mm/aaaa" name="date_of_vaccination" required>
-                    @error('Fecha de vacunación')<small>*{{$message}}</small>@enderror
-                </div>
-            </div>
-            <div class="row mb-3 justify-content-center">
-                <div class="col-2">
                     <label class="form-label font-weight-bold" for="type">Tipo de vacuna</label>
                 </div>
                 <div class="col-8">
