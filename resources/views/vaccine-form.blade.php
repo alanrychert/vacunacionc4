@@ -14,6 +14,16 @@
         <input type="hidden" class="form-control" value="{{$formtype}}" id="formtype" name="formtype">
 
         <div class="row mb-3 justify-content-center">
+            <div class="col-2">
+                <label class="form-label font-weight-bold" for="dni">DNI</label>
+            </div>
+            <div class="col-8">
+                <input readonly type="number" class="form-control" value="{{$dni}}" id="dni" name="dni" required>
+                @error('DNI')<small>*{{$message}}</small>@enderror
+            </div>
+        </div>
+
+        <div class="row mb-3 justify-content-center">
                         <div class="col-2">
                             <label class="form-label font-weight-bold" for="date_of_vaccination">Fecha de vacunación</label>
                         </div>
