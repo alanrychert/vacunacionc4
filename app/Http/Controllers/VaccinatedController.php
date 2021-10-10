@@ -10,8 +10,6 @@ use App\Models\TypeOfVaccine;
 use App\Models\Vaccine;
 use App\Rules\AvailableVaccine;
 use Illuminate\Support\Facades\DB;
-define('FIRST_DOSE_FORM','FIRST_DOSE_FORM');
-define('OTHER_DOSE_FORM','OTHER_DOSE_FORM');
 class VaccinatedController extends Controller
 {
     /**
@@ -62,7 +60,7 @@ class VaccinatedController extends Controller
             ->with('types', $types_of_vaccines)
             ->with('dni',$vaccinated_dni)
             ->with('header',$header)
-            ->with('formtype',$vaccines_count);
+            ->with('dose',$vaccines_count);
     }
 
     
@@ -117,7 +115,7 @@ class VaccinatedController extends Controller
 
         $this->validateVaccineData($request);
 
-        if($request->formtype == 0){
+        if($request->dose == 0){
             
             $this->validateVaccinatedData($request);
             $this->createVaccinated($request);
