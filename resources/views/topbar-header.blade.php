@@ -44,7 +44,7 @@
           </form>
 
         @else
-          <li class="nav-item"><a href="{{ route('login') }}">
+          <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">
             Ingresar
           </a></li>
 
