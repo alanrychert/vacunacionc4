@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Vaccinated;
 use App\Models\TypeOfVaccine;
 use App\Models\Vaccine;
+use App\Rules\AvailableVaccine;
 use Illuminate\Support\Facades\DB;
 define('FIRST_DOSE_FORM','FIRST_DOSE_FORM');
 define('OTHER_DOSE_FORM','OTHER_DOSE_FORM');
@@ -58,10 +59,11 @@ class VaccinatedController extends Controller
         }
     }
 
+    
     public function validateVaccineData(Request $request){
+        $available = new AvailableVaccine($request);
         $request->validate([
-            'availableVaccine' => new AvailableVaccine($request),
-            'date_of_vaccination' => 'required',
+            'date_of_vaccination' => ['required', $available],
             'type_of_vaccine' => 'required',
             'vaccine_number' => 'required'
         ]);
@@ -125,7 +127,7 @@ class VaccinatedController extends Controller
         $vaccine->vaccinated_id = $vaccinated->vaccinated_id;
         $vaccine->update();
 
-        return redirect()->route('index');
+        return redirect()->route('vaccinated.create');
     }
 
     public function createVaccinated(Request $request)

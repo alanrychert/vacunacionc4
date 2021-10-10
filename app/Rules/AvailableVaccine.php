@@ -29,13 +29,13 @@ class AvailableVaccine implements Rule
     {
         //batch_number is unique so there will always be only one batch with that number
         $batch = Batch::get()->where('batch_number','=',$this->request->batch_number)->first();
-        
+
         $vaccine = Vaccine::get()
-        ->where('batch_id','=',$this->$batch->batch_id)
+        ->where('batch_id','=',$batch->batch_id)
         ->where('vaccine_number','=',$this->request->vaccine_number)
         ->first();
-        dd($this);
-        return is_null($vaccine);
+
+        return !(is_null($vaccine));
 
     }
 
