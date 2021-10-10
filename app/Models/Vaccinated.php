@@ -23,9 +23,9 @@ class Vaccinated extends Model
      * 
      * @var array
      */
-    protected $fillable = ['name', 'last_name', 'dni', 'comorbidity', 'sex', 'date_of_birth', 'date_of_vaccination'];
+    protected $fillable = ['name', 'last_name', 'dni', 'comorbidity', 'sex', 'date_of_birth'];
 
-    protected $dates = ['date_of_birth', 'date_of_vaccination'];
+    protected $dates = ['date_of_birth'];
 
     public $timestamps = false;
 
@@ -34,8 +34,5 @@ class Vaccinated extends Model
         return Carbon::parse($date_of_birth)->format('Y-m-d');
     }
 
-    public function getDateOfVaccinationAttribute($date_of_vaccination) 
-    {
-        return Carbon::parse($date_of_vaccination)->format('Y-m-d');
-    }
+   
 }

@@ -69,7 +69,7 @@ class VaccinatedController extends Controller
         $request->validate([
             'date_of_vaccination' => ['required', $available],
             'type_of_vaccine' => 'required',
-            'vaccine_number' => 'required'
+            'vaccine_number' => 'required',
         ]);
 
 
@@ -81,7 +81,6 @@ class VaccinatedController extends Controller
             'date_of_birth' => 'required',
             'dni' => 'required|int',
             'sex' => 'required',
-
         ]);
     }
     /**
@@ -128,6 +127,7 @@ class VaccinatedController extends Controller
 
         //dd($vaccinated);
 
+        $vaccine->date_of_vaccination= $request->date_of_vaccination;
         $vaccine->vaccinated_id = $vaccinated->vaccinated_id;
         $vaccine->update();
 
@@ -136,17 +136,14 @@ class VaccinatedController extends Controller
 
     public function createVaccinated(Request $request)
     {
-        $date_of_birth = date("d-m-Y",strtotime($request->date_of_birth)); 
-        $date_of_vaccination = date("d-m-Y",strtotime($request->date_of_vaccination."+ 4 week")); 
 
         Vaccinated::create([
             'name' => $request->name,
             'last_name' => $request->last_name,
-            'date_of_birth' => $date_of_birth,
+            'date_of_birth' => $request->date_of_birth,
             'dni' => $request->dni,
             'comorbidity' => $request->comorbidity,
             'sex' => $request->sex,
-            'date_of_vaccination' => $date_of_vaccination,
             'type_of_vaccine' => $request->type_of_vaccine,
             'vaccine_number' => $request->vaccine_number,
         ]);
@@ -202,31 +199,31 @@ class VaccinatedController extends Controller
             'vaccine_number' => 'required'
         ]);
 
-        $date_of_birth = date("d-m-Y",strtotime($request->date_of_birth)); 
-
-        $date_of_vaccination = date("d-m-Y",strtotime($request->date_of_vaccination."+ 4 week")); 
         $vaccinated->update([
             'name' => $request->name,
             'last_name' => $request->last_name,
-            'date_of_birth' => $date_of_birth,
+            'date_of_birth' => $request->date_of_birth,
             'dni' => $request->dni,
             'comorbidity' => $request->comorbidity,
             'sex' => $request->sex,
-            'date_of_vaccination' => $date_of_vaccination,
         ]);
 
         $vaccine = Vaccine::where('vaccinated','=',$vaccinated->dni)->get()->first();
         if($vaccine->type_of_vaccine != $request->type_of_vaccine || $vaccine->vaccine_number!=$request->vaccine_number){
+            $vaccine->date_of_vaccination= null;
             $vaccine->vaccinated=null;
             $vaccine->update();
             $vaccine = Vaccine::get()
             ->where('type_of_vaccine','=',$request->type_of_vaccine)
             ->where('vaccine_number','=',$request->vaccine_number)
             ->first();
-            $vaccine->vaccinated = $request->dni;
+            $vaccine->date_of_vaccination = $request->date_of_vaccination;
+            $vaccine->vaccinated = $vaccinated->vaccinated_id;
             $vaccine->update();
         }
+
         $vaccinated->update();
+
         return redirect()->route('index');
     }
 
