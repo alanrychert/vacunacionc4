@@ -31,11 +31,11 @@ class Vaccinated extends Model
 
     public function getDateOfBirthAttribute($date_of_birth) 
     {
-        return Carbon::parse($date_of_birth)->format('yyyy-MM-dd');
+        return Carbon::parse($date_of_birth)->format('Y-m-d');
     }
 
     public function getDateOfVaccinationAttribute($date_of_vaccination) 
     {
-        return Carbon::parse($date_of_vaccination)->format('yyyy-MM-dd');
+        return Carbon::parse($date_of_vaccination)->format('Y-m-d');
     }
 }

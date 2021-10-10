@@ -32,7 +32,7 @@
                     <label class="form-label font-weight-bold" for="date_of_birth">Fecha de nac</label>
                 </div>
                 <div class="col-8">
-                    <input type="date" class="form-control" value="" id="date_of_birth" placeholder="dd/mm/aaaa" name="date_of_birth" required>
+                    <input type="date" class="form-control" value="{{$vaccinated == NULL ? old('date_of_birth') : $vaccinated->date_of_birth}}" id="date_of_birth" placeholder="dd/mm/aaaa" name="date_of_birth" required>
                     @error('Fecha de nac')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
@@ -110,7 +110,7 @@
                     <label class="form-label font-weight-bold" for="date_of_vaccination">Fecha de vacunación</label>
                 </div>
                 <div class="col-8">
-                    <input type="date" class="form-control" value="" id="date_of_vaccination" placeholder="dd/mm/aaaa" name="date_of_vaccination" required>
+                    <input type="date" class="form-control" value="{{$vaccinated == NULL ? old('date_of_vaccination') : $vaccinated->date_of_vaccination}}" id="date_of_vaccination" placeholder="dd/mm/aaaa" name="date_of_vaccination" required>
                     @error('Fecha de vacunación')<small>*{{$message}}</small>@enderror
                 </div>
             </div>

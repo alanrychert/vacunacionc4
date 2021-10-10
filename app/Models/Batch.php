@@ -35,7 +35,7 @@ class Batch extends Model
 
     public function getReceptionDateAttribute($reception_date) 
     {
-        return Carbon::parse($reception_date)->format('yyyy-MM-dd');
+        return Carbon::parse($reception_date)->format('Y-m-d');
     }
 
     public $timestamps = false;
