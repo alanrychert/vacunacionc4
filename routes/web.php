@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VaccinatedController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VaccineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,9 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [HomeController::class,'index'])->name('index');
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware(['auth'])->name('dashboard');
+
+//Vaccine routes
+Route::get('/vaccines', [VaccineController::class,'index'])->middleware('auth')->name('vaccine.index');
 
 //Vaccinated routes
 Route::get('/vaccinateds', [VaccinatedController::class,'index'])->middleware('auth')->name('vaccinated.index');

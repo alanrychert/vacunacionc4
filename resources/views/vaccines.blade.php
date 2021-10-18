@@ -3,7 +3,7 @@
 <div class="container-fluid col-8">
     <div class="row">
             <div class="col">
-                <input type="text" id="myInput" onkeyup="myFunction(1)" class="form-control" placeholder="Filtrar por nombre">
+                <input type="text" id="myInput" onkeyup="myFunction(4)" class="form-control" placeholder="Filtrar por provincia">
             </div>
         <br>
         <br>
@@ -11,21 +11,21 @@
     <table id="myTable" class="table">
         <thead>
             <tr>
-                <th scope="col">DNI</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col"></th>
+                <th scope="col">Número de vacuna</th>
+                <th scope="col">Número de lote</th>
+                <th scope="col">Fecha de aplicación</th>
+                <th scope="col">Dósis</th>
+                <th scope="col">Provincia</th>
             </tr>
         </thead>
         <tbody>
-            @forelse($vaccinateds as $vaccinated)
+            @forelse($vaccines as $vaccine)
             <tr>
-                <td scope="row">{{$vaccinated->dni}}</td>
-                <td>{{$vaccinated->name}}</td>
-                <td>{{$vaccinated->last_name}}</td>
-                <td class="justify-items-end">
-                <a class="btn btn-dark" href="{{ route('vaccinated.edit',$vaccinated)}}">Editar</a>
-                </td>
+                <td scope="row">{{$vaccine->vaccine_number}}</td>
+                <td scope="row">{{$vaccine->batch_number}}</td>
+                <td scope="row">{{$vaccine->date_of_vaccination}}</td>
+                <td scope="row">{{$vaccine->dose}}</td>
+                <td scope="row">{{$vaccine->name}}</td>
             </tr>
             @empty
                 <h1 class="h1"> No hay ningún vacunado</h1>
@@ -43,6 +43,7 @@
           table = document.getElementById("myTable");
           tbody = table.getElementsByTagName("tbody");
           tr = tbody[0].getElementsByTagName("tr");
+          console.log(tr);
           for (i = 0; i < tr.length; i++) {
               td = tr[i].getElementsByTagName("td")[j];
               if (!td) {
