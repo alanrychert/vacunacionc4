@@ -29,7 +29,9 @@ Route::post('/vaccinateds/register', [VaccinatedController::class,'store'])->mid
 Route::put('/vaccinateds/{vaccinated}/actualizar', [VaccinatedController::class,'update'])->middleware('auth')->name('vaccinated.update');
 Route::delete('/vaccinateds/{vaccinated}', [VaccinatedController::class, 'destroy'])->middleware('auth')->name('vaccinated.destroy');
 Route::post('/vaccinateds/create', [VaccinatedController::class,'nextForm'])->middleware('auth')->name('vaccinated.form');
+
 //Batch routes
+Route::get('/batches/allBatches', [BatchController::class,'getAllBatches'])->name('batch.getAllBatches');
 Route::get('/batches/create', [BatchController::class,'create'])->middleware('auth')->name('batch.create');
 Route::get('/batches/{batch}', [BatchController::class,'edit'])->middleware('auth')->name('batch.edit');
 Route::post('/batches/register', [BatchController::class,'store'])->middleware('auth')->name('batch.store');
@@ -37,6 +39,7 @@ Route::post('/batches/available_batches', [BatchController::class,'getAvailableB
 Route::post('/batches/available_vaccines', [BatchController::class,'getAvailableVaccines'])->middleware('auth')->name('batch.getAvailableVaccines');
 Route::put('/batches/{batch}/actualizar', [BatchController::class,'update'])->middleware('auth')->name('batch.update');
 Route::delete('/batches/{batch}', [BatchController::class, 'destroy'])->middleware('auth')->name('batch.destroy');
+
 
 
 //User route

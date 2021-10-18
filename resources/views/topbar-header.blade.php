@@ -27,6 +27,9 @@
           @can('vaccinated.load')
             <li class="nav-item"><a class="nav-link" href="{{ route('vaccinated.create') }}">Nuevo vacunado</a></li>
           @endcan
+          @can('vaccinated.load')
+            <li class="nav-item"><a class="nav-link" href="{{ route('batch.getAllBatches') }}">Lotes Disponibles</a></li>
+          @endcan
           @can('operator.create')
             <li class="nav-item"><a class="nav-link" href="{{ route('batch.create') }}">Nuevo lote</a></li>  
           @endcan
