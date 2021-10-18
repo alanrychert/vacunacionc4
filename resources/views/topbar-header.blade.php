@@ -27,6 +27,9 @@
           @can('vaccinated.load')
             <li class="nav-item"><a class="nav-link" href="{{ route('vaccinated.create') }}">Nuevo vacunado</a></li>
           @endcan
+          @can('vaccinated.load')
+            <li class="nav-item"><a class="nav-link" href="{{ route('batch.getAllBatches') }}">Lotes Disponibles</a></li>
+          @endcan
           @can('operator.create')
             <li class="nav-item"><a class="nav-link" href="{{ route('batch.create') }}">Nuevo lote</a></li>  
           @endcan
@@ -36,9 +39,13 @@
           @can('operator.create')
             <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Nuevo usuario</a></li>
           @endcan
+
+          @role('Minister')
+          <li class="nav-item"><a class="nav-link" href="{{ route('vaccine.index') }}">Ver vacunas</a></li>
+          @endcan
+
           @auth
             <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a></li>
-        
           <form method="POST" action="{{ route('logout') }}">
           @csrf
             <li class="nav-item"><a class="nav-link" href="cerrarSesion" onclick="event.preventDefault();this.closest('form').submit();">

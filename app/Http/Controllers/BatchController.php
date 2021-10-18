@@ -153,5 +153,14 @@ class BatchController extends Controller
         return $vaccines;
     }
 
+    public function getAllBatches(Request $request){
+        $batches = DB::table('vaccines_batches')
+        ->join('type_of_vaccines', 'vaccines_batches.type_of_vaccine_id', '=', 'type_of_vaccines.type_of_vaccine_id')
+        ->get();
+        return view('available-batches')
+        ->with('batches',$batches);
+    }
+
+
 
 }
