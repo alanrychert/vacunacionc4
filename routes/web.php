@@ -42,7 +42,8 @@ Route::delete('/batches/{batch}', [BatchController::class, 'destroy'])->middlewa
 //User route
 Route::post('/register/regions', [UserController::class,'getRegions'])->middleware('auth')->name('register.getRegions');
 
-
+//Admin routes
+Route::get('/administrators', [AdministratorController::class,'index'])->middleware('auth')->name('admin.index');
 
 //ruta random
 Route::get('/vacuna', function () {
