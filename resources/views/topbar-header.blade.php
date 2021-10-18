@@ -37,7 +37,7 @@
             <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Nuevo usuario</a></li>
           @endcan
 
-          @can('filters')
+          @role('Minister')
           <li class="nav-item"><a class="nav-link" href="{{ route('vaccine.index') }}">Ver vacunas</a></li>
           @endcan
 
