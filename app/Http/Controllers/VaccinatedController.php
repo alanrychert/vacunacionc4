@@ -266,7 +266,7 @@ class VaccinatedController extends Controller
         return $results;
     }
 
-    public function getVaccinatedsByDate(){
+    public function getVaccinatedsByAge(){
 
     }
 }
