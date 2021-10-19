@@ -4,7 +4,8 @@
     <div class="row">
         <div class="col-8">
             <select onchange="get(this.value)" class="form-select" name="selectedFilter">
-                <option selected value="1">1 dosis por provincia</option>
+                <option selected>Seleccionar</option>
+                <option value="1">1 dosis por provincia</option>
                 <option value="2">1 dosis por región sanitaria</option>
                 <option value="3">2 dosis por provincia</option>
                 <option value="4">Comorbilidad</option>
