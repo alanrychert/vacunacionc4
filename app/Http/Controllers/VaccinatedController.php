@@ -240,4 +240,18 @@ class VaccinatedController extends Controller
         return redirect()->route('index')->with('info', 'Se eliminó al usuario con éxito');
     }
 
+    public function getVaccinatedsByDose(Request $request){
+        $dose = $request->dose;
+
+        $results = DB::table('vaccines')
+        ->join('vaccines_batches','vaccines.batch_id','=','vaccines_batches.batch_id')
+        ->join('sanitary_regions','vaccines_batches.sanitary_region_id','=','sanitary_regions.sanitary_region_id')
+        ->join('provinces','sanitary_regions.province_id','=','provinces.province_id')
+        ->join('vaccinated','vaccinated.vaccinated_id','=','vaccines.vaccinated_id')
+        ->where('dose','=',$dose)
+        ->select('vaccinated.dni as dni','vaccinated.sex as sex','vaccinated.name as name','vaccinated.last_name as last_name','vaccinated.comorbidity as comorbidity','vaccines_batches.dose as dose','vaccinated.date_of_birth as date_of_birth','vaccines.date_of_vaccination as date_of_vaccination','sanitary_regions.name as region','provinces.name as province')
+        ->distinct()
+        ->get()->sortBy('batch_number');
+        return $results;
+    }
 }

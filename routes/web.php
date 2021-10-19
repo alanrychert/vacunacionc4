@@ -29,6 +29,10 @@ Route::get('/vaccines', [VaccineController::class,'index'])->middleware('auth')-
 Route::get('/vaccinateds', [VaccinatedController::class,'index'])->middleware('auth')->name('vaccinated.index');
 Route::get('/vaccinateds/create', [VaccinatedController::class,'create'])->middleware('auth')->name('vaccinated.create');
 
+
+Route::get('/vaccinateds/byDose', [VaccinatedController::class,'getVaccinatedsByDose'])->middleware('auth')->name('vaccinated.byDose');
+
+
 Route::get('/vaccinateds/{vaccinated}', [VaccinatedController::class,'edit'])->middleware('auth')->name('vaccinated.edit');
 Route::post('/vaccinateds/register', [VaccinatedController::class,'store'])->middleware('auth')->name('vaccinated.store');
 Route::put('/vaccinateds/{vaccinated}/actualizar', [VaccinatedController::class,'update'])->middleware('auth')->name('vaccinated.update');
