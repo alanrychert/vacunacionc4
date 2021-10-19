@@ -3,7 +3,7 @@
 <div class="container-fluid col-8">
     <div class="row">
         <div class="col-8">
-            <select onchange="get(this.value)" class="form-select" name="selectedFilter">
+            <select onchange="get(this.value)" onclick="DeleteRows()" class="form-select" name="selectedFilter">
                 <option selected>Seleccionar</option>
                 <option value="1">1 dosis por provincia</option>
                 <option value="2">1 dosis por región sanitaria</option>
@@ -14,7 +14,7 @@
             </select>
         </div>
         <div class="col-8">
-            <select onchange="myFunction(9,this.value)" id ="province" name="province" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            <select onchange="myFunction(9,this.value)" id="province" name="province" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 <option value="Buenos Aires">Buenos Aires</option>
                 <option value="C.A.B.A">C.A.B.A</option>
                 <option value="Catamarca">Catamarca</option>
@@ -42,7 +42,7 @@
             </select>   
         </div>
         <div class="col-8">
-            <select onchange="myFunction(3,this.value)" id="sanitary_region" name="sanitary_region" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            <select onchange="myFunction(8,this.value)" id="sanitary_region" name="sanitary_region" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 <option value="Region Sanitaria I">Region Sanitaria I</option>
                 <option value="Region Sanitaria II">Region Sanitaria II</option>
                 <option value="Region Sanitaria III">Region Sanitaria III</option>
@@ -56,6 +56,13 @@
                 <option value="Region Sanitaria XI">Region Sanitaria XI</option>
                 <option value="Region Sanitaria XII">Region Sanitaria XII</option>
             </select>   
+        </div>
+        <div>
+            <input type="number" class="form-control" id="age" name="age">
+        </div>
+        <button id="ageButton" name="ageButton" onclick="getByAge(document.getElementById(age).value)">Buscar</button>
+        <div>
+            <input type="date" onchange="getByDate(this.value)" class="form-control" id="date_of_vaccination" name="date_of_vaccination">
         </div>
     </div>
     <div class="table-responsive">
@@ -75,7 +82,6 @@
                 </tr>
             </thead>
             <tbody>
-                
             <tbody>
         </table>
     </div>
@@ -89,9 +95,11 @@
         console.log(value);
         switch (value) {
             case '1': //filtra por primera dosis y provincia
-                console.log("entré");
-                function hide(){
+                function hideOne(){
+                    document.getElementById('province').style.visibility = 'visible';
                     document.getElementById('sanitary_region').style.visibility = 'hidden';
+                    document.getElementById('age').style.visibility = 'hidden';
+                    document.getElementById('date_of_vaccination').style.visibility = 'hidden';
                 }
                 $.ajax({
                 url:"{{ route('vaccinated.byDose') }}",
@@ -100,29 +108,111 @@
                 success: 
                     function(data){
                         parseResultToTable(data);
-                        hide()
+                        hideOne()
                     }
                 })
-                
                 break;
-            case 2:
-                
+            case '2':
+                function hideTwo(){
+                    document.getElementById('province').style.visibility = 'hidden';
+                    document.getElementById('sanitary_region').style.visibility = 'visible';
+                    document.getElementById('age').style.visibility = 'hidden';
+                    document.getElementById('date_of_vaccination').style.visibility = 'hidden';
+                }
+                $.ajax({
+                url:"{{ route('vaccinated.byDose') }}",
+                method: "GET",
+                data: {dose:FIRSTDOSE},
+                success: 
+                    function(data){
+                        parseResultToTable(data);
+                        hideTwo()
+                    }
+                })
                 break;
-            case 3:
-                
+            case '3':
+                function hideThree(){
+                    document.getElementById('province').style.visibility = 'visible';
+                    document.getElementById('sanitary_region').style.visibility = 'hidden';
+                    document.getElementById('age').style.visibility = 'hidden';
+                    document.getElementById('date_of_vaccination').style.visibility = 'hidden';
+                }
+                $.ajax({
+                url:"{{ route('vaccinated.byDose') }}",
+                method: "GET",
+                data: {dose:SECONDDOSE},
+                success: 
+                    function(data){
+                        parseResultToTable(data);
+                        hideThree()
+                    }
+                })
                 break;
-            case 4:
-                
+            case '4':
+                function hideFour(){
+                    document.getElementById('province').style.visibility = 'hidden';
+                    document.getElementById('sanitary_region').style.visibility = 'hidden';
+                    document.getElementById('age').style.visibility = 'hidden';
+                    document.getElementById('date_of_vaccination').style.visibility = 'hidden';
+                }
+                $.ajax({
+                url:"{{ route('vaccinated.withComorbidity') }}",
+                method: "GET",
+                data: {},
+                success: 
+                    function(data){
+                        parseResultToTable(data);
+                        hideFour()
+                    }
+                })
                 break;
-            case 5:
-                
+            case '5':
+                //aca no se hace nada
                 break;
-            case 6:
+            case '6':
                 
                 break;
             default:
                 break;
         }
+    }
+
+    function getByAge(value){
+        function hideFive(){
+            document.getElementById('province').style.visibility = 'hidden';
+            document.getElementById('sanitary_region').style.visibility = 'hidden';
+            document.getElementById('age').style.visibility = 'hidden';
+            document.getElementById('date_of_vaccination').style.visibility = 'hidden';
+        }
+        $.ajax({
+        url:"{{ route('vaccinated.byAge') }}",
+        method: "GET",
+        data: {age: value},
+        success: 
+            function(data){
+                parseResultToTable(data);
+                hideFive()
+            }
+        })
+    }
+
+    function getByDate(value){
+        function hideSix(){
+            document.getElementById('province').style.visibility = 'hidden';
+            document.getElementById('sanitary_region').style.visibility = 'hidden';
+            document.getElementById('age').style.visibility = 'hidden';
+            document.getElementById('date_of_vaccination').style.visibility = 'hidden';
+        }
+        $.ajax({
+        url:"{{ route('vaccinated.byDate') }}",
+        method: "GET",
+        data: {date: value},
+        success: 
+            function(data){
+                parseResultToTable(data);
+                hideSix()
+            }
+        })
     }
 
     function myFunction(j,value) {
@@ -149,13 +239,8 @@
     //Hacer función que haga append de todo el resultado
     function parseResultToTable(results){
         const myTable = $("#myTable");
-        document.addEventListener("DOMContentLoaded", function(event) {
-            var rowCount = myTable.rows.length;
-            for (var i = rowCount - 1; i > 0; i--) {
-                myTable.deleteRow(i);
-            }
-        });
         results.forEach(result => {
+            console.log('agregando');
             const myRow = $("<tr>");
             const dniTD = $("<td>");
             dniTD.text(result.dni);
@@ -189,5 +274,12 @@
             myRow.append(provinceTD);
             myTable.append(myRow);
         })
+    }
+
+    function DeleteRows() {
+        var rowCount = myTable.rows.length;
+        for (var i = rowCount - 1; i > 0; i--) {
+            myTable.deleteRow(i);
+        }
     }
   </script>
