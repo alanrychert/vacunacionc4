@@ -91,7 +91,6 @@
                 console.log("entré");
                 function hide(){
                     document.getElementById('sanitary_region').style.visibility = 'hidden';
-                    $('#sanitary_region').style.visibility = 'hidden';
                 }
                 $.ajax({
                 url:"{{ route('vaccinated.byDose') }}",
