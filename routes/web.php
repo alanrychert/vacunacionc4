@@ -33,6 +33,7 @@ Route::get('/vaccinateds/create', [VaccinatedController::class,'create'])->middl
 Route::get('/vaccinateds/byDose', [VaccinatedController::class,'getVaccinatedsByDose'])->middleware('auth')->name('vaccinated.byDose');
 Route::get('/vaccinateds/withComorbidity', [VaccinatedController::class,'getVaccinatedsWithComorbidity'])->middleware('auth')->name('vaccinated.withComorbidity');
 Route::get('/vaccinateds/byAge', [VaccinatedController::class,'getVaccinatedsByAge'])->middleware('auth')->name('vaccinated.byAge');
+Route::get('/vaccinateds/byDate', [VaccinatedController::class,'getVaccinatedsByDate'])->middleware('auth')->name('vaccinated.byDate');
 
 Route::get('/vaccinateds/{vaccinated}', [VaccinatedController::class,'edit'])->middleware('auth')->name('vaccinated.edit');
 Route::post('/vaccinateds/register', [VaccinatedController::class,'store'])->middleware('auth')->name('vaccinated.store');

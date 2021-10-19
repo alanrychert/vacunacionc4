@@ -267,6 +267,11 @@ class VaccinatedController extends Controller
     }
 
     public function getVaccinatedsByAge(){
+        
+    }
+
+    public function getVaccinatedsByDate(){
 
     }
+
 }
