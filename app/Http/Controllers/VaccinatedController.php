@@ -261,8 +261,9 @@ class VaccinatedController extends Controller
         ->join('vaccinated','vaccinated.vaccinated_id','=','vaccines.vaccinated_id')
         ->whereNotNull('comorbidity')
         ->select('vaccinated.dni as dni','vaccinated.sex as sex','vaccinated.name as name','vaccinated.last_name as last_name','vaccinated.comorbidity as comorbidity','vaccines_batches.dose as dose','vaccinated.date_of_birth as date_of_birth','vaccines.date_of_vaccination as date_of_vaccination','sanitary_regions.name as region','provinces.name as province')
-        ->distinct()
+        ->distinct('dni')
         ->get()->sortBy('batch_number');
+
         return $results;
     }
 
