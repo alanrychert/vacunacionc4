@@ -3,7 +3,7 @@
 <div class="container-fluid col-8">
     <div class="row">
         <div class="col-8">
-            <select onchange="get(this.value)" onclick="DeleteRows()" class="form-select" name="selectedFilter">
+            <select onchange="get(this.value)" onchange="DeleteRows()" class="form-select" name="selectedFilter">
                 <option selected>Seleccionar</option>
                 <option value="1">1 dosis por provincia</option>
                 <option value="2">1 dosis por región sanitaria</option>
@@ -100,6 +100,7 @@
                     document.getElementById('sanitary_region').style.visibility = 'hidden';
                     document.getElementById('age').style.visibility = 'hidden';
                     document.getElementById('date_of_vaccination').style.visibility = 'hidden';
+                    document.getElementById('ageButton').style.visibility = 'hidden';
                 }
                 $.ajax({
                 url:"{{ route('vaccinated.byDose') }}",
@@ -118,6 +119,7 @@
                     document.getElementById('sanitary_region').style.visibility = 'visible';
                     document.getElementById('age').style.visibility = 'hidden';
                     document.getElementById('date_of_vaccination').style.visibility = 'hidden';
+                    document.getElementById('ageButton').style.visibility = 'hidden';
                 }
                 $.ajax({
                 url:"{{ route('vaccinated.byDose') }}",
@@ -136,6 +138,7 @@
                     document.getElementById('sanitary_region').style.visibility = 'hidden';
                     document.getElementById('age').style.visibility = 'hidden';
                     document.getElementById('date_of_vaccination').style.visibility = 'hidden';
+                    document.getElementById('ageButton').style.visibility = 'hidden';
                 }
                 $.ajax({
                 url:"{{ route('vaccinated.byDose') }}",
@@ -154,6 +157,7 @@
                     document.getElementById('sanitary_region').style.visibility = 'hidden';
                     document.getElementById('age').style.visibility = 'hidden';
                     document.getElementById('date_of_vaccination').style.visibility = 'hidden';
+                    document.getElementById('ageButton').style.visibility = 'hidden';
                 }
                 $.ajax({
                 url:"{{ route('vaccinated.withComorbidity') }}",
@@ -202,6 +206,7 @@
             document.getElementById('sanitary_region').style.visibility = 'hidden';
             document.getElementById('age').style.visibility = 'hidden';
             document.getElementById('date_of_vaccination').style.visibility = 'hidden';
+            document.getElementById('ageButton').style.visibility = 'hidden';
         }
         $.ajax({
         url:"{{ route('vaccinated.byDate') }}",
