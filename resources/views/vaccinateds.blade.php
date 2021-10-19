@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-8">
             <select onchange=" DeleteRows(); get(this.value)" class="form-select" name="selectedFilter">
-                <option selected>Seleccionar</option>
+                <option value="0" selected>Seleccionar</option>
                 <option value="1">1 dosis por provincia</option>
                 <option value="2">1 dosis por región sanitaria</option>
                 <option value="3">2 dosis por provincia</option>
@@ -14,7 +14,7 @@
             </select>
         </div>
         <div class="col-8">
-            <select onchange="myFunction(9,this.value)" id="province" name="province" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            <select onchange="myFunction(9,this.value)" id="province" name="province" style="visibility:hidden" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 <option value="Buenos Aires">Buenos Aires</option>
                 <option value="C.A.B.A">C.A.B.A</option>
                 <option value="Catamarca">Catamarca</option>
@@ -42,7 +42,7 @@
             </select>   
         </div>
         <div class="col-8">
-            <select onchange="myFunction(8,this.value)" id="sanitary_region" name="sanitary_region" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            <select onchange="myFunction(8,this.value)" id="sanitary_region" name="sanitary_region" style="visibility:hidden" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 <option value="Region Sanitaria I">Region Sanitaria I</option>
                 <option value="Region Sanitaria II">Region Sanitaria II</option>
                 <option value="Region Sanitaria III">Region Sanitaria III</option>
@@ -58,11 +58,11 @@
             </select>   
         </div>
         <div>
-            <input type="number" class="form-control" id="age" name="age">
+            <input type="number" class="form-control" id="age" style="visibility:hidden" name="age">
         </div>
-        <button id="ageButton" name="ageButton" onclick="getByAge(document.getElementById(age).value)">Buscar</button>
+        <button id="ageButton" name="ageButton" style="visibility:hidden" onclick="getByAge(document.getElementById(age).value)">Buscar</button>
         <div>
-            <input type="date" onchange="getByDate(this.value)" class="form-control" id="date_of_vaccination" name="date_of_vaccination">
+            <input type="date" onchange="getByDate(this.value)" style="visibility:hidden" class="form-control" id="date_of_vaccination" name="date_of_vaccination">
         </div>
     </div>
     <div class="table-responsive">
@@ -94,6 +94,15 @@
     function get(value){
         console.log(value);
         switch (value) {
+            case '0':
+                function hideZero(){
+                    document.getElementById('province').style.visibility = 'visible';
+                    document.getElementById('sanitary_region').style.visibility = 'hidden';
+                    document.getElementById('age').style.visibility = 'hidden';
+                    document.getElementById('date_of_vaccination').style.visibility = 'hidden';
+                    document.getElementById('ageButton').style.visibility = 'hidden';
+                }
+                break;
             case '1': //filtra por primera dosis y provincia
                 function hideOne(){
                     document.getElementById('province').style.visibility = 'visible';
