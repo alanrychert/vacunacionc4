@@ -136,7 +136,6 @@ class BatchController extends Controller
     {
         $type_of_vaccine_id = $request->type_of_vaccine_id;
         $dose = $request->dose;
-        dd($dose);
 
         $batches = DB::table('vaccines_batches')
         ->where('type_of_vaccine_id','=',$type_of_vaccine_id)

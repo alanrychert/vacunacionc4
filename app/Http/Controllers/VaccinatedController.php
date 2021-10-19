@@ -39,19 +39,17 @@ class VaccinatedController extends Controller
 
         $vaccinated_dni = $request->dni;
         $vaccinated = DB::table('vaccinated')->where('dni','=',$vaccinated_dni)->get();
-        $vaccines_count = 0;
+        $vaccines_count = $vaccinated->count()+1;
         $view = view('new-vaccinated-form');
 
 
         $header='';
 
-        if($vaccinated->count() == 0){
+        if($vaccines_count == 1){
             $header = 'Formulario de Nuevo Vacunado';
         }
         else {
-            $vaccinated_id = $vaccinated->first()->vaccinated_id;
-            $vaccines_count = Vaccinated::all()->where('vaccinated_id','=',$vaccinated_id)->first()->vaccines->count();
-            $header = 'Formulario de Dosis Numero: '.$vaccines_count+1;
+            $header = 'Formulario de Dosis Numero: '.$vaccines_count;
             $view = view('vaccine-form');
         }
 
@@ -114,7 +112,7 @@ class VaccinatedController extends Controller
 
         $this->validateVaccineData($request);
 
-        if($request->dose == 0){
+        if($request->dose == 1){
             
             $this->validateVaccinatedData($request);
             $this->createVaccinated($request);
@@ -253,5 +251,22 @@ class VaccinatedController extends Controller
         ->distinct()
         ->get()->sortBy('batch_number');
         return $results;
+    }
+
+    public function getVaccinatedsWithComorbidity(){
+        $results = DB::table('vaccines')
+        ->join('vaccines_batches','vaccines.batch_id','=','vaccines_batches.batch_id')
+        ->join('sanitary_regions','vaccines_batches.sanitary_region_id','=','sanitary_regions.sanitary_region_id')
+        ->join('provinces','sanitary_regions.province_id','=','provinces.province_id')
+        ->join('vaccinated','vaccinated.vaccinated_id','=','vaccines.vaccinated_id')
+        ->whereNotNull('comorbidity')
+        ->select('vaccinated.dni as dni','vaccinated.sex as sex','vaccinated.name as name','vaccinated.last_name as last_name','vaccinated.comorbidity as comorbidity','vaccines_batches.dose as dose','vaccinated.date_of_birth as date_of_birth','vaccines.date_of_vaccination as date_of_vaccination','sanitary_regions.name as region','provinces.name as province')
+        ->distinct()
+        ->get()->sortBy('batch_number');
+        return $results;
+    }
+
+    public function getVaccinatedsByDate(){
+
     }
 }
