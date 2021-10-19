@@ -126,6 +126,7 @@
     }
 
     function myFunction(j,value) {
+        
         var input, filter, table, tr, td, i, txtValue;
         filter = value.toUpperCase();
         table = document.getElementById("myTable");
@@ -148,39 +149,12 @@
     //Hacer función que haga append de todo el resultado
     function parseResultToTable(results){
         const myTable = $("#myTable");
-        myTable.empty();
-        const firstRow = $("<tr>");
-        const dniTH = $("<th>");
-            dniTH.text('DNI');
-            const sexTH = $("<th>");
-            sexTH.text('Sexo');
-            const nameTH = $("<th>");
-            nameTH.text('Nombre');
-            const last_nameTH = $("<th>");
-            last_nameTH.text('Apellido');
-            const comorbidityTH = $("<th>");
-            comorbidityTH.text('Comorbilidad');
-            const doseTH = $("<th>");
-            doseTH.text('Dosis');
-            const date_of_birthTH = $("<th>");
-            date_of_birthTH.text('Fecha de Nacimiento');
-            const date_of_vaccinationTH = $("<th>");
-            date_of_vaccinationTH.text('Fecha de vacunacion');
-            const regionTH = $("<th>");
-            regionTH.text('Region Sanitaria');
-            const provinceTH = $("<th>");
-            provinceTH.text('Provincia');
-            firstRow.append(dniTH);
-            firstRow.append(sexTH);
-            firstRow.append(nameTH);
-            firstRow.append(last_nameTH);
-            firstRow.append(comorbidityTH);
-            firstRow.append(doseTH);
-            firstRow.append(date_of_birthTH);
-            firstRow.append(date_of_vaccinationTH);
-            firstRow.append(regionTH);
-            firstRow.append(provinceTH);
-            myTable.append(firstRow);
+        document.addEventListener("DOMContentLoaded", function(event) {
+            var rowCount = myTable.rows.length;
+            for (var i = rowCount - 1; i > 0; i--) {
+                myTable.deleteRow(i);
+            }
+        });
         results.forEach(result => {
             const myRow = $("<tr>");
             const dniTD = $("<td>");
