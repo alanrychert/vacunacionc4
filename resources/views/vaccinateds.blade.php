@@ -15,6 +15,7 @@
         </div>
         <div class="col-8">
             <select onchange="myFunction(9,this.value)" id="province" name="province" style="visibility:hidden" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                <option selected>Seleccionar provincia</option>
                 @foreach($provinces as $province)
                 <option value="{{$province->name}}">{{$province->name}}</option>
                 @endforeach
@@ -22,6 +23,7 @@
         </div>
         <div class="col-8">
             <select onchange="myFunction(8,this.value)" id="sanitary_region" name="sanitary_region" style="visibility:hidden" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                <option selected>Seleccionar region sanitaria</option>
                 @foreach($regions as $region)
                 <option value="{{$region->name}}">{{$region->name}}</option>
                 @endforeach

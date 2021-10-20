@@ -2,11 +2,14 @@
 @section('contenido')
 <div class="container-fluid col-8">
     <div class="row">
-            <div class="col">
-                <input type="text" id="myInput" onkeyup="myFunction(0)" class="form-control" placeholder="Filtrar por nombre">
-            </div>
-        <br>
-        <br>
+        <div class="col-8 mb-3">
+            <select onchange="myFunction(1,this.value)" id="type" name="type" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                <option selected>Seleccionar tipo de vacuna</option>
+                @foreach($types as $type)
+                <option value="{{$type->name}}">{{$type->name}}</option>
+                @endforeach
+            </select>   
+        </div>
     </div>
     <table id="myTable" class="table">
         <thead>
@@ -20,10 +23,10 @@
         <tbody>
             @forelse($batches as $batch)
             <tr>
-                <th scope="row">{{$batch->batch_number}}</th>
-                <td>{{$batch->name}}</th>
-                <td>{{$batch->since}} - {{$batch->to}}</th>
-                <td>{{$batch->reception_date}}</th>
+                <td>{{$batch->batch_number}}</td>
+                <td>{{$batch->name}}</td>
+                <td>{{$batch->since}} - {{$batch->to}}</td>
+                <td>{{$batch->reception_date}}</td>
             </tr>
             @empty
                 <h1 class="h1"> No hay ningún lote</h1>
@@ -33,20 +36,20 @@
 </div>
 
 <script>
-    function myFunction(j) {
+    function myFunction(j,value) {
+        console.log(value);
         var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
+        filter = value.toUpperCase();
         table = document.getElementById("myTable");
         tbody = table.getElementsByTagName("tbody");
         tr = tbody[0].getElementsByTagName("tr");
         for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td")[j];
             if (!td) {
-              return 
+            return 
             }
             txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            if (txtValue.toUpperCase() == filter) {
                 tr[i].style.display = "";
             } else {
                 tr[i].style.display = "none";

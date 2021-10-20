@@ -9,6 +9,7 @@ use App\Models\TypeOfVaccine;
 use App\Models\Vaccine;
 use App\Models\SanitaryRegion;
 use Illuminate\Support\Facades\DB;
+use Mockery\Matcher\Type;
 
 class BatchController extends Controller
 {
@@ -156,8 +157,10 @@ class BatchController extends Controller
         $batches = DB::table('vaccines_batches')
         ->join('type_of_vaccines', 'vaccines_batches.type_of_vaccine_id', '=', 'type_of_vaccines.type_of_vaccine_id')
         ->get();
+        $types = TypeOfVaccine::all();
         return view('available-batches')
-        ->with('batches',$batches);
+            ->with('batches',$batches)
+            ->with('types',$types);
     }
 
 

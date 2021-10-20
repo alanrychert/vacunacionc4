@@ -22,8 +22,6 @@
             </select>   
         </div>
     </div>
-    <br>
-    <br>
     </div>
     <table id="myTable" class="table">
         <thead>

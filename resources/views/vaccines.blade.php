@@ -4,6 +4,7 @@
     <div class="row">
         <div class="col-8 mb-3">
             <select onchange="myFunction(4,this.value)" id="province" name="province" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                <option selected>Seleccionar provincia</option>
                 @foreach($provinces as $province)
                 <option value="{{$province->name}}">{{$province->name}}</option>
                 @endforeach
