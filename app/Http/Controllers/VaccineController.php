@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vaccine;
+use App\Models\Province;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,10 @@ class VaccineController extends Controller
         ->select('vaccine_number','batch_number','dose','date_of_vaccination','provinces.name')
         ->get()->sortBy('batch_number');
         //->DB::raw("SELECT vaccine_number,batch_number,dose,date_of_vaccination,p.name FROM vaccines NATURAL JOIN vaccines_batches NATURAL JOIN sanitary_regions as sr JOIN provinces as p ON sr.province_id = p.province_id")->get();
-        return view('vaccines')->with('vaccines',$vaccines);
+        $provinces = Province::all();
+        return view('vaccines')
+            ->with('vaccines',$vaccines)
+            ->with('provinces',$provinces);
     }
 
     /**
