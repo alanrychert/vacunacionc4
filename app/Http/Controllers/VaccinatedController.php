@@ -8,6 +8,9 @@ use App\Models\User;
 use App\Models\Vaccinated;
 use App\Models\TypeOfVaccine;
 use App\Models\Vaccine;
+use App\Models\Province;
+use App\Models\SanitaryRegion;
+
 use App\Rules\AvailableVaccine;
 use Illuminate\Support\Facades\DB;
 class VaccinatedController extends Controller
@@ -20,7 +23,12 @@ class VaccinatedController extends Controller
     public function index()
     {
        $vaccinateds = Vaccinated::all()->sortBy('dni');
-       return view('vaccinateds')->with('vaccinateds',$vaccinateds);
+       $provinces = Province::all();
+       $regions = SanitaryRegion::all();
+       return view('vaccinateds')
+        ->with('vaccinateds',$vaccinateds)
+        ->with('provinces', $provinces)
+        ->with('regions',$regions);
     }
 
     /**

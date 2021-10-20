@@ -15,46 +15,16 @@
         </div>
         <div class="col-8">
             <select onchange="myFunction(9,this.value)" id="province" name="province" style="visibility:hidden" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                <option value="Buenos Aires">Buenos Aires</option>
-                <option value="C.A.B.A">C.A.B.A</option>
-                <option value="Catamarca">Catamarca</option>
-                <option value="Chaco">Chaco</option>
-                <option value="Chubut">Chubut</option>
-                <option value="Córdoba">Córdoba</option>
-                <option value="Corrientes">Corrientes</option>
-                <option value="Entre Ríos">Entre Ríos</option>
-                <option value="Formosa">Formosa</option>
-                <option value="Jujuy">Jujuy</option>
-                <option value="La Pampa">La Pampa</option>
-                <option value="La Rioja">La Rioja</option>
-                <option value="Mendoza">Mendoza</option>
-                <option value="Misiones">Misiones</option>
-                <option value="Neuquén">Neuquén</option>
-                <option value="Río Negro">Río Negro</option>
-                <option value="Salta">Salta</option>
-                <option value="San Juan">San Juan</option>
-                <option value="San Luis">San Luis</option>
-                <option value="Santa Cruz">Santa Cruz</option>
-                <option value="Santa Fe">Santa Fe</option>
-                <option value="Santiago del Estero">Santiago del Estero</option>
-                <option value="Tierra del Fuego">Tierra del Fuego</option>
-                <option value="Tucumán">Tucumán</option>
+                @foreach($provinces as $province)
+                <option value="{{$province->name}}">{{$province->name}}</option>
+                @endforeach
             </select>   
         </div>
         <div class="col-8">
             <select onchange="myFunction(8,this.value)" id="sanitary_region" name="sanitary_region" style="visibility:hidden" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                <option value="Region Sanitaria I">Region Sanitaria I</option>
-                <option value="Region Sanitaria II">Region Sanitaria II</option>
-                <option value="Region Sanitaria III">Region Sanitaria III</option>
-                <option value="Region Sanitaria IV">Region Sanitaria IV</option>
-                <option value="Region Sanitaria V">Region Sanitaria V</option>
-                <option value="Region Sanitaria VI">Region Sanitaria VI</option>
-                <option value="Region Sanitaria VII">Region Sanitaria VII</option>
-                <option value="Region Sanitaria VIII">Region Sanitaria VIII</option>
-                <option value="Region Sanitaria IX">Region Sanitaria IX</option>
-                <option value="Region Sanitaria X">Region Sanitaria X</option>
-                <option value="Region Sanitaria XI">Region Sanitaria XI</option>
-                <option value="Region Sanitaria XII">Region Sanitaria XII</option>
+                @foreach($regions as $region)
+                <option value="{{$region->name}}">{{$region->name}}</option>
+                @endforeach
             </select>   
         </div>
         <div>
@@ -86,7 +56,7 @@
         </table>
     </div>
 </div>
-@endsection
+
 
 <script>
     const FIRSTDOSE=1;
@@ -297,3 +267,4 @@
         }
     }
   </script>
+  @endsection
