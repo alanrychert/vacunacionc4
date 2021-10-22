@@ -20,7 +20,8 @@ class VaccineController extends Controller
         ->join('vaccines_batches','vaccines.batch_id','=','vaccines_batches.batch_id')
         ->join('sanitary_regions','vaccines_batches.sanitary_region_id','=','sanitary_regions.sanitary_region_id')
         ->join('provinces','sanitary_regions.province_id','=','provinces.province_id')
-        ->select('vaccine_number','batch_number','dose','date_of_vaccination','provinces.name')
+        ->join('type_of_vaccines','vaccines_batches.type_of_vaccine_id','=','type_of_vaccines.type_of_vaccine_id')
+        ->select('vaccine_number','batch_number','type_of_vaccines.name as type_of_vaccine','dose','date_of_vaccination','provinces.name')
         ->get()->sortBy('batch_number');
         //->DB::raw("SELECT vaccine_number,batch_number,dose,date_of_vaccination,p.name FROM vaccines NATURAL JOIN vaccines_batches NATURAL JOIN sanitary_regions as sr JOIN provinces as p ON sr.province_id = p.province_id")->get();
         $provinces = Province::all();

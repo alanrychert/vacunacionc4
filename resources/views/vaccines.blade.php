@@ -15,6 +15,7 @@
             <tr>
                 <th scope="col">Número de vacuna</th>
                 <th scope="col">Número de lote</th>
+                <th scope="col">Tipo de vacuna</th>
                 <th scope="col">Fecha de aplicación</th>
                 <th scope="col">Dosis</th>
                 <th scope="col">Provincia</th>
@@ -25,6 +26,7 @@
             <tr>
                 <td scope="row">{{$vaccine->vaccine_number}}</td>
                 <td scope="row">{{$vaccine->batch_number}}</td>
+                <td scope="row">{{$vaccine->type_of_vaccine}}</td>
                 <td scope="row">{{$vaccine->date_of_vaccination}}</td>
                 <td scope="row">{{$vaccine->dose}}</td>
                 <td scope="row">{{$vaccine->name}}</td>
