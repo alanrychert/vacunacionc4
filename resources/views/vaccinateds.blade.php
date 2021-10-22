@@ -3,8 +3,9 @@
 <div class="container-fluid col-8">
     <div class="row">
         <div class="col-8">
-            <select onchange=" DeleteRows(); get(this.value)" class="form-select" name="selectedFilter">
-                <option value="0" selected>Seleccionar</option>
+            <label class='font-weight-bold'>Seleccione el filtro</label>
+            <select onchange=" get(this.value)" class="form-select" name="selectedFilter">
+                <option value="0" selected>Seleccionar todos</option>
                 <option value="1">1 dosis por provincia</option>
                 <option value="2">1 dosis por región sanitaria</option>
                 <option value="3">2 dosis por provincia</option>
@@ -34,7 +35,7 @@
         </div>
         <button id="ageButton" name="ageButton" style="visibility:hidden" onclick="getByAge(document.getElementById(age).value)">Buscar</button>
         <div>
-            <input type="date" onchange="getByDate(this.value)" style="visibility:hidden" class="form-control" id="date_of_vaccination" name="date_of_vaccination">
+            <input type="date" onchange="getByDate(this.value)" style="visibility:hidden" class="form-control mb-3" id="date_of_vaccination" name="date_of_vaccination">
         </div>
     </div>
     <div class="table-responsive">
@@ -54,6 +55,20 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($vaccinateds as $vaccinated)
+                <tr>
+                    <td>{{$vaccinated->dni}}</td>
+                    <td>{{$vaccinated->sex}}</td>
+                    <td>{{$vaccinated->name}}</td>
+                    <td>{{$vaccinated->last_name}}</td>
+                    <td>{{$vaccinated->comorbidity}}</td>
+                    <td>{{$vaccinated->dose}}</td>
+                    <td>{{$vaccinated->date_of_birth}}</td>
+                    <td>{{$vaccinated->date_of_vaccination}}</td>
+                    <td>{{$vaccinated->region}}</td>
+                    <td>{{$vaccinated->province}}</td>
+                </tr>       
+                @endforeach
             <tbody>
         </table>
     </div>
@@ -66,16 +81,29 @@
     function get(value){
         console.log(value);
         switch (value) {
-            case '0':
+            case '0': //esconde todos los inputs
+                DeleteRows();
                 function hideZero(){
-                    document.getElementById('province').style.visibility = 'visible';
+                    document.getElementById('province').style.visibility = 'hidden';
                     document.getElementById('sanitary_region').style.visibility = 'hidden';
                     document.getElementById('age').style.visibility = 'hidden';
                     document.getElementById('date_of_vaccination').style.visibility = 'hidden';
                     document.getElementById('ageButton').style.visibility = 'hidden';
                 }
+                $.ajax({
+                url:"{{ route('vaccinated.all') }}",
+                method: "GET",
+                data: {},
+                success: 
+                    function(data){
+                        parseResultToTable(data);
+                        hideZero()
+                    }
+                })
+                
                 break;
             case '1': //filtra por primera dosis y provincia
+                DeleteRows();
                 function hideOne(){
                     document.getElementById('province').style.visibility = 'visible';
                     document.getElementById('sanitary_region').style.visibility = 'hidden';
@@ -95,6 +123,7 @@
                 })
                 break;
             case '2':
+                DeleteRows();
                 function hideTwo(){
                     document.getElementById('province').style.visibility = 'hidden';
                     document.getElementById('sanitary_region').style.visibility = 'visible';
@@ -114,6 +143,7 @@
                 })
                 break;
             case '3':
+                DeleteRows();
                 function hideThree(){
                     document.getElementById('province').style.visibility = 'visible';
                     document.getElementById('sanitary_region').style.visibility = 'hidden';
@@ -133,6 +163,7 @@
                 })
                 break;
             case '4':
+                DeleteRows();
                 function hideFour(){
                     document.getElementById('province').style.visibility = 'hidden';
                     document.getElementById('sanitary_region').style.visibility = 'hidden';
@@ -152,10 +183,24 @@
                 })
                 break;
             case '5':
-                //aca no se hace nada
+                function hideFive(){
+                    document.getElementById('province').style.visibility = 'hidden';
+                    document.getElementById('sanitary_region').style.visibility = 'hidden';
+                    document.getElementById('age').style.visibility = 'visible';
+                    document.getElementById('date_of_vaccination').style.visibility = 'hidden';
+                    document.getElementById('ageButton').style.visibility = 'visible';
+                }
+                hideFive()
                 break;
             case '6':
-                
+                function hideSix(){
+                    document.getElementById('province').style.visibility = 'hidden';
+                    document.getElementById('sanitary_region').style.visibility = 'hidden';
+                    document.getElementById('age').style.visibility = 'hidden';
+                    document.getElementById('date_of_vaccination').style.visibility = 'visible';
+                    document.getElementById('ageButton').style.visibility = 'hidden';
+                }
+                hideSix()
                 break;
             default:
                 break;
@@ -163,12 +208,8 @@
     }
 
     function getByAge(value){
-        function hideFive(){
-            document.getElementById('province').style.visibility = 'hidden';
-            document.getElementById('sanitary_region').style.visibility = 'hidden';
-            document.getElementById('age').style.visibility = 'hidden';
-            document.getElementById('date_of_vaccination').style.visibility = 'hidden';
-        }
+        DeleteRows();
+        
         $.ajax({
         url:"{{ route('vaccinated.byAge') }}",
         method: "GET",
@@ -176,27 +217,20 @@
         success: 
             function(data){
                 parseResultToTable(data);
-                hideFive()
             }
         })
     }
 
     function getByDate(value){
-        function hideSix(){
-            document.getElementById('province').style.visibility = 'hidden';
-            document.getElementById('sanitary_region').style.visibility = 'hidden';
-            document.getElementById('age').style.visibility = 'hidden';
-            document.getElementById('date_of_vaccination').style.visibility = 'hidden';
-            document.getElementById('ageButton').style.visibility = 'hidden';
-        }
+        DeleteRows();
+        console.log(value);
         $.ajax({
         url:"{{ route('vaccinated.byDate') }}",
         method: "GET",
-        data: {date: value},
+        data: {date_of_vaccination: value},
         success: 
             function(data){
                 parseResultToTable(data);
-                hideSix()
             }
         })
     }
@@ -226,7 +260,6 @@
     function parseResultToTable(results){
         const myTable = $("#myTable");
         results.forEach(result => {
-            console.log('agregando');
             const myRow = $("<tr>");
             const dniTD = $("<td>");
             dniTD.text(result.dni);
@@ -269,4 +302,6 @@
         }
     }
   </script>
+
+
   @endsection
