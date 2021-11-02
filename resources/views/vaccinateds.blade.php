@@ -12,6 +12,7 @@
                 <option value="4">Comorbilidad</option>
                 <option value="5">Edad</option>
                 <option value="6">Fecha de vacunación</option>
+                <option value="7">Por genero</option>
             </select>
         </div>
         <div class="col-8">
@@ -20,6 +21,13 @@
                 @foreach($provinces as $province)
                 <option value="{{$province->name}}">{{$province->name}}</option>
                 @endforeach
+            </select>   
+        </div>
+        <div class="col-8">
+            <select onchange="myFunction2(1,this.value)" id="sex" name="sex" style="visibility:hidden" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                <option value=" " selected>Seleccionar sexo</option>
+                <option value="F">Femenino</option>
+                <option value="M">Masculino</option>
             </select>   
         </div>
         <div class="col-8">
@@ -79,7 +87,6 @@
     const FIRSTDOSE=1;
     const SECONDDOSE=2;
     function get(value){
-        console.log(value);
         switch (value) {
             case '0': //esconde todos los inputs
                 DeleteRows();
@@ -89,6 +96,7 @@
                     document.getElementById('age').style.visibility = 'hidden';
                     document.getElementById('date_of_vaccination').style.visibility = 'hidden';
                     document.getElementById('ageButton').style.visibility = 'hidden';
+                    document.getElementById('sex').style.visibility = 'hidden';
                 }
                 $.ajax({
                 url:"{{ route('vaccinated.all') }}",
@@ -110,6 +118,7 @@
                     document.getElementById('age').style.visibility = 'hidden';
                     document.getElementById('date_of_vaccination').style.visibility = 'hidden';
                     document.getElementById('ageButton').style.visibility = 'hidden';
+                    document.getElementById('sex').style.visibility = 'hidden';
                 }
                 $.ajax({
                 url:"{{ route('vaccinated.byDose') }}",
@@ -130,6 +139,7 @@
                     document.getElementById('age').style.visibility = 'hidden';
                     document.getElementById('date_of_vaccination').style.visibility = 'hidden';
                     document.getElementById('ageButton').style.visibility = 'hidden';
+                    document.getElementById('sex').style.visibility = 'hidden';
                 }
                 $.ajax({
                 url:"{{ route('vaccinated.byDose') }}",
@@ -150,6 +160,7 @@
                     document.getElementById('age').style.visibility = 'hidden';
                     document.getElementById('date_of_vaccination').style.visibility = 'hidden';
                     document.getElementById('ageButton').style.visibility = 'hidden';
+                    document.getElementById('sex').style.visibility = 'hidden';
                 }
                 $.ajax({
                 url:"{{ route('vaccinated.byDose') }}",
@@ -170,6 +181,7 @@
                     document.getElementById('age').style.visibility = 'hidden';
                     document.getElementById('date_of_vaccination').style.visibility = 'hidden';
                     document.getElementById('ageButton').style.visibility = 'hidden';
+                    document.getElementById('sex').style.visibility = 'hidden';
                 }
                 $.ajax({
                 url:"{{ route('vaccinated.withComorbidity') }}",
@@ -189,6 +201,7 @@
                     document.getElementById('age').style.visibility = 'visible';
                     document.getElementById('date_of_vaccination').style.visibility = 'hidden';
                     document.getElementById('ageButton').style.visibility = 'visible';
+                    document.getElementById('sex').style.visibility = 'hidden';
                 }
                 hideFive()
                 break;
@@ -199,8 +212,21 @@
                     document.getElementById('age').style.visibility = 'hidden';
                     document.getElementById('date_of_vaccination').style.visibility = 'visible';
                     document.getElementById('ageButton').style.visibility = 'hidden';
+                    document.getElementById('sex').style.visibility = 'hidden';
                 }
                 hideSix()
+                break;
+            case '7':
+                function hideSeven(){
+                    document.getElementById('province').style.visibility = 'hidden';
+                    document.getElementById('sanitary_region').style.visibility = 'hidden';
+                    document.getElementById('age').style.visibility = 'hidden';
+                    document.getElementById('date_of_vaccination').style.visibility = 'hidden';
+                    document.getElementById('ageButton').style.visibility = 'hidden';
+                    document.getElementById('sex').style.visibility = 'visible';
+                    
+                }
+                hideSeven()
                 break;
             default:
                 break;
@@ -236,7 +262,7 @@
     }
 
     function myFunction(j,value) {
-        
+        console.log(value);
         var input, filter, table, tr, td, i, txtValue;
         filter = value.toUpperCase();
         table = document.getElementById("myTable");
@@ -294,6 +320,26 @@
             myTable.append(myRow);
         })
     }
+
+    function myFunction2(j, value) {
+          var filter, table, tr, td, i, txtValue;
+          filter = value.toUpperCase();
+          table = document.getElementById("myTable");
+          tbody = table.getElementsByTagName("tbody");
+          tr = tbody[0].getElementsByTagName("tr");
+          for (i = 0; i < tr.length; i++) {
+              td = tr[i].getElementsByTagName("td")[j];
+              if (!td) {
+                return 
+              }
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  tr[i].style.display = "";
+              } else {
+                  tr[i].style.display = "none";
+              }
+          }
+      }
 
     function DeleteRows() {
         var rowCount = myTable.rows.length;
