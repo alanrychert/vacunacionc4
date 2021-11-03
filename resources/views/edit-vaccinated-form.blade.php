@@ -95,37 +95,22 @@
                 </div>
                 <div class="col-8">
                     <select name="sex" class="form-select">
-                        @if($vaccinated->sex == 'F')
+                        @if(strpos($vaccinated->sex,"F") !== false )
                             <option value="F" selected>Femenino</option>
                             <option value="M">Masculino</option>
+                            <option value="X">No binario</option>
                         @else
-                            <option value="F">Femenino</option>
-                            <option value="M" selected>Masculino</option>
+                            @if(strpos($vaccinated->sex,"M")  !== false)
+                                <option value="F">Femenino</option>
+                                <option value="M" selected>Masculino</option>
+                                <option value="X">No binario</option>
+                            @else
+                                <option value="F">Femenino</option>
+                                <option value="M">Masculino</option>
+                                <option value="X" selected>No binario</option>
+                            @endif
                         @endif
                     </select>
-                </div>
-            </div>
-            <div class="row mb-3 justify-content-center">
-                <div class="col-2">
-                    <label class="form-label font-weight-bold" for="type">Tipo de vacuna</label>
-                </div>
-                <div class="col-8">
-                    <select class="form-select" name="type_of_vaccine">
-                        <!--esto vendria de la bdd?-->
-                        <option selected>Seleccionar</option>
-                        @foreach ($types as $type)
-                        <option value="{{$type->type_code}}">{{ $type->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>         
-            <div class="row mb-3 justify-content-center">
-                <div class="col-2">
-                    <label class="form-label font-weight-bold" for="vaccine_number">Numero de serie de vacuna</label>
-                </div>
-                <div class="col-8">
-                    <input type="text" class="form-control" value="{{old('vaccine_number')}}" id="vaccine_number" name="vaccine_number" required>
-                    @error('Numero de serie de vacuna')<small>*{{$message}}</small>@enderror
                 </div>
             </div>
             <div class="row mb-3 justify-content-center">

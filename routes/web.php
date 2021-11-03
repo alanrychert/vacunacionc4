@@ -35,7 +35,7 @@ Route::get('/vaccinateds/withComorbidity', [VaccinatedController::class,'getVacc
 Route::get('/vaccinateds/byAge', [VaccinatedController::class,'getVaccinatedsByAge'])->middleware('auth')->name('vaccinated.byAge');
 Route::get('/vaccinateds/byDate', [VaccinatedController::class,'getVaccinatedsByDate'])->middleware('auth')->name('vaccinated.byDate');
 
-Route::get('/vaccinateds/{vaccinated}', [VaccinatedController::class,'edit'])->middleware('auth')->name('vaccinated.edit');
+Route::get('/vaccinateds/{dni}', [VaccinatedController::class,'edit'])->middleware('auth')->name('vaccinated.edit');
 Route::post('/vaccinateds/register', [VaccinatedController::class,'store'])->middleware('auth')->name('vaccinated.store');
 Route::put('/vaccinateds/{vaccinated}/actualizar', [VaccinatedController::class,'update'])->middleware('auth')->name('vaccinated.update');
 Route::delete('/vaccinateds/{vaccinated}', [VaccinatedController::class, 'destroy'])->middleware('auth')->name('vaccinated.destroy');

@@ -181,8 +181,9 @@ class VaccinatedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vaccinated $vaccinated)
+    public function edit( $dni)
     {
+        $vaccinated = Vaccinated::get()->where('dni','=',$dni)->first();
         $types_of_vaccines = TypeOfVaccine::all();
         return view('edit-vaccinated-form',[
             'vaccinated' => $vaccinated,
@@ -207,9 +208,6 @@ class VaccinatedController extends Controller
             'date_of_birth' => 'required',
             'dni' => 'required|integer',
             'sex' => 'required',
-            'date_of_vaccination' => 'required',
-            'type_of_vaccine' => 'required',
-            'vaccine_number' => 'required'
         ]);
 
         $vaccinated->update([
@@ -220,20 +218,6 @@ class VaccinatedController extends Controller
             'comorbidity' => $request->comorbidity,
             'sex' => $request->sex,
         ]);
-
-        $vaccine = Vaccine::where('vaccinated','=',$vaccinated->dni)->get()->first();
-        if($vaccine->type_of_vaccine != $request->type_of_vaccine || $vaccine->vaccine_number!=$request->vaccine_number){
-            $vaccine->date_of_vaccination= null;
-            $vaccine->vaccinated=null;
-            $vaccine->update();
-            $vaccine = Vaccine::get()
-            ->where('type_of_vaccine','=',$request->type_of_vaccine)
-            ->where('vaccine_number','=',$request->vaccine_number)
-            ->first();
-            $vaccine->date_of_vaccination = $request->date_of_vaccination;
-            $vaccine->vaccinated = $vaccinated->vaccinated_id;
-            $vaccine->update();
-        }
 
         $vaccinated->update();
 

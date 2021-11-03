@@ -28,6 +28,7 @@
                 <option value=" " selected>Seleccionar sexo</option>
                 <option value="F">Femenino</option>
                 <option value="M">Masculino</option>
+                <option value="X">No binario</option>
             </select>   
         </div>
         <div class="col-8">
@@ -65,6 +66,9 @@
             <tbody>
                 @foreach($vaccinateds as $vaccinated)
                 <tr>
+                    <td>
+                        <a class="btn btn-dark" href="{{ route('vaccinated.edit',['dni' => $vaccinated->dni]) }}">Editar</a>
+                    </td>
                     <td>{{$vaccinated->dni}}</td>
                     <td>{{$vaccinated->sex}}</td>
                     <td>{{$vaccinated->name}}</td>

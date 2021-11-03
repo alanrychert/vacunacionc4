@@ -68,6 +68,7 @@
                 <option selected>Seleccionar</option>
                 <option value="F">Femenino</option>
                 <option value="M">Masculino</option>
+                <option value="X">No binario</option>
             </select>
             @error('Sexo')<small>*{{$message}}</small>@enderror
         </div>
