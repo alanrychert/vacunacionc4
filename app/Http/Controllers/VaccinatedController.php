@@ -295,8 +295,30 @@ class VaccinatedController extends Controller
         return $results;
     }
 
-    public function getVaccinatedsByAge(){
-        
+
+    public function getVaccinatedsByAge(Request $request){
+        $age = $request->age;
+        $currentDate = date("Y-m-d");
+        date_create($currentDate);
+
+        $results = DB::table('vaccines')
+        ->join('vaccines_batches','vaccines.batch_id','=','vaccines_batches.batch_id')
+        ->join('sanitary_regions','vaccines_batches.sanitary_region_id','=','sanitary_regions.sanitary_region_id')
+        ->join('provinces','sanitary_regions.province_id','=','provinces.province_id')
+        ->join('vaccinated','vaccinated.vaccinated_id','=','vaccines.vaccinated_id')
+        ->select('vaccinated.dni as dni','vaccinated.sex as sex','vaccinated.name as name','vaccinated.last_name as last_name','vaccinated.comorbidity as comorbidity','vaccines_batches.dose as dose','vaccinated.date_of_birth as date_of_birth','vaccines.date_of_vaccination as date_of_vaccination','sanitary_regions.name as region','provinces.name as province')
+        ->distinct('dni')
+        ->get()->sortBy('batch_number');
+
+        $filteredArray = array();
+        foreach($results as $res){
+            $actualAge = date_diff(date_create($res->date_of_birth), date_create($currentDate));
+            $actualAge = $actualAge->format("%y");
+            if ($age == $actualAge)
+                array_push($filteredArray,$res);
+        }
+
+        return $filteredArray;
     }
 
     public function getVaccinatedsByDate(Request $request){

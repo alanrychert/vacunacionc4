@@ -41,7 +41,7 @@
         <div>
             <input type="number" class="form-control" id="age" style="visibility:hidden" name="age">
         </div>
-        <button id="ageButton" name="ageButton" style="visibility:hidden" onclick="getByAge(document.getElementById(age).value)">Buscar</button>
+        <button id="ageButton" name="ageButton" style="visibility:hidden" onclick="getByAge(document.getElementById('age').value)">Buscar</button>
         <div>
             <input type="date" onchange="getByDate(this.value)" style="visibility:hidden" class="form-control mb-3" id="date_of_vaccination" name="date_of_vaccination">
         </div>
