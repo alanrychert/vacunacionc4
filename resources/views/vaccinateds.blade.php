@@ -221,6 +221,16 @@
                 hideSix()
                 break;
             case '7':
+                $.ajax({
+                url:"{{ route('vaccinated.all') }}",
+                method: "GET",
+                data: {},
+                success: 
+                    function(data){
+                        parseResultToTable(data);
+                        hideZero()
+                    }
+                })
                 function hideSeven(){
                     document.getElementById('province').style.visibility = 'hidden';
                     document.getElementById('sanitary_region').style.visibility = 'hidden';
