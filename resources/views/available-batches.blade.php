@@ -16,6 +16,7 @@
             <tr>
                 <th scope="col">Numero de Lote</th>
                 <th scope="col">Tipo de Vacuna</th>
+                <th scope="col">Dosis</th>
                 <th scope="col">Rango</th>
                 <th scope="col">Fecha de recepcion</th>
             </tr>
@@ -25,6 +26,7 @@
             <tr>
                 <td>{{$batch->batch_number}}</td>
                 <td>{{$batch->name}}</td>
+                <td>{{$batch->dose}}</td>
                 <td>{{$batch->since}} - {{$batch->to}}</td>
                 <td>{{$batch->reception_date}}</td>
             </tr>
