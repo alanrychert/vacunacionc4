@@ -35,6 +35,12 @@ Route::get('/vaccinateds/withComorbidity', [VaccinatedController::class,'getVacc
 Route::get('/vaccinateds/byAge', [VaccinatedController::class,'getVaccinatedsByAge'])->middleware('auth')->name('vaccinated.byAge');
 Route::get('/vaccinateds/byDate', [VaccinatedController::class,'getVaccinatedsByDate'])->middleware('auth')->name('vaccinated.byDate');
 
+Route::get('/vaccinateds/allAdmin', [VaccinatedControllerAdmin::class,'getAllVaccinateds'])->middleware('auth')->name('vaccinated.allAdmin');
+Route::get('/vaccinateds/byDoseAdmin', [VaccinatedControllerAdmin::class,'getVaccinatedsByDose'])->middleware('auth')->name('vaccinated.byDoseAdmin');
+Route::get('/vaccinateds/withComorbidityAdmin', [VaccinatedControllerAdmin::class,'getVaccinatedsWithComorbidity'])->middleware('auth')->name('vaccinated.withComorbidityAdmin');
+Route::get('/vaccinateds/byAgeAdmin', [VaccinatedControllerAdmin::class,'getVaccinatedsByAge'])->middleware('auth')->name('vaccinated.byAgeAdmin');
+Route::get('/vaccinateds/byDateAdmin', [VaccinatedControllerAdmin::class,'getVaccinatedsByDate'])->middleware('auth')->name('vaccinated.byDateAdmin');
+
 Route::get('/vaccinateds/{dni}', [VaccinatedController::class,'edit'])->middleware('auth')->name('vaccinated.edit');
 Route::post('/vaccinateds/register', [VaccinatedController::class,'store'])->middleware('auth')->name('vaccinated.store');
 Route::put('/vaccinateds/{vaccinated}/actualizar', [VaccinatedController::class,'update'])->middleware('auth')->name('vaccinated.update');
