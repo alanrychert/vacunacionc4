@@ -24,7 +24,7 @@
             <li class="nav-item"><a class="nav-link" href="{{ route('admin.index') }}">Administradores</a></li>
           @endcan
           @can('operator.create')
-            <li class="nav-item"><a class="nav-link" href="{{ route('vaccinated.index') }}">Vacunados</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('vaccinated.indexAdmin') }}">Vacunados</a></li>
           @endcan
           @can('vaccinated.load')
             <li class="nav-item"><a class="nav-link" href="{{ route('vaccinated.create') }}">Nuevo vacunado</a></li>

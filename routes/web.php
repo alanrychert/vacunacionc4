@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VaccinatedController;
+use App\Http\Controllers\VaccinatedControllerAdmin;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VaccineController;
@@ -35,6 +36,7 @@ Route::get('/vaccinateds/withComorbidity', [VaccinatedController::class,'getVacc
 Route::get('/vaccinateds/byAge', [VaccinatedController::class,'getVaccinatedsByAge'])->middleware('auth')->name('vaccinated.byAge');
 Route::get('/vaccinateds/byDate', [VaccinatedController::class,'getVaccinatedsByDate'])->middleware('auth')->name('vaccinated.byDate');
 
+Route::get('/vaccinateds/admin', [VaccinatedControllerAdmin::class,'index'])->middleware('auth')->name('vaccinated.indexAdmin');
 Route::get('/vaccinateds/allAdmin', [VaccinatedControllerAdmin::class,'getAllVaccinateds'])->middleware('auth')->name('vaccinated.allAdmin');
 Route::get('/vaccinateds/byDoseAdmin', [VaccinatedControllerAdmin::class,'getVaccinatedsByDose'])->middleware('auth')->name('vaccinated.byDoseAdmin');
 Route::get('/vaccinateds/withComorbidityAdmin', [VaccinatedControllerAdmin::class,'getVaccinatedsWithComorbidity'])->middleware('auth')->name('vaccinated.withComorbidityAdmin');

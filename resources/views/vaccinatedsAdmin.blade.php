@@ -64,7 +64,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($vaccinateds as $vaccinated)
+                @forelse($vaccinateds as $vaccinated)
                 <tr>
                     <td>
                         <a class="btn btn-dark" href="{{ route('vaccinated.edit',['dni' => $vaccinated->dni]) }}">Editar</a>
@@ -80,7 +80,9 @@
                     <td>{{$vaccinated->region}}</td>
                     <td>{{$vaccinated->province}}</td>
                 </tr>       
-                @endforeach
+                @empty
+                    <label>No hay vacunados</label>
+                @endforelse
             <tbody>
         </table>
     </div>
@@ -292,6 +294,8 @@
     //Hacer función que haga append de todo el resultado
     function parseResultToTable(results){
         const myTable = $("#myTable");
+        if (!results)
+            $vaccinated = '';
         results.forEach(result => {
             const myRow = $("<tr>");
             const editarTD = $("<td>");
