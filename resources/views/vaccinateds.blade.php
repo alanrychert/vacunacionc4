@@ -231,7 +231,17 @@
                     document.getElementById('sex').style.visibility = 'visible';
                     
                 }
-                hideSeven()
+                $.ajax({
+                url:"{{ route('vaccinated.all') }}",
+                method: "GET",
+                data: {},
+                success: 
+                    function(data){
+                        parseResultToTable(data);
+                        hideSeven()
+                    }
+                })
+                
                 break;
             default:
                 break;
