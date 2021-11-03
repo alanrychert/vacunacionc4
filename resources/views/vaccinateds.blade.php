@@ -16,7 +16,7 @@
             </select>
         </div>
         <div class="col-8">
-            <select onchange="myFunction(9,this.value)" id="province" name="province" style="visibility:hidden" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            <select onchange="myFunction(10,this.value)" id="province" name="province" style="visibility:hidden" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 <option selected>Seleccionar provincia</option>
                 @foreach($provinces as $province)
                 <option value="{{$province->name}}">{{$province->name}}</option>
@@ -24,7 +24,7 @@
             </select>   
         </div>
         <div class="col-8">
-            <select onchange="myFunction2(1,this.value)" id="sex" name="sex" style="visibility:hidden" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            <select onchange="myFunction2(2,this.value)" id="sex" name="sex" style="visibility:hidden" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 <option value=" " selected>Seleccionar sexo</option>
                 <option value="F">Femenino</option>
                 <option value="M">Masculino</option>
@@ -32,7 +32,7 @@
             </select>   
         </div>
         <div class="col-8">
-            <select onchange="myFunction(8,this.value)" id="sanitary_region" name="sanitary_region" style="visibility:hidden" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            <select onchange="myFunction(9,this.value)" id="sanitary_region" name="sanitary_region" style="visibility:hidden" class="form-select block appearance-none mt-1 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 <option selected>Seleccionar region sanitaria</option>
                 @foreach($regions as $region)
                 <option value="{{$region->name}}">{{$region->name}}</option>
@@ -51,6 +51,7 @@
         <table id="myTable" class="table content-table">
             <thead>
                 <tr>
+                    <th scope=""></th>
                     <th scope="col">DNI</th>
                     <th scope="col">Sexo</th>
                     <th scope="col">Nombre</th>
@@ -301,6 +302,12 @@
         const myTable = $("#myTable");
         results.forEach(result => {
             const myRow = $("<tr>");
+            const editarTD = $("<td>");
+            const editarA = $("<a>");
+            editarA.href=href="{{ route('vaccinated.edit',['dni' => $vaccinated->dni]) }}";
+            editarA.class= "btn btn-dark";
+            editarTD.append(editarA);
+            myRow.append(editarTD);
             const dniTD = $("<td>");
             dniTD.text(result.dni);
             const sexTD = $("<td>");
